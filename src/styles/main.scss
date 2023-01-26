@@ -1,0 +1,54 @@
+$main: #FAF0BF;
+$nav: #404B56;
+$accent-light: #CC0E1D;
+$accent-dark: #A2141A;
+$text: #2C3034;
+
+html {
+  font-size: 16px;
+}
+
+nav {
+  background: $nav;
+  height: 6rem;
+  width: 75%;
+  color: $main;
+}
+
+.app {
+  width: 100%;
+  border: 1px solid $accent-light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.widget {
+  border: 2px solid $text;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  background: $main;
+  width: 75%;
+  align-items: center;
+  h1 {
+    font-size: 24px;
+  }
+}
+
+.overview {
+  height: 60rem;
+}
+
+.related-products {
+  height: 45rem;
+}
+
+.reviews-ratings {
+  height: 30rem;
+}
+
+.q-and-a {
+  height: 35rem;
+}
