@@ -27,18 +27,125 @@ nav {
 .widget {
   border: 2px solid $text;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   margin-bottom: 1rem;
   background: $main;
   width: 75%;
-  align-items: center;
+  // align-items: center;
   h1 {
     font-size: 24px;
   }
 }
 
 .overview {
-  height: 60rem;
+  height: 55rem;
+  display: flex;
+  flex-direction: column;
+  .banner {
+    text-align: center;
+    height: 5%;
+    border: 1px solid black;
+  }
+  .main-panel {
+    display: flex;
+    justify-content: space-between;
+    height: 75%;
+    .image-gallery {
+      border: 1px solid blue;
+      width: 60%;
+      .image-carousel {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        left: 1.5rem;
+        width: 5rem;
+        height: 26rem;
+        border: 1px solid black;
+        justify-content: space-around;
+        align-items: center;
+        .box {
+          width: 4rem;
+          height: 4rem;
+          border: 1px solid black;
+        }
+      }
+    }
+    .control-panel {
+      border: 1px solid green;
+      margin-right: 2rem;
+      width: 35%;
+      .static-info {
+        border: 1px solid red;
+        text-align: left;
+        h2 {
+          font-size: 2rem;
+        }
+      }
+      .style-selector {
+        height: 33%;
+        border: 1px solid pink;
+        display: flex;
+        flex-wrap: wrap;
+        .circle {
+          border: 1px dotted black;
+          border-radius: 50%;
+          width: 3rem;
+          height: 3rem;
+          margin: 1rem;
+        }
+      }
+      .controls {
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: space-around;
+        font-size: 1.5rem;
+        height: 33%;
+        .row-1 {
+          display: flex;
+          justify-content: space-around;
+          height: 60%;
+          .size-button {
+            width: 60%;
+            border: 1px solid black;
+          }
+          .quantity {
+            width: 30%;
+            border: 1px solid black;
+          }
+        }
+        .row-2 {
+          display: flex;
+          justify-content: space-around;
+          height: 60%;
+          .add-to-bag {
+            width: 75%;
+            height: 100%;
+            border: 1px solid black;
+          }
+          .favorite {
+            width: 15%;
+            height: 100%;
+            border: 1px solid black;
+          }
+        }
+      }
+    }
+  }
+  .bottom-panel {
+    border: 1px solid purple;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-around;
+    .description {
+      border-right: 1px solid black;
+    }
+    .checklist {
+      font-size: 1.25rem;
+    }
+  }
 }
 
 .related-products {
