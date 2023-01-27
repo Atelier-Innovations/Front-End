@@ -1,8 +1,8 @@
 import React from 'react';
-import { Overview } from './Overview';
-import RatingsReviews from './RatingsReviews';
-import RelatedProducts from './RelatedProducts';
-import QandA from './QandA';
+import { Overview } from './overview/Overview';
+import RatingsReviews from './ratingsReviews/RatingsReviews';
+import RelatedProducts from './relatedProducts/RelatedProducts';
+import QandA from './qAndA/QandA';
 
 export const App: React.FC = () => (
   <div className="app">
