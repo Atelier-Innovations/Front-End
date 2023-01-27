@@ -41,6 +41,7 @@ nav {
   height: 55rem;
   display: flex;
   flex-direction: column;
+  transition: font-size 1s ease;
   .banner {
     text-align: center;
     height: 5%;
