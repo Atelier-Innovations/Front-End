@@ -5,9 +5,7 @@ export const App: React.FC = () => (
   <div className="app">
     <nav>
     </nav>
-    <section className="widget overview">
-      <Overview />
-    </section>
+    <Overview />
     <section className="widget related-products">
       <h1>RELATED PRODUCTS</h1>
     </section>
