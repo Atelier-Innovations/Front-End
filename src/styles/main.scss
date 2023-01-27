@@ -201,6 +201,21 @@ nav {
 
 }
 
-.q-and-a {
+// immdediate children
+.q-and-a-container {
   height: 35rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  align-content: flex-start;
+  width: 100%;
+  flex-direction: column;
+  h1 {
+    font-size: 50px;
+    margin: left;
+  }
+}
+
+.q-and-a-question {
+  align-content: flex-start;
 }
