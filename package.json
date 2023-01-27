@@ -8,10 +8,14 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
+    "@testing-library/react": "^13.4.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "babel-loader": "^9.1.2",
     "core-js": "^3.27.2",
+    "jest": "^29.4.1",
+    "jest-environment-jsdom": "^29.4.1",
+    "react-test-renderer": "^18.2.0",
     "regenerator-runtime": "^0.13.11",
     "typescript": "^4.9.4",
     "webpack": "^5.75.0",
@@ -22,7 +26,8 @@
     "dev": "webpack serve",
     "serve": "nodemon src/server/index.ts",
     "build": "webpack --mode production --progress",
-    "tscheck": "tsc"
+    "tscheck": "tsc",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^1.2.5",
