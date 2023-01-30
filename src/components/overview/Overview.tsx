@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Overview: React.FC = (props) => {
+const Overview: React.FC = (props) => {
 
   return (
     <section className="widget overview">
@@ -66,3 +66,5 @@ export const Overview: React.FC = (props) => {
     </section>
   )
 }
+
+export default Overview;
