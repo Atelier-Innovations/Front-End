@@ -1,54 +1,57 @@
 import React, { FC } from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Card from './Card';
 
-interface RelatedProductsProps {
-}
+interface RelatedProductsProps {}
 
 const RelatedProducts: FC<RelatedProductsProps> = (props) => {
-
-  console.log('building rp')
+  console.log('building rp');
 
   //temporary currentProductId, change to props once added
-  const [currentProductId, setCurrentProductId] = useState<string>('37311')
+  const [currentProductId, setCurrentProductId] = useState<string>('37311');
 
   // get related product ids from database
-  const [relatedProductIds, setRelatedProductIds] = useState<object>([])
+  const [relatedProductIds, setRelatedProductIds] = useState<object>([]);
 
+  // get related roducts from db
   const getRelatedProductsFromDB = () => {
-    axios.get(`http://localhost:6969/products/${currentProductId}/related`, {})
-    .then(result => {
-      setRelatedProductIds(result.data)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
+    axios
+      .get(`http://localhost:6969/products/${currentProductId}/related`, {})
+      .then((result) => {
+        setRelatedProductIds(result.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
+  // make http request for data
   useEffect(() => {
-    getRelatedProductsFromDB()
-  }, [])
+    getRelatedProductsFromDB();
+  }, []);
 
-  console.log('final related product Ids: ', relatedProductIds)
+  console.log('final related product Ids: ', relatedProductIds);
 
   return (
-    <section className="related-products widget">
-      <h2 className="title">Related Products</h2>
-      <div className="carousel">
-        <div className="card"></div>
-        <div className="card"></div>
-        <div className="card"></div>
-        <div className="card"></div>
+    <section className='related-products widget'>
+      <h2 className='title'>Related Products</h2>
+      <div className='carousel'>
+        {/* {relatedProductIds.map((product) => {})} */}
+        <Card id='37311' />
+        <div className='card'></div>
+        <div className='card'></div>
+        <div className='card'></div>
       </div>
-      <h2 className="title">Your Outfit</h2>
-      <div className="carousel">
-        <div className="card"></div>
-        <div className="card"></div>
-        <div className="card"></div>
-        <div className="card"></div>
+      <h2 className='title'>Your Outfit</h2>
+      <div className='carousel'>
+        <div className='card'></div>
+        <div className='card'></div>
+        <div className='card'></div>
+        <div className='card'></div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default RelatedProducts;
