@@ -202,20 +202,108 @@ nav {
 }
 
 // immdediate children
-.q-and-a-container {
+.q-and-a-container{
   height: 35rem;
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin: 0.5rem;
   align-content: flex-start;
-  width: 100%;
   flex-direction: column;
+  border: 2px solid brown;
+
   h1 {
-    font-size: 50px;
+    font-size: 20px;
     margin: left;
   }
-}
 
-.q-and-a-question {
-  align-content: flex-start;
+  .search-bar {
+    height: 35px;
+    display: flex;
+    align-content: flex-start;
+    margin-bottom: 1rem;
+    border: 2px solid blue;
+    font-size: 3rem;
+
+    input {
+      color: red;
+      font-size: 50%;
+      display: flex;
+      align-content: flex-start;
+      width: 75%;
+    }
+    .search-button {
+      color: blue;
+      height: 100%;
+    }
+  }
+
+  .question-container {
+    display: flex;
+    border: 2px solid red;
+    margin-bottom: 1rem;
+    align-content: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    width: 100%;
+    .q-btns {
+      color: red;
+    }
+  }
+
+  .answer-container {
+    display: flex;
+    width: 75%;
+    border: 2px solid blue;
+    justify-content: center;
+    margin-bottom: 1rem;
+    align-content: flex-start;
+    flex-direction: column;
+
+    .answer-info {
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .answer-photos {
+      display: flex;
+      justify-content: center;
+      align-content: flex-start;
+      flex-direction: column;
+      border: 2px solid red;
+      margin-top: 1rem;
+
+      .img-container {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+      }
+      .answer-img-info {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: flex-start;
+      }
+      .action-btn-answers {
+        color: red;
+        width: 25%;
+        display: flex;
+        justify-content: flex-start;
+      }
+    }
+
+  }
+  .action-btn {
+    display: flex;
+    flex-wrap: wrap;
+    // align-content: flex-start;
+    justify-content: flex-start;
+    .action-btn-more-answers {
+      color: blue;
+      font-size: 2rem;
+    }
+    .action-btn-add-question {
+      color: purple;
+      height: 150%;
+    }
+  }
+
 }
