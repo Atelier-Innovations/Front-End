@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { useState, useEffect } from 'react';
-
 import axios from 'axios';
 
 // category, name, price (price for default style), and rating
@@ -33,6 +32,12 @@ const Card: FC<CardProps> = (props) => {
     setProductImage(response.data.results[0].photos[0].thumbnail_url);
   };
 
+  let img = productImage;
+  if (img === null) {
+    img =
+      'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg';
+  }
+
   useEffect(() => {
     getProductDataFromDB();
     getProductImgFromDB();
@@ -47,8 +52,8 @@ const Card: FC<CardProps> = (props) => {
 
   //perform type checking
   const product: ProductObject = productData;
-  const img: string = productImage;
 
+  // assign variables
   const name = product.name;
   const category = product.category;
   const price = product.default_price;

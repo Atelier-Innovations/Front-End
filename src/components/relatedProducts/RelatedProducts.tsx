@@ -5,6 +5,8 @@ import Card from './Card';
 
 interface RelatedProductsProps {}
 
+interface ProductIds {}
+
 const RelatedProducts: FC<RelatedProductsProps> = (props) => {
   console.log('building rp');
 
@@ -12,7 +14,7 @@ const RelatedProducts: FC<RelatedProductsProps> = (props) => {
   const [currentProductId, setCurrentProductId] = useState<string>('37311');
 
   // get related product ids from database
-  const [relatedProductIds, setRelatedProductIds] = useState<object>([]);
+  const [relatedProductIds, setRelatedProductIds] = useState<Array<string>>([]);
 
   // get related roducts from db
   const getRelatedProductsFromDB = () => {
@@ -37,11 +39,9 @@ const RelatedProducts: FC<RelatedProductsProps> = (props) => {
     <section className='related-products widget'>
       <h2 className='title'>Related Products</h2>
       <div className='carousel'>
-        {/* {relatedProductIds.map((product) => {})} */}
-        <Card id='37311' />
-        <div className='card'></div>
-        <div className='card'></div>
-        <div className='card'></div>
+        {relatedProductIds.map((productId) => {
+          return <Card id={productId} key={productId} />;
+        })}
       </div>
       <h2 className='title'>Your Outfit</h2>
       <div className='carousel'>
