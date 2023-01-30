@@ -3,8 +3,17 @@ import Banner from './Banner';
 import ImageGallery from './imageGallery/ImageGallery';
 import ControlPanel from './controlPanel/ControlPanel';
 import ProductDescriptionPanel from './ProductDescriptionPanel';
+import Axios from 'axios';
 
-export const Overview: React.FC = (props) => {
+interface OverviewProps {
+  currentProductID: string
+}
+
+const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
+
+  React.useEffect(() => {
+
+  })
 
   return (
     <section className="widget overview">
@@ -17,3 +26,5 @@ export const Overview: React.FC = (props) => {
     </section>
   )
 }
+
+export default Overview;

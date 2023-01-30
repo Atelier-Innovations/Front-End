@@ -5,9 +5,9 @@ const StaticInfoDisplay: React.FC = (props) => {
   return (
     <div className="static-info">
       <div className="stars">STARS</div>
-      <h3>Category</h3>
-      <h2>Expanded Product Name</h2>
-      <p>$369</p>
+      <h3>{props.product.category}</h3>
+      <h2>{props.product.name}</h2>
+      <p>${props.product.default_price}</p>
     </div>
   )
 }
