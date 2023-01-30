@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import SearchBar from './qAndA/SearchBar';
 // type checing to be functional .
 // const QandA: React.FC = (props) => {
 // };
@@ -11,10 +12,11 @@ const QandA: FC<QandAProps> = (props) => {
     <section className="widget q-and-a">
       <div className="q-and-a-container">
         <h1>Question and Answers</h1>
-        <div className="search-bar">
+
+        {/* <div className="search-bar">
         <input name="search-bar-text" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."/>
         <button className="search-button">Search Button</button>
-        </div>
+        </div> */}
 
         <div className="question-container">
           <div>Q: Who what which when wehre why whether how?</div>
