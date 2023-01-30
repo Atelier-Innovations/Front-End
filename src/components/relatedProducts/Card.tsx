@@ -11,7 +11,7 @@ const Card: FC<CardProps> = (props) => {
   const [productData, setProductData] = useState({});
   const [productImage, setProductImage] = useState('');
 
-  console.log('product data: ', productData);
+  // console.log('product data: ', productData);
 
   // get product info
   const getProductDataFromDB = () => {
@@ -55,9 +55,10 @@ const Card: FC<CardProps> = (props) => {
 
   return (
     <div className='card'>
-      <div className='cardImage' style={{ backgroundImage: `url(${img})` }}>
-        jfkldafjdlak
-      </div>
+      <div
+        className='cardImage'
+        style={{ backgroundImage: `url(${img})` }}
+      ></div>
       <div className='cardInfo'>
         <p>{name}</p>
         <p>{category}</p>
