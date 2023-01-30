@@ -8,7 +8,6 @@ interface RelatedProductsProps {}
 interface ProductIds {}
 
 const RelatedProducts: FC<RelatedProductsProps> = (props) => {
-  console.log('building rp');
 
   //temporary currentProductId, change to props once added
   const [currentProductId, setCurrentProductId] = useState<string>('37311');
@@ -33,7 +32,6 @@ const RelatedProducts: FC<RelatedProductsProps> = (props) => {
     getRelatedProductsFromDB();
   }, []);
 
-  console.log('final related product Ids: ', relatedProductIds);
 
   return (
     <section className='related-products widget'>

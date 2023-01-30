@@ -31,6 +31,7 @@ nav {
   margin-bottom: 1rem;
   background: $main;
   width: 75%;
+
   // align-items: center;
   h1 {
     font-size: 24px;
@@ -41,18 +42,22 @@ nav {
   height: 55rem;
   display: flex;
   flex-direction: column;
+
   .banner {
     text-align: center;
     height: 5%;
     border: 1px solid black;
   }
+
   .main-panel {
     display: flex;
     justify-content: space-between;
     height: 75%;
+
     .image-gallery {
       border: 1px solid blue;
       width: 60%;
+
       .image-carousel {
         display: flex;
         flex-direction: column;
@@ -63,6 +68,7 @@ nav {
         border: 1px solid black;
         justify-content: space-around;
         align-items: center;
+
         .box {
           width: 4rem;
           height: 4rem;
@@ -70,22 +76,27 @@ nav {
         }
       }
     }
+
     .control-panel {
       border: 1px solid green;
       margin-right: 2rem;
       width: 35%;
+
       .static-info {
         border: 1px solid red;
         text-align: left;
+
         h2 {
           font-size: 2rem;
         }
       }
+
       .style-selector {
         height: 33%;
         border: 1px solid pink;
         display: flex;
         flex-wrap: wrap;
+
         .circle {
           border: 1px dotted black;
           border-radius: 50%;
@@ -94,6 +105,7 @@ nav {
           margin: 1rem;
         }
       }
+
       .controls {
         border: 1px solid black;
         display: flex;
@@ -102,28 +114,34 @@ nav {
         align-items: space-around;
         font-size: 1.5rem;
         height: 33%;
+
         .row-1 {
           display: flex;
           justify-content: space-around;
           height: 60%;
+
           .size-button {
             width: 60%;
             border: 1px solid black;
           }
+
           .quantity {
             width: 30%;
             border: 1px solid black;
           }
         }
+
         .row-2 {
           display: flex;
           justify-content: space-around;
           height: 60%;
+
           .add-to-bag {
             width: 75%;
             height: 100%;
             border: 1px solid black;
           }
+
           .favorite {
             width: 15%;
             height: 100%;
@@ -133,15 +151,18 @@ nav {
       }
     }
   }
+
   .bottom-panel {
     border: 1px solid purple;
     width: 100%;
     height: 20%;
     display: flex;
     justify-content: space-around;
+
     .description {
       border-right: 1px solid black;
     }
+
     .checklist {
       font-size: 1.25rem;
     }
@@ -192,7 +213,7 @@ nav {
 
 .reviews-ratings {
   height: 30rem;
-  display:flex;
+  display: flex;
   flex-direction: column;
 
   .banner {
@@ -242,19 +263,19 @@ nav {
     }
 
     .review-list {
-      display:flex;
+      display: flex;
       flex-direction: column;
       height: 100%;
       width: 71%;
       border: 2px solid $text;
 
       .sort-by {
-        font-weight:bold;
+        font-weight: bold;
         margin-bottom: 2rem;
       }
 
       .single-review {
-        display:flex;
+        display: flex;
         border: 1px solid $text;
         flex-direction: column;
 
@@ -264,7 +285,6 @@ nav {
           justify-content: space-between;
           width: 100%;
           border: 1px solid $text
-
         }
 
         .summary {
@@ -295,7 +315,7 @@ nav {
 
 
 // immdediate children
-.q-and-a-container{
+.q-and-a-container {
   height: 35rem;
   display: flex;
   justify-content: center;
@@ -312,94 +332,100 @@ nav {
     margin: left;
   }
 
-.q-and-a-question {
-  align-content: flex-start;
-  .search-bar {
-    height: 35px;
-    display: flex;
-    align-content: flex-start;
-    margin-bottom: 1rem;
-    border: 2px solid blue;
-    font-size: 3rem;
 
-    input {
-      color: red;
-      font-size: 50%;
+    .search-bar {
+      height: 35px;
       display: flex;
       align-content: flex-start;
+      margin-bottom: 1rem;
+      border: 2px solid blue;
+      font-size: 3rem;
+
+      input {
+        color: red;
+        font-size: 50%;
+        display: flex;
+        align-content: flex-start;
+        width: 75%;
+      }
+
+      .search-button {
+        color: blue;
+        height: 100%;
+      }
+    }
+
+    .question-container {
+      display: flex;
+      border: 2px solid red;
+      margin-bottom: 1rem;
+      align-content: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      width: 100%;
+
+      .q-btns {
+        color: red;
+      }
+    }
+
+    .answer-container {
+      display: flex;
       width: 75%;
-    }
-    .search-button {
-      color: blue;
-      height: 100%;
-    }
-  }
-
-  .question-container {
-    display: flex;
-    border: 2px solid red;
-    margin-bottom: 1rem;
-    align-content: flex-start;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    width: 100%;
-    .q-btns {
-      color: red;
-    }
-  }
-
-  .answer-container {
-    display: flex;
-    width: 75%;
-    border: 2px solid blue;
-    justify-content: center;
-    margin-bottom: 1rem;
-    align-content: flex-start;
-    flex-direction: column;
-
-    .answer-info {
-      display: flex;
-      justify-content: space-evenly;
-    }
-
-    .answer-photos {
-      display: flex;
+      border: 2px solid blue;
       justify-content: center;
+      margin-bottom: 1rem;
       align-content: flex-start;
       flex-direction: column;
-      border: 2px solid red;
-      margin-top: 1rem;
 
-      .img-container {
+      .answer-info {
         display: flex;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
+        justify-content: space-evenly;
       }
-      .answer-img-info {
+
+      .answer-photos {
         display: flex;
-        justify-content: space-between;
-        flex-direction: flex-start;
+        justify-content: center;
+        align-content: flex-start;
+        flex-direction: column;
+        border: 2px solid red;
+        margin-top: 1rem;
+
+        .img-container {
+          display: flex;
+          justify-content: flex-start;
+          flex-wrap: nowrap;
+        }
+
+        .answer-img-info {
+          display: flex;
+          justify-content: space-between;
+          flex-direction: flex-start;
+        }
+
+        .action-btn-answers {
+          color: red;
+          width: 25%;
+          display: flex;
+          justify-content: flex-start;
+        }
       }
-      .action-btn-answers {
-        color: red;
-        width: 25%;
-        display: flex;
-        justify-content: flex-start;
-      }
+
     }
 
-  }
-  .action-btn {
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 1.5rem;
-    // align-content: flex-start;
-    justify-content: flex-start;
-    .more-answers {
-      color: blue;
+    .action-btn {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 1.5rem;
+      // align-content: flex-start;
+      justify-content: flex-start;
+
+      .more-answers {
+        color: blue;
+      }
+
+      .add-question {
+        color: Red;
+      }
     }
-    .add-question {
-      color: Red;
-    }
   }
-}

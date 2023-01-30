@@ -1,7 +1,15 @@
 import React from 'react';
 
-const StaticInfoDisplay: React.FC = (props) => {
 
+interface StaticInfoProps {
+  product: {
+    category: string,
+    name: string,
+    default_price: string
+  }
+}
+
+const StaticInfoDisplay: React.FC<StaticInfoProps> = (props) => {
   return (
     <div className="static-info">
       <div className="stars">STARS</div>
