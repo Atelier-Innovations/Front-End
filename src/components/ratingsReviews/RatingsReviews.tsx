@@ -1,4 +1,6 @@
 import React, { FC } from 'react';
+import ReviewsList from './ReviewsPanel/ReviewList'
+import RatingsList from './RatingsPanel/RatingsList';
 
 
 interface RatingsReviewsProps {
@@ -11,20 +13,12 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
   return (
     <div className="widget reviews-ratings">
       <div className="banner">
-        RATINGS & REVIEWS
+        <strong>RATINGS & REVIEWS</strong>
       </div>
 
       <div className="overall">
-        <div className="ratings-panel">
-          Ratings Panel here
-        </div>
-
-        <div className="review-list">
-          Individual review components rendered here<br/>
-
-
-
-      </div><br/>
+        < RatingsList />
+        < ReviewsList />
       </div>
 
       <div className="button-panel">

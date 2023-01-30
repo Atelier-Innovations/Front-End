@@ -173,6 +173,12 @@ nav {
   }
 }
 
+
+/////////////////////////
+// RATINGS AND REVIEWS //
+/////////////////////////
+
+
 .reviews-ratings {
   height: 30rem;
   display:flex;
@@ -189,31 +195,97 @@ nav {
   .overall {
     display: flex;
     flex-direction: row;
-    height: 100%;
+    height: 85%;
     border: 1px solid red;
 
     .ratings-panel {
       display: flex;
+      flex-direction: column;
       border: 2px solid $text;
-      width: 20%;
-      height: 75%;
-      margin-right: 10px;
+      width: 24%;
+      height: 100%;
+      margin-right: 3rem;
+      text-align: start;
+
+      .overall-rating {
+        font-size: 2.75rem;
+        font-weight: 600;
+      }
+
+      .recommendation {
+        text-align: left;
+        font-size: 0.8rem;
+        margin-top: 1rem
+      }
+
+      .filter-by-star {
+        padding-top: 0.5rem;
+
+        .stars {
+          padding-top: 0.7rem;
+          text-decoration: underline;
+          font-size: small;
+        }
+      }
 
     }
 
+
+
     .review-list {
       display:flex;
-      height: 75%;
-      width: 60%;
+      flex-direction: column;
+      height: 100%;
+      width: 71%;
       border: 2px solid $text;
+
+      .sort-by {
+        font-weight:bold;
+        margin-bottom: 2rem;
+      }
+
+      .single-review {
+        display:flex;
+        border: 1px solid $text;
+        flex-direction: column;
+
+        .info-bar {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          width: 100%;
+          border: 1px solid $text
+
+        }
+
+        .summary {
+          margin-top: 0.8rem;
+          font-weight: bold;
+          border: 1px solid $text;
+          margin-bottom: 0.8rem;
+        }
+
+        .review-body {
+          font-size: .9rem;
+          margin-bottom: 0.8rem;
+        }
+
+        .helpful {
+          font-size: .75rem
+        }
+      }
     }
   }
 
 
-
-
-
 }
+
+
+
+
+
+
+
 
 // immdediate children
 .q-and-a-container {
