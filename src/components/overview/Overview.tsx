@@ -5,6 +5,7 @@ import ControlPanel from './controlPanel/ControlPanel';
 import ProductDescriptionPanel from './ProductDescriptionPanel';
 import Axios from 'axios';
 
+
 interface OverviewProps {
   currentProductID: string
 }
