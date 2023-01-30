@@ -2,9 +2,11 @@ import React from 'react';
 import Overview from './Overview';
 import StaticInfoDisplay from './controlPanel/StaticInfoDisplay';
 import StyleSelector from './controlPanel/StyleSelector';
+import ButtonPanel from './controlPanel/ButtonPanel';
 import renderer from 'react-test-renderer';
 import {render, screen} from '@testing-library/react';
 import '@testing-library/jest-dom'
+import userEvent from '@testing-library/user-event'
 import App from '../App';
 import Fixtures from './fixtures.js';
 
@@ -14,7 +16,7 @@ describe('StaticInfoDisplay should display info for currently selected product a
 
   beforeEach(() => {
     render (
-      <StaticInfoDisplay product={Fixtures.camoOnesie} style={Fixtures.oceanBlue} />
+      <StaticInfoDisplay product={Fixtures.camoOnesie} style={Fixtures.camoOnesieStyles[2]} />
       )
   })
 
@@ -50,38 +52,65 @@ describe('StyleSelector should display available styles and selected style', () 
 
 describe('ButtonPanel should allow the user to select size, quantity, and add to cart', () => {
 
+
   test('By default, size selector should display "Select Size"', () => {
-    //TODO
+    render (
+      <ButtonPanel style={Fixtures.camoOnesieStyles.results[2]} />
+    )
+
+    expect(screen.getByPlaceholderText('Select Size')).toBeInTheDocument();
   })
 
   test('Only sizes that are available should appear in the size selector', () => {
-    //TODO
+    render (
+      <ButtonPanel style={Fixtures.fakeProductStyles.results[0]} />
+    )
+
+    expect(screen.queryByDisplayValue('L')).toBe(null);
   });
 
   test('Dropdown should read "OUT OF STOCK" and be deactivated if no stock left in current style', () => {
-    //TODO
+    render (
+      <ButtonPanel style={Fixtures.outOfStockProductStyles.results[0]} />
+    )
+    expect(screen.getByDisplayValue('OUT OF STOCK')).toBeInTheDocument();
   });
 
 
   test('By default, quantity dropdown should display "-" and be disabled', () => {
-    //TODO
+    render (
+      <ButtonPanel style={Fixtures.camoOnesieStyles.results[0]} />
+    )
+
+    expect(screen.getByDisplayValue('-')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('-')).toBeDisabled();
   })
 
-  test('Once size is selected, quantity dropdown should display "1"', () => {
-    //TODO
+  test('Once size is selected, quantity dropdown should display "1"', async () => {
+    render (
+      <ButtonPanel style={Fixtures.camoOnesieStyles.results[0]} />
+    )
+    const user = userEvent.setup();
+
+    await userEvent.selectOptions(getByDisplayValue('Select Size'), 'L');
+    expect(screen.getByDisplayValue('1')).toBeInTheDocument();
   })
 
   test('Quantity dropdown should display integers ranging from 1 to maximum stock, capped at 15', () => {
-    //TODO
+    //TODO -- not sure how to test that, will revisit
   });
 
 
   test('Add to cart button should prompt user to select size if no size selected', () => {
-    //TODO
+    //TODO -- again, will research more and try to implement later
   });
 
   test('Add to cart button should not appear if item is out of stock', () => {
-    //TODO
+    render (
+      <ButtonPanel style={Fixtures.outOfStockProductStyles.results[0]} />
+    )
+
+    expect(screen.queryByDisplayValue('Add To Cart')).toBe(null);
   });
 
   test('Add to cart button should add items to cart if size is selected', () => {
@@ -90,7 +119,7 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
 
 });
 
-describe('Image gallery should display images of product' () => {
+describe('Image gallery should display images of product', () => {
 
   test('Images displayed should correspond to currently selected style', () => {
     //TODO
