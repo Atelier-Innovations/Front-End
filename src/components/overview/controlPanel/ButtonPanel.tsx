@@ -7,6 +7,13 @@ const ButtonPanel: React.FC = (props) => {
       <div className="row-1">
         <select className="size-button">
           <option>Select Size</option>
+          {props.skus.map((sku, index) => {
+            if (props.currentStyle.skus[sku].quantity > 0) {
+              return (
+                <option key={index}>{props.currentStyle.skus[sku].size}</option>
+              )
+            }
+          })}
         </select>
         <select className="quantity"></select>
       </div>

@@ -24,7 +24,9 @@ const ControlPanel: React.FC<ControlPanelProps> = (props: ControlPanelProps) => 
       <StyleSelector styles={props.styleList}
                      currentStyle={props.currentStyle}
                      setCurrentStyle={props.setCurrentStyle} />
-      <ButtonPanel />
+      <ButtonPanel currentStyle={props.currentStyle}
+                   skus={props.currentStyle.hasOwnProperty('skus') ?
+                   Object.keys(props.currentStyle.skus) : []} />
     </div>
   )
 }

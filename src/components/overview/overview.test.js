@@ -58,7 +58,7 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
       <ButtonPanel style={Fixtures.camoOnesieStyles.results[2]} />
     )
 
-    expect(screen.getByPlaceholderText('Select Size')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('Select Size')).toBeInTheDocument();
   })
 
   test('Only sizes that are available should appear in the size selector', () => {
