@@ -6,13 +6,13 @@ import axios from 'axios';
 interface CardProps {
   id: string;
 }
+
 const Card: FC<CardProps> = (props) => {
   const [productData, setProductData] = useState({});
   const [productImage, setProductImage] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
-  // console.log('product data: ', productData);
-
-  // get product info
+  // get product data
   const getProductDataFromDB = () => {
     axios
       .get(`http://localhost:6969/products/${props.id}`, {})
@@ -29,16 +29,18 @@ const Card: FC<CardProps> = (props) => {
     let response = await axios.get(
       `http://localhost:6969/products/${props.id}/styles`
     );
-    setProductImage(response.data.results[0].photos[0].thumbnail_url);
+    let img = response.data.results[0].photos[0].thumbnail_url;
+    // check image for null value and display "not available" if true
+    if (img === null) {
+      setProductImage(
+        'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg'
+      );
+    } else {
+      setProductImage(img);
+    }
   };
 
-  let img = productImage;
-  if (img === null) {
-    img =
-      'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg';
-  }
-
-  // retreive data
+  // retreive all data
   useEffect(() => {
     getProductDataFromDB();
     getProductImgFromDB();
@@ -50,27 +52,25 @@ const Card: FC<CardProps> = (props) => {
     category?: string;
     default_price?: string;
   };
-
-  //perform type checking
   const product: ProductObject = productData;
 
-  // assign variables
-  const name = product.name;
-  const category = product.category;
-  const price = product.default_price;
+  // handle show modal
+  const divClickHandler = () => {};
 
   return (
-    <div className='card'>
-      <div
-        className='cardImage'
-        style={{ backgroundImage: `url(${img})` }}
-      ></div>
-      <div className='cardInfo'>
-        <p>{name}</p>
-        <p>{category}</p>
-        <p>{price}</p>
+    <>
+      <div className='card' onClick={divClickHandler}>
+        <div
+          className='cardImage'
+          style={{ backgroundImage: `url(${productImage})` }}
+        ></div>
+        <div className='cardInfo'>
+          <p>{product.name}</p>
+          <p>{product.category}</p>
+          <p>{product.default_price}</p>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

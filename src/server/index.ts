@@ -20,8 +20,8 @@ app.get('/products', (req: Request, res: Response) => {
 // get product info
 app.get('/products/:id', (req: Request, res: Response) => {
   const id = req.params.id;
-  console.log('this is the product info route');
-  console.log('id: ', id);
+  // console.log('this is the product info route');
+  // console.log('id: ', id);
   axios(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, {
     headers: {
       Authorization: process.env.API_KEY,
@@ -67,29 +67,34 @@ app.get('/products/:id/styles', (req: Request, res: Response) => {
 app.get('/qa/questions', (req: Request, res: Response) => {
   console.log(req.body);
   // res.send('hello');
-  axios('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=37311', {
-    headers: {
-      Authorization: process.env.API_KEY,
+  axios(
+    'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=37311',
+    {
+      headers: {
+        Authorization: process.env.API_KEY,
+      },
     }
-  })
-  .then((results) => {
+  ).then((results) => {
     console.log('this is results', results.data);
     res.json(results.data);
-  })
-})
-
+  });
+});
 
 app.post('/qa/questions', (req: Request, res: Response) => {
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=37311', {
-    headers: {
-      Authorization: process.env.API_KEY,
-    }
-  })
-  .then((results) => {
-    console.log('this is results', results.data);
-    res.json(results.data);
-  })
-})
+  axios
+    .post(
+      'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=37311',
+      {
+        headers: {
+          Authorization: process.env.API_KEY,
+        },
+      }
+    )
+    .then((results) => {
+      console.log('this is results', results.data);
+      res.json(results.data);
+    });
+});
 
 app.listen(process.env.PORT, () => {
   console.log(`Server listening on port ${process.env.PORT}`);
