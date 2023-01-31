@@ -19,11 +19,11 @@ const AnswersList: FC<AnswersListProps> = (props: AnswersListProps) => {
     axios
       .get('http://localhost:6969/qa/questions/644533/answers')
       .then((result) => {
-        console.log('successful api request: ', result);
+        // console.log('successful api request: ', result);
         setCurrentAnswers(result.data.results);
       })
       .catch((err) => {
-        console.log('error with api request: ', err.response.data);
+        // console.log('error with api request: ', err.response.data);
       });
   }
   useEffect(() => {

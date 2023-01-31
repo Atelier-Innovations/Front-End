@@ -10,8 +10,6 @@ interface QandAProps {
 
 
 const QandA: FC<QandAProps> = (props: QandAProps) => {
-  console.log('QandA: ', props);
-
   return (
     <section className="widget q-and-a">
       <div className="q-and-a-container">

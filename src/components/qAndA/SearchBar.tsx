@@ -7,11 +7,11 @@ interface SearchBarProps {
 const SearchBar: FC<SearchBarProps> = (props: any) => {
   const [searchInput, setSearchInput] = useState("");
   const handleInputChange = ((e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setSearchInput(e.target.value);
   })
   const handleSearchClick = ((e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     // check question list and see if it includes current searchInput text
   })
 

@@ -8,7 +8,7 @@ const Question: FC<QuestionProps> = (props) => {
   const [helpfulClicked, setHelpfulClicked] = useState(false);
 
   const handleHelpfulClick = ((e) => {
-    console.log(helpful);
+    // console.log(helpful);
     e.preventDefault();
     if (!helpfulClicked) {
       setHelpfulClicked(true);

@@ -23,10 +23,10 @@ const QuestionsList: FC<QuestionsListProps> = (props) => {
     axios
       .get(`http://localhost:6969/questions/${currentProductID}`, {})
       .then((result) => {
-        console.log('current result at QuestionsList axios: ', result);
+        // console.log('current result at QuestionsList axios: ', result);
       })
       .catch((err) => {
-        console.log('error in axios request questionsList: ', err);
+        // console.log('error in axios request questionsList: ', err);
       })
   }
 
