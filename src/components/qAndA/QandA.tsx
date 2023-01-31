@@ -14,7 +14,7 @@ const QandA: FC<QandAProps> = (props) => {
   return (
     <section className="widget q-and-a">
       <div className="q-and-a-container">
-        <h1 className='q-and-a-header'>Question and Answers</h1>
+        <div className='q-and-a-header'>QUESTIONS & ANSWERS</div>
         <SearchBar/>
         <QuestionsList/>
         <AnswersList/>

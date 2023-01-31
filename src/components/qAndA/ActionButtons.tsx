@@ -6,8 +6,8 @@ interface ActionButtonsProps {
 const ActionButtons: FC<ActionButtonsProps> = (props) => {
   return (
     <div className="action-btn">
-    <button className="action-btn more-answers">More Answered Questions</button>
-    <button className="action-btn add-question">Add a Question +</button>
+    <button className="action-btn more-answers">MORE ANSWERED QUESTIONS</button>
+    <button className="action-btn add-question">ADD A QUESTION +</button>
     </div>
     )
   };

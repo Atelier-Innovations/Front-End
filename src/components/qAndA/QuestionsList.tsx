@@ -10,15 +10,14 @@ const QuestionsList: FC<QuestionsListProps> = (props) => {
   // const [currentQuestions, setCurrentQuestions] = React.useState<QuestionsListProps[]>([]);
   return (
     <div className='q-and-a-list-container'>
-      <div className="question-container"> QandAList
-        <div>Q: Who what which when wehre why whether how?</div>
+      <div className="question-container">
+        <span className="question-text">Q: Who what which when wehre why whether how?</span>
         <div className="helpful-answer-btn">
-          <div className="q-btns"></div>
-          <button>Helpful? Yes(numCount)</button>
-          <button>Add-Answer-button</button>
+          <span>Helpful? </span>
+          <button className="helpful-btn"><span>Yes</span>&nbsp; (10) &nbsp;|</button>
+          <button className="add-answer-btn">Add Answer</button>
         </div>
       </div>
-      {/* AnswersList component here */}
     </div>
 
   )
