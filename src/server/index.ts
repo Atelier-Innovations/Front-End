@@ -64,8 +64,6 @@ app.get('/products/:id/styles', (req: Request, res: Response) => {
 
 // get all questions
 app.get('/qa/questions:product_id', (req: Request, res: Response) => {
-  console.log('SUCCWESFFFUL GET REQUEST QUESTIONS SERVER');
-  // res.send('hello');
   axios(`http://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${req.params.id}`, {
     headers: {
       Authorization: process.env.API_KEY,
@@ -80,13 +78,11 @@ app.get('/qa/questions:product_id', (req: Request, res: Response) => {
 // get answers list
 app.get('/qa/questions/:id/answers', (req: Request, res: Response) => {
   const id = req.params.id;
-  // console.log('this is id: ', req.params.id);
   axios(`http://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${id}/answers`, {
     headers: {
       Authorization: process.env.API_KEY,
     }
   }).then((results) => {
-    // answers in results prop.
     res.json(results.data);
   })
 })
