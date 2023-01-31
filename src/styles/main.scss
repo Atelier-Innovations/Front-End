@@ -89,9 +89,12 @@ nav {
       .static-info {
         border: 1px solid red;
         text-align: left;
-
         h2 {
           font-size: 2rem;
+        }
+        .on-sale {
+          text-decoration: line-through;
+          color: red;
         }
       }
 
