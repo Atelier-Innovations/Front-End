@@ -5,12 +5,14 @@ const ButtonPanel: React.FC = (props) => {
   return (
     <div className="controls">
       <div className="row-1">
-        <div className="size-button">Select Size</div>
-        <div className="quantity">1</div>
+        <select className="size-button">
+          <option>Select Size</option>
+        </select>
+        <select className="quantity"></select>
       </div>
       <div className="row-2">
-        <div className="add-to-bag">Add to Bag</div>
-        <div className="favorite">*</div>
+        <button className="add-to-bag">Add To Bag</button>
+        <button className="favorite">*</button>
       </div>
     </div>
   )

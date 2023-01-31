@@ -85,6 +85,9 @@ nav {
       border: 1px solid green;
       margin-right: 2rem;
       width: 35%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
       .static-info {
         border: 1px solid red;
@@ -100,6 +103,7 @@ nav {
 
       .style-selector {
         height: 33%;
+        width: 28rem;
         border: 1px solid pink;
         display: flex;
         flex-wrap: wrap;
@@ -107,8 +111,8 @@ nav {
         .circle {
           border: 1px solid black;
           border-radius: 50%;
-          width: 3rem;
-          height: 3rem;
+          width: 4.5rem;
+          height: 4.5rem;
           margin: 1rem;
         }
 
@@ -124,20 +128,23 @@ nav {
         justify-content: space-around;
         align-items: space-around;
         font-size: 1.5rem;
-        height: 33%;
+        height: 30%;
 
         .row-1 {
           display: flex;
           justify-content: space-around;
+          align-items: center;
           height: 60%;
 
           .size-button {
             width: 60%;
+            height: 65%;
             border: 1px solid black;
           }
 
           .quantity {
             width: 30%;
+            height: 65%;
             border: 1px solid black;
           }
         }
@@ -145,17 +152,18 @@ nav {
         .row-2 {
           display: flex;
           justify-content: space-around;
+          align-items: center;
           height: 60%;
 
           .add-to-bag {
             width: 75%;
-            height: 100%;
+            height: 65%;
             border: 1px solid black;
           }
 
           .favorite {
             width: 15%;
-            height: 100%;
+            height: 65%;
             border: 1px solid black;
           }
         }

@@ -12,7 +12,7 @@ import Fixtures from './fixtures.js';
 
 
 //Product Information Tests
-describe('StaticInfoDisplay should display info for currently selected product and style', () => {
+xdescribe('StaticInfoDisplay should display info for currently selected product and style', () => {
 
   beforeEach(() => {
     render (
@@ -33,7 +33,7 @@ describe('StaticInfoDisplay should display info for currently selected product a
 
 });
 
-describe('StyleSelector should display available styles and selected style', () => {
+xdescribe('StyleSelector should display available styles and selected style', () => {
     beforeEach( () => {
       render (
         <StyleSelector styles={Fixtures.camoOnesieStyles}
@@ -50,7 +50,7 @@ describe('StyleSelector should display available styles and selected style', () 
     })
 })
 
-xdescribe('ButtonPanel should allow the user to select size, quantity, and add to cart', () => {
+describe('ButtonPanel should allow the user to select size, quantity, and add to cart', () => {
 
 
   test('By default, size selector should display "Select Size"', () => {

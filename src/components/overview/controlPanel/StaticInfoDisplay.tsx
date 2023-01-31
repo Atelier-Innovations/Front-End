@@ -22,10 +22,10 @@ const StaticInfoDisplay: React.FC<StaticInfoProps> = (props) => {
       <h2>{props.product.name}</h2>
       {props.currentStyle.sale_price ?
       <>
-        <p className="on-sale">${props.currentStyle.original_price}</p>
-        <p>${props.currentStyle.sale_price} SALE!!!</p>
+        <span className="on-sale">${props.currentStyle.original_price}</span>
+        <span> ${props.currentStyle.sale_price} SALE!!!</span>
       </> :
-      <p>${props.currentStyle.original_price}</p>}
+      <span>${props.currentStyle.original_price}</span>}
 
     </div>
   )
