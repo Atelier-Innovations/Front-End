@@ -1,9 +1,14 @@
 import React from 'react';
 
+interface StyleIconProps {
+  style: object
+}
+
 const StyleIcon: React.FC = (props) => {
 
   return (
-    <div className="circle"></div>
+    <img src={props.style.photos[0].thumbnail_url}
+         className="circle"></img>
   )
 }
 

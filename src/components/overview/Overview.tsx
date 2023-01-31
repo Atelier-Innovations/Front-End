@@ -15,7 +15,7 @@ const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
 
   const [currentProduct, setCurrentProduct] = React.useState({});
   const [currentStyle, setCurrentStyle] = React.useState({});
-  const [styleList, setStyleList] = React.useState({});
+  const [styleList, setStyleList] = React.useState({results: []});
 
   React.useEffect(() => {
     axios(`http://localhost:6969/products/${props.currentProductID}`)

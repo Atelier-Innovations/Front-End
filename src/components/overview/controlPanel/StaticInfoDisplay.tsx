@@ -15,7 +15,6 @@ interface StaticInfoProps {
 }
 
 const StaticInfoDisplay: React.FC<StaticInfoProps> = (props) => {
-  console.log(props.currentStyle.sale_price);
   return (
     <div className="static-info">
       <div className="stars">STARS</div>
