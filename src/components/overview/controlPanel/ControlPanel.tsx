@@ -5,18 +5,23 @@ import ButtonPanel from './ButtonPanel';
 
 interface ControlPanelProps {
   product: {
-    category: string,
-    name: string,
-    default_price: string
-  }
+    // category: string,
+    // name: string,
+    // default_price: string
+  },
+
+  currentStyle: {},
+
+  styleList: {}
+
 }
 
 const ControlPanel: React.FC<ControlPanelProps> = (props: ControlPanelProps) => {
 
   return (
     <div className="control-panel">
-      <StaticInfoDisplay product={props.product} />
-      <StyleSelector />
+      <StaticInfoDisplay product={props.product} currentStyle={props.currentStyle} />
+      <StyleSelector styles={props.styleList} />
       <ButtonPanel />
     </div>
   )
