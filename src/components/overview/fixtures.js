@@ -509,7 +509,8 @@ const Fixtures = {
                       "size": "XL"
                   }
               }
-          }
+          },
+
       ]
     }
 };

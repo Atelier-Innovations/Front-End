@@ -13,18 +13,22 @@ interface OverviewProps {
 
 const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
 
-  const [currentStyle, setCurrentStyle] = React.useState(undefined);
-  const [currentProduct, setCurrentProduct] = React.useState({
-    category: 'cheese',
-    name: 'cheeseproduct',
-    default_price: '1000000'
-  });
+  const [currentProduct, setCurrentProduct] = React.useState({});
+  const [currentStyle, setCurrentStyle] = React.useState({});
+  const [styleList, setStyleList] = React.useState({results: []});
 
   React.useEffect(() => {
     axios(`http://localhost:6969/products/${props.currentProductID}`)
     .then( results => {
       setCurrentProduct(results.data);
-      console.log(results.data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+    axios(`http://localhost:6969/products/${props.currentProductID}/styles`)
+    .then( results => {
+      setStyleList(results.data);
+      setCurrentStyle(results.data.results[0]);
     })
     .catch(err => {
       console.log(err);
@@ -36,7 +40,10 @@ const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
       <Banner />
       <div className="main-panel">
         <ImageGallery />
-        <ControlPanel product={currentProduct} />
+        <ControlPanel product={currentProduct}
+                      currentStyle={currentStyle}
+                      styleList={styleList}
+                      setCurrentStyle={setCurrentStyle} />
       </div>
       <ProductDescriptionPanel />
     </section>

@@ -6,7 +6,12 @@ interface StaticInfoProps {
     category: string,
     name: string,
     default_price: string
+  },
+  currentStyle: {
+    sale_price: string,
+    original_price: string
   }
+
 }
 
 const StaticInfoDisplay: React.FC<StaticInfoProps> = (props) => {
@@ -15,7 +20,13 @@ const StaticInfoDisplay: React.FC<StaticInfoProps> = (props) => {
       <div className="stars">STARS</div>
       <h3>{props.product.category}</h3>
       <h2>{props.product.name}</h2>
-      <p>${props.product.default_price}</p>
+      {props.currentStyle.sale_price ?
+      <>
+        <span className="on-sale">${props.currentStyle.original_price}</span>
+        <span> ${props.currentStyle.sale_price} SALE!!!</span>
+      </> :
+      <span>${props.currentStyle.original_price}</span>}
+
     </div>
   )
 }
