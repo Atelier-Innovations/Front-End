@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from '../shared/Modal';
+import ComparisonModal from '../shared/ComparisonModal';
 
 // category, name, price (price for default style), and rating
 interface CardProps {
@@ -60,11 +61,12 @@ const Card: FC<CardProps> = (props) => {
   return (
     <>
       <Modal
-        className='comparisonModal'
+        modalClassName='comparisonModal'
+        overlayClassName='modalOverlay'
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
       >
-        {/* <ComparisonModal> */}
+        <ComparisonModal />
       </Modal>
       <div className='card' onClick={() => setModalIsOpen(true)}>
         <div
@@ -72,9 +74,10 @@ const Card: FC<CardProps> = (props) => {
           style={{ backgroundImage: `url(${productImage})` }}
         ></div>
         <div className='cardInfo'>
-          <p>{product.name}</p>
           <p>{product.category}</p>
+          <p>{product.name}</p>
           <p>{product.default_price}</p>
+          <p>Stars go here</p>
         </div>
       </div>
     </>

@@ -187,9 +187,10 @@ nav {
   }
 
   .card {
-    background-color: lightgrey;
-    height: 300px;
-    width: 200px;
+    background-color: white;
+    height: 340px;
+    width: 210px;
+    border: 1px solid black;
   }
 
   .cardImage {
@@ -200,8 +201,9 @@ nav {
   }
 
   .cardInfo {
+    border-top: 1px solid black;
     line-height: 0.5rem;
-    padding-bottom: 10px;
+    padding: 5px;
   }
 
   .title {
@@ -421,17 +423,48 @@ nav {
   }
 }
 
-//background styles
-.ReactModal__Body--open {
-  overflow: hidden;
-}
-
-.modalOverlay {
-  background-color: transparent;
-}
+/////////////////////////
+//    MODAL STYLES     //
+/////////////////////////
 
 .comparisonModal {
-  height: 200px;
-  width: 200px;
+  background-color: white;
+  height: 300px;
+  width: 450px;
   border: 1px solid black;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  padding: 10px;
+
+  .modal-title {
+    padding: 0px;
+
+    h4 {
+      margin: 0;
+      font-weight: 100;
+    }
+  }
+
+  .comparison-modal-titlebox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .comparison-modal-table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .comparison-modal-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 5px;
+  }
 }
