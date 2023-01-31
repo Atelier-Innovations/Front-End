@@ -70,7 +70,7 @@ app.get('/qa/questions:product_id', (req: Request, res: Response) => {
     headers: {
       Authorization: process.env.API_KEY,
     }
-  ).then((results) => {
+  }).then((results) => {
     console.log('this is results', results.data);
     res.json(results.data);
   })
