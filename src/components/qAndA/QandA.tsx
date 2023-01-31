@@ -5,17 +5,19 @@ import AnswersList from './AnswersList';
 import ActionButtons from './ActionButtons';
 
 interface QandAProps {
+  currentProductID: string
 }
 
 
-const QandA: FC<QandAProps> = (props) => {
+const QandA: FC<QandAProps> = (props: QandAProps) => {
+  console.log('QandA: ', props);
 
   return (
     <section className="widget q-and-a">
       <div className="q-and-a-container">
         <div className='q-and-a-header'>QUESTIONS & ANSWERS</div>
         <SearchBar/>
-        <QuestionsList/>
+        <QuestionsList currentProductID={props.currentProductID}/>
         {/* <AnswersList answer={props.answer}/> */}
         <ActionButtons/>
       </div>

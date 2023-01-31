@@ -13,15 +13,21 @@ const AnswersList: FC<AnswersListProps> = (props: AnswersListProps) => {
   // using currentProductID to create list ofinitial Questions
   // const [currentProductID, setCurrentProductID] = React.useState<number>(37311);
   // iterate over input array of questions, angrab their data
-  const [currAnswers, setCurrentAnswers] = useState({});
-  useEffect(() => {
-    axios.get('http://localhost:6969/qa/questions/644533/answers')
+  const [currAnswers, setCurrentAnswers] = useState([]);
+  // initial answers
+  const getAnswers = () => {
+    axios
+      .get('http://localhost:6969/qa/questions/644533/answers')
       .then((result) => {
         console.log('successful api request: ', result);
+        setCurrentAnswers(result.data.results);
       })
       .catch((err) => {
-        console.log('error with api request: ', err);
-      })
+        console.log('error with api request: ', err.response.data);
+      });
+  }
+  useEffect(() => {
+    getAnswers();
   }, []);
 
   const dataList = [
@@ -63,7 +69,7 @@ const AnswersList: FC<AnswersListProps> = (props: AnswersListProps) => {
       <p className="answers-title">A: </p>
 
       <div className="answers-list">
-       {dataList.map((answer, i) =>
+       {currAnswers.map((answer, i) =>
         <Answer answer={answer}/>
        )}
           <button className="action-btn-load-more-answers">LOAD MORE ANSWERS</button>

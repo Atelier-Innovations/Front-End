@@ -62,13 +62,11 @@ app.get('/products/:id/styles', (req: Request, res: Response) => {
   });
 });
 
-// body, name, email, product_id  of question answering user
-// /qa/questions?product_id=37311. // use http not https
-// get product questions
-app.get('/qa/questions', (req: Request, res: Response) => {
-  console.log(req.body);
+// get all questions
+app.get('/qa/questions:product_id', (req: Request, res: Response) => {
+  console.log('SUCCWESFFFUL GET REQUEST QUESTIONS SERVER');
   // res.send('hello');
-  axios('http://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=37311', {
+  axios(`http://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${req.params.id}`, {
     headers: {
       Authorization: process.env.API_KEY,
     }
@@ -78,10 +76,11 @@ app.get('/qa/questions', (req: Request, res: Response) => {
     res.json(results.data);
   })
 })
-// get question answers list
+
+// get answers list
 app.get('/qa/questions/:id/answers', (req: Request, res: Response) => {
   const id = req.params.id;
-  console.log('this is id: ', req.params.id);
+  // console.log('this is id: ', req.params.id);
   axios(`http://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${id}/answers`, {
     headers: {
       Authorization: process.env.API_KEY,
@@ -91,6 +90,7 @@ app.get('/qa/questions/:id/answers', (req: Request, res: Response) => {
     res.json(results.data);
   })
 })
+
 
 
 app.post('/qa/questions', (req: Request, res: Response) => {
