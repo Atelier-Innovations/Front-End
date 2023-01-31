@@ -17,7 +17,6 @@ interface ControlPanelProps {
 }
 
 const ControlPanel: React.FC<ControlPanelProps> = (props: ControlPanelProps) => {
-
   return (
     <div className="control-panel">
       <StaticInfoDisplay product={props.product} currentStyle={props.currentStyle} />

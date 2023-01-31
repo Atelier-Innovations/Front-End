@@ -55,7 +55,8 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
 
   test('By default, size selector should display "Select Size"', () => {
     render (
-      <ButtonPanel style={Fixtures.camoOnesieStyles.results[2]} />
+      <ButtonPanel skus={Object.keys(Fixtures.camoOnesieStyles.results[2].skus)}
+                   currentStyle={Fixtures.camoOnesieStyles.results[2]} />
     )
 
     expect(screen.getByDisplayValue('Select Size')).toBeInTheDocument();
@@ -63,23 +64,28 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
 
   test('Only sizes that are available should appear in the size selector', () => {
     render (
-      <ButtonPanel style={Fixtures.fakeProductStyles.results[0]} />
+      <ButtonPanel skus={Object.keys(Fixtures.camoOnesieStyles.results[0].skus)}
+                   currentStyle={Fixtures.fakeProductStyles.results[0]} />
     )
 
     expect(screen.queryByDisplayValue('L')).toBe(null);
   });
 
-  test('Dropdown should read "OUT OF STOCK" and be deactivated if no stock left in current style', () => {
+  test('size selector should read "OUT OF STOCK" and be deactivated if no stock left in current style', async () => {
     render (
-      <ButtonPanel style={Fixtures.outOfStockProductStyles.results[0]} />
+      <ButtonPanel skus={Object.keys(Fixtures.outOfStockProductStyles.results[0].skus)}
+                   currentStyle={Fixtures.outOfStockProductStyles.results[0]} />
     )
+
     expect(screen.getByDisplayValue('OUT OF STOCK')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('OUT OF STOCK')).toBeDisabled();
   });
 
 
   test('By default, quantity dropdown should display "-" and be disabled', () => {
     render (
-      <ButtonPanel style={Fixtures.camoOnesieStyles.results[0]} />
+      <ButtonPanel skus={Object.keys(Fixtures.camoOnesieStyles.results[0].skus)}
+                   currentStyle={Fixtures.fakeProductStyles.results[0]} />
     )
 
     expect(screen.getByDisplayValue('-')).toBeInTheDocument();
@@ -88,7 +94,8 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
 
   test('Once size is selected, quantity dropdown should display "1"', async () => {
     render (
-      <ButtonPanel style={Fixtures.camoOnesieStyles.results[0]} />
+      <ButtonPanel skus={Object.keys(Fixtures.camoOnesieStyles.results[0].skus)}
+                   currentStyle={Fixtures.fakeProductStyles.results[0]} />
     )
     const user = userEvent.setup();
 
