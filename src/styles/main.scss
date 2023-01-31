@@ -4,6 +4,10 @@ $accent-light: #cc0e1d;
 $accent-dark: #a2141a;
 $text: #2c3034;
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 16px;
 }
@@ -202,9 +206,10 @@ nav {
   }
 
   .card {
-    background-color: lightgrey;
-    height: 300px;
-    width: 200px;
+    background-color: white;
+    height: 340px;
+    width: 210px;
+    border: 1px solid black;
   }
 
   .cardImage {
@@ -215,8 +220,9 @@ nav {
   }
 
   .cardInfo {
+    border-top: 1px solid black;
     line-height: 0.5rem;
-    padding-bottom: 10px;
+    padding: 5px;
   }
 
   .title {
@@ -224,11 +230,9 @@ nav {
   }
 }
 
-
 /////////////////////////
 // RATINGS AND REVIEWS //
 /////////////////////////
-
 
 .reviews-ratings {
   height: 30rem;
@@ -241,7 +245,6 @@ nav {
     border: 2px solid $text;
     width: 100%;
   }
-
 
   .overall {
     display: flex;
@@ -266,7 +269,7 @@ nav {
       .recommendation {
         text-align: left;
         font-size: 0.8rem;
-        margin-top: 1rem
+        margin-top: 1rem;
       }
 
       .filter-by-star {
@@ -278,7 +281,6 @@ nav {
           font-size: small;
         }
       }
-
     }
 
     .review-list {
@@ -303,7 +305,7 @@ nav {
           flex-direction: row;
           justify-content: space-between;
           width: 100%;
-          border: 1px solid $text
+          border: 1px solid $text;
         }
 
         .summary {
@@ -314,24 +316,17 @@ nav {
         }
 
         .review-body {
-          font-size: .9rem;
+          font-size: 0.9rem;
           margin-bottom: 0.8rem;
         }
 
         .helpful {
-          font-size: .75rem
+          font-size: 0.75rem;
         }
       }
     }
   }
 }
-
-
-
-
-
-
-
 
 // immdediate children
 .q-and-a-container {
@@ -367,7 +362,6 @@ nav {
         color: black;
       }
     }
-  
 
     .question-container {
       display: flex;
@@ -473,8 +467,10 @@ nav {
         font-size: 0.8rem;
         color: black;
         font-weight: bold;
-      }
 
+      }
+    }
+  }
       .action-btn-answers {
         color: red;
         width: 25%;
@@ -501,4 +497,48 @@ nav {
   }
 
 
- 
+/////////////////////////
+//    MODAL STYLES     //
+/////////////////////////
+
+.comparisonModal {
+  background-color: white;
+  height: 300px;
+  width: 450px;
+  border: 1px solid black;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  padding: 10px;
+
+  .modal-title {
+    padding: 0px;
+
+    h4 {
+      margin: 0;
+      font-weight: 100;
+    }
+  }
+
+  .comparison-modal-titlebox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .comparison-modal-table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .comparison-modal-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 5px;
+  }
+}

@@ -1,18 +1,20 @@
 import React, { FC } from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Modal from '../shared/Modal';
+import ComparisonModal from '../shared/ComparisonModal';
 
 // category, name, price (price for default style), and rating
 interface CardProps {
   id: string;
 }
+
 const Card: FC<CardProps> = (props) => {
   const [productData, setProductData] = useState({});
   const [productImage, setProductImage] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  // console.log('product data: ', productData);
-
-  // get product info
+  // get product data
   const getProductDataFromDB = () => {
     axios
       .get(`http://localhost:6969/products/${props.id}`, {})
@@ -29,48 +31,56 @@ const Card: FC<CardProps> = (props) => {
     let response = await axios.get(
       `http://localhost:6969/products/${props.id}/styles`
     );
-    setProductImage(response.data.results[0].photos[0].thumbnail_url);
+    let img = response.data.results[0].photos[0].thumbnail_url;
+    // check image for null value and display "not available" if true
+    if (img === null) {
+      setProductImage(
+        'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg'
+      );
+    } else {
+      setProductImage(img);
+    }
   };
 
-  let img = productImage;
-  if (img === null) {
-    img =
-      'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg';
-  }
-
-  // retreive data
+  // retreive all data
   useEffect(() => {
     getProductDataFromDB();
     getProductImgFromDB();
   }, []);
 
-  // create product object type
+  // create product object type and perform type check
   type ProductObject = {
     name?: string;
     category?: string;
     default_price?: string;
   };
-
-  //perform type checking
   const product: ProductObject = productData;
 
-  // assign variables
-  const name = product.name;
-  const category = product.category;
-  const price = product.default_price;
+  // handle modal open and close
 
   return (
-    <div className='card'>
-      <div
-        className='cardImage'
-        style={{ backgroundImage: `url(${img})` }}
-      ></div>
-      <div className='cardInfo'>
-        <p>{name}</p>
-        <p>{category}</p>
-        <p>{price}</p>
+    <>
+      <Modal
+        modalClassName='comparisonModal'
+        overlayClassName='modalOverlay'
+        modalIsOpen={modalIsOpen}
+        setModalIsOpen={setModalIsOpen}
+      >
+        <ComparisonModal />
+      </Modal>
+      <div className='card' onClick={() => setModalIsOpen(true)}>
+        <div
+          className='cardImage'
+          style={{ backgroundImage: `url(${productImage})` }}
+        ></div>
+        <div className='cardInfo'>
+          <p>{product.category}</p>
+          <p>{product.name}</p>
+          <p>{product.default_price}</p>
+          <p>Stars go here</p>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

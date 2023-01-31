@@ -70,8 +70,7 @@ app.get('/qa/questions:product_id', (req: Request, res: Response) => {
     headers: {
       Authorization: process.env.API_KEY,
     }
-  })
-  .then((results) => {
+  ).then((results) => {
     console.log('this is results', results.data);
     res.json(results.data);
   })
@@ -89,22 +88,23 @@ app.get('/qa/questions/:id/answers', (req: Request, res: Response) => {
   })
 })
 
-
-
 app.post('/qa/questions', (req: Request, res: Response) => {
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=37311', {
-    headers: {
-      Authorization: process.env.API_KEY,
-    }
-  })
-  .then((results) => {
-    console.log('this is results', results.data);
-    res.json(results.data);
-  })
-})
+  axios
+    .post(
+      'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=37311',
+      {
+        headers: {
+          Authorization: process.env.API_KEY,
+        },
+      }
+    )
+    .then((results) => {
+      console.log('this is results', results.data);
+      res.json(results.data);
+    });
+});
 
 // http://example.com/page?parameter=value&also=another
-
 
 app.get('/reviews', (req: Request, res: Response) => {
   // console.log('Bryce:', req.params);
