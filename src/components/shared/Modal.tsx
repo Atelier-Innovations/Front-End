@@ -1,14 +1,30 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
+import { useState } from 'react';
 import ReactModal from 'react-modal';
 
-interface ModalProps {}
+interface ModalProps {
+  modalIsOpen: boolean;
+  setModalIsOpen: (active: boolean) => void;
+  className: string;
+  children: ReactNode;
+}
 
-const Modal: FC<ModalProps> = (props) => {
+//className assigns approrpriate styles
+//pass
+
+const Modal: FC<ModalProps> = ({ modalIsOpen, setModalIsOpen, className }) => {
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  // create styling prop options
   return (
-    // isOpen={showModal}
-    <ReactModal>
-      <h1>This is a modal</h1>
-    </ReactModal>
+    //
+    <ReactModal
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
+      className={className}
+    />
   );
 };
 

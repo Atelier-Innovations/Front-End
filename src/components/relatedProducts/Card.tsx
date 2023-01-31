@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Modal from '../shared/Modal';
 
 // category, name, price (price for default style), and rating
 interface CardProps {
@@ -10,7 +11,7 @@ interface CardProps {
 const Card: FC<CardProps> = (props) => {
   const [productData, setProductData] = useState({});
   const [productImage, setProductImage] = useState('');
-  const [showModal, setShowModal] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   // get product data
   const getProductDataFromDB = () => {
@@ -46,7 +47,7 @@ const Card: FC<CardProps> = (props) => {
     getProductImgFromDB();
   }, []);
 
-  // create product object type
+  // create product object type and perform type check
   type ProductObject = {
     name?: string;
     category?: string;
@@ -54,12 +55,18 @@ const Card: FC<CardProps> = (props) => {
   };
   const product: ProductObject = productData;
 
-  // handle show modal
-  const divClickHandler = () => {};
+  // handle modal open and close
 
   return (
     <>
-      <div className='card' onClick={divClickHandler}>
+      <Modal
+        className='comparisonModal'
+        modalIsOpen={modalIsOpen}
+        setModalIsOpen={setModalIsOpen}
+      >
+        {/* <ComparisonModal> */}
+      </Modal>
+      <div className='card' onClick={() => setModalIsOpen(true)}>
         <div
           className='cardImage'
           style={{ backgroundImage: `url(${productImage})` }}
