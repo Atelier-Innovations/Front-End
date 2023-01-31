@@ -97,7 +97,7 @@ app.post('/qa/questions', (req: Request, res: Response) => {
 
 
 app.get('/reviews', (req: Request, res: Response) => {
-  console.log('Bryce:', req.params);
+  // console.log('Bryce:', req.params);
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?page=1&count=2&sort=relevant&product_id=37311', {
     headers: {
       Authorization: process.env.API_KEY,
