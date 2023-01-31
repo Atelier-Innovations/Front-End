@@ -6,6 +6,8 @@ var cors = require('cors');
 
 const app = express();
 app.use(cors());
+app.use(express.json())
+app.use(express.static('dist'))
 
 app.get('/products', (req: Request, res: Response) => {
   axios('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', {
