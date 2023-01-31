@@ -18,7 +18,7 @@ export const App: React.FC = () => {
 
       <Overview currentProductID={currentProductID} />
       <RelatedProducts  />
-      <RatingsReviews />
+      <RatingsReviews currentProductID={currentProductID}/>
       <QandA />
     </div>
   );
