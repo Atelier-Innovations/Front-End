@@ -21,7 +21,9 @@ const ControlPanel: React.FC<ControlPanelProps> = (props: ControlPanelProps) => 
   return (
     <div className="control-panel">
       <StaticInfoDisplay product={props.product} currentStyle={props.currentStyle} />
-      <StyleSelector styles={props.styleList} currentStyle={props.currentStyle} />
+      <StyleSelector styles={props.styleList}
+                     currentStyle={props.currentStyle}
+                     setCurrentStyle={props.setCurrentStyle} />
       <ButtonPanel />
     </div>
   )

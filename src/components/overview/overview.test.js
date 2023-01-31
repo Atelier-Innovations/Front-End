@@ -36,7 +36,8 @@ describe('StaticInfoDisplay should display info for currently selected product a
 describe('StyleSelector should display available styles and selected style', () => {
     beforeEach( () => {
       render (
-        <StyleSelector styles={Fixtures.camoOnesieStyles}/>
+        <StyleSelector styles={Fixtures.camoOnesieStyles}
+                       currentStyle={Fixtures.camoOnesieStyles.results[0]}/>
       )
     });
 
@@ -44,9 +45,8 @@ describe('StyleSelector should display available styles and selected style', () 
       expect(screen.getAllByRole('img')).toHaveLength(6);
     });
 
-    xtest('Should display the currently selected style', () => {
-      //Fill in once we decide how to indicate currently selected style.
-      //Current best guess: check for a 'selected' css class
+    test('Should display the currently selected style', () => {
+      expect(screen.getAllByRole('img')[0]).toHaveClass('selected');
     })
 })
 

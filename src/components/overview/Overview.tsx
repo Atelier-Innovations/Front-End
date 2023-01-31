@@ -42,7 +42,8 @@ const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
         <ImageGallery />
         <ControlPanel product={currentProduct}
                       currentStyle={currentStyle}
-                      styleList={styleList} />
+                      styleList={styleList}
+                      setCurrentStyle={setCurrentStyle} />
       </div>
       <ProductDescriptionPanel />
     </section>
