@@ -6,7 +6,7 @@ import ReviewBody from './ReviewBody';
 import Helpful from './Helpful';
 
 interface ReviewProps {
-
+  // review: object
 };
 
 const Review: FC<ReviewProps> = (props) => {

@@ -6,6 +6,8 @@ var cors = require('cors');
 
 const app = express();
 app.use(cors());
+app.use(express.json())
+app.use(express.static('dist'))
 
 app.get('/products', (req: Request, res: Response) => {
   axios('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', {
@@ -27,7 +29,7 @@ app.get('/products/:id', (req: Request, res: Response) => {
       Authorization: process.env.API_KEY,
     },
   }).then((results) => {
-    console.log('results: ', results.data);
+    // console.log('results: ', results.data);
     res.send(results.data);
   });
 });
@@ -62,23 +64,29 @@ app.get('/products/:id/styles', (req: Request, res: Response) => {
   });
 });
 
-// body, name, email, product_id  of question answering user
-// /qa/questions?product_id=37311. // use http not https
-app.get('/qa/questions', (req: Request, res: Response) => {
-  console.log(req.body);
-  // res.send('hello');
-  axios(
-    'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=37311',
-    {
-      headers: {
-        Authorization: process.env.API_KEY,
-      },
+// get all questions
+app.get('/qa/questions:product_id', (req: Request, res: Response) => {
+  axios(`http://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${req.params.id}`, {
+    headers: {
+      Authorization: process.env.API_KEY,
     }
   ).then((results) => {
     console.log('this is results', results.data);
     res.json(results.data);
-  });
-});
+  })
+})
+
+// get answers list
+app.get('/qa/questions/:id/answers', (req: Request, res: Response) => {
+  const id = req.params.id;
+  axios(`http://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${id}/answers`, {
+    headers: {
+      Authorization: process.env.API_KEY,
+    }
+  }).then((results) => {
+    res.json(results.data);
+  })
+})
 
 app.post('/qa/questions', (req: Request, res: Response) => {
   axios
@@ -96,6 +104,28 @@ app.post('/qa/questions', (req: Request, res: Response) => {
     });
 });
 
+// http://example.com/page?parameter=value&also=another
+
+app.get('/reviews', (req: Request, res: Response) => {
+  // console.log('Bryce:', req.params);
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?page=1&count=2&sort=relevant&product_id=37311', {
+    headers: {
+      Authorization: process.env.API_KEY,
+    }
+  })
+  .then((results) => {
+    // console.log('Bryce results', results.data);
+    res.send(results.data);
+  })
+})
+
+
+
+
+
 app.listen(process.env.PORT, () => {
   console.log(`Server listening on port ${process.env.PORT}`);
 });
+
+
+

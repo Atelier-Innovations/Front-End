@@ -4,10 +4,11 @@ import OverallRating from './OverallRating';
 import Sliders from './Sliders';
 
 interface RatingsListProps {
-
+  // currentReviews: object
 }
 
 const RatingsList: FC<RatingsListProps> = (props) => {
+
 
 
   return (
