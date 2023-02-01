@@ -147,6 +147,13 @@
 
     .checklist {
       font-size: 1.25rem;
+      ul {
+        list-style: none;
+      }
+
+      ul li:before {
+        content: '✓';
+      }
     }
   }
 }

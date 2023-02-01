@@ -5,16 +5,15 @@ const ProductDescriptionPanel: React.FC = (props) => {
   return (
     <div className="bottom-panel">
       <div className="description">
-        <h3>Product Slogan. Pithy Description Or Catchphrase</h3>
-        <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-        <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
+        <h3>{props.product.slogan}</h3>
+        <p>{props.product.description}</p>
       </div>
       <div className="checklist">
         <ul>
-          <li>It's cheese!</li>
-          <li>I love cheese!</li>
-          <li>Yummy yummy cheese!</li>
-          <li>cheese is the best. . .</li>
+          {props.product.features ?
+           props.product.features.map( (feature, index) => (
+            <li>{feature.feature}: {feature.value}</li>
+           )) : null}
         </ul>
       </div>
     </div>
