@@ -2,12 +2,15 @@ import React from 'react';
 
 const ButtonPanel: React.FC = (props) => {
   const [outOfStock, setOutOfStock] = React.useState(false);
-  const [sizeSelected, setSizeSelected] = React.useState(0);
+  const [sizeSelected, setSizeSelected] = React.useState(null);
   const [quantityRange, setQuantityRange] = React.useState(0);
 
   const handleSizeChange = event => {
-    //gotta be minus 1 to account for Select Size option; sizes start at 1.
-    setSizeSelected(event.target.selectedIndex - 1);
+    if (event.target.selectedIndex === 0) {
+      setSizeSelected(null);
+    } else {
+      setSizeSelected(event.target.selectedIndex);
+    }
   }
 
   React.useEffect( () => {
@@ -20,7 +23,9 @@ const ButtonPanel: React.FC = (props) => {
       } else {
         setOutOfStock(false);
       }
-      setQuantityRange(props.currentStyle.skus[props.skus[sizeSelected]].quantity);
+      if (sizeSelected !== null) {
+        setQuantityRange(props.currentStyle.skus[props.skus[sizeSelected - 1]].quantity + 1);
+      }
     }
   }, [props.currentStyle, sizeSelected])
 
