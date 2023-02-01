@@ -24,6 +24,9 @@ const ButtonPanel: React.FC = (props) => {
         setOutOfStock(false);
       }
       if (sizeSelected !== null) {
+        let quantityOfSize = props.currentStyle.skus[props.skus[sizeSelected - 1]].quantity;
+        quantityOfSize >= 15 ?
+        setQuantityRange(16) :
         setQuantityRange(props.currentStyle.skus[props.skus[sizeSelected - 1]].quantity + 1);
       }
     }
@@ -45,8 +48,8 @@ const ButtonPanel: React.FC = (props) => {
         </select>
         <select className="quantity" disabled={sizeSelected === 0 ?
                                      true : false}>
-          <option>-</option>
-          {Array.from(Array(quantityRange).keys()).map( num => (
+          {sizeSelected === null ? <option>-</option> : null}
+          {Array.from(Array(quantityRange).keys()).slice(1).map( num => (
             <option key={num}>{num}</option>
           ))}
 
