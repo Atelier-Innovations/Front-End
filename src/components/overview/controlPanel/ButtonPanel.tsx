@@ -13,6 +13,14 @@ const ButtonPanel: React.FC = (props) => {
     }
   }
 
+  const handleAdd = event => {
+    if (sizeSelected === null) {
+      alert('Select a size first!');
+    } else {
+      console.log('Ka-ching!');
+    }
+  }
+
   React.useEffect( () => {
     if (props.skus.length > 0) {
       let total = props.skus.reduce( (mem, sku) => {
@@ -28,6 +36,8 @@ const ButtonPanel: React.FC = (props) => {
         quantityOfSize >= 15 ?
         setQuantityRange(16) :
         setQuantityRange(props.currentStyle.skus[props.skus[sizeSelected - 1]].quantity + 1);
+      } else {
+        setQuantityRange(0);
       }
     }
   }, [props.currentStyle, sizeSelected])
@@ -46,7 +56,7 @@ const ButtonPanel: React.FC = (props) => {
             }
           })}
         </select>
-        <select className="quantity" disabled={sizeSelected === 0 ?
+        <select className="quantity" disabled={sizeSelected === null ?
                                      true : false}>
           {sizeSelected === null ? <option>-</option> : null}
           {Array.from(Array(quantityRange).keys()).slice(1).map( num => (
@@ -56,7 +66,8 @@ const ButtonPanel: React.FC = (props) => {
         </select>
       </div>
       <div className="row-2">
-        <button className="add-to-bag">Add To Bag</button>
+        {outOfStock ? null : <button className="add-to-bag"
+                                     onClick={handleAdd}>Add To Bag</button>}
         <button className="favorite">*</button>
       </div>
     </div>
