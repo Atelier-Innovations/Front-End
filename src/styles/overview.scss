@@ -61,6 +61,14 @@
           text-decoration: line-through;
           color: red;
         }
+
+        .social-media-icons {
+          list-style: none;
+          li {
+            display: inline;
+            margin-right: 1rem;
+          }
+        }
       }
 
       .style-selector {

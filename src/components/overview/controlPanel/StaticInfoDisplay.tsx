@@ -1,4 +1,10 @@
 import React from 'react';
+const facebook = require('../../../icons/facebook.svg');
+const instagram = require('../../../icons/instagram.svg');
+const twitter = require('../../../icons/twitter.svg');
+const pinterest = require('../../../icons/pinterest.svg');
+
+
 
 
 interface StaticInfoProps {
@@ -26,6 +32,24 @@ const StaticInfoDisplay: React.FC<StaticInfoProps> = (props) => {
         <span> ${props.currentStyle.sale_price} SALE!!!</span>
       </> :
       <span>${props.currentStyle.original_price}</span>}
+      <ul className="social-media-icons">
+        <li><img className="social-media-icon"
+             src={facebook}
+             height="20px"
+             width="20px" /></li>
+        <li><img className="social-media-icon"
+             src={instagram}
+             height="20px"
+             width="20px" /></li>
+        <li><img className="social-media-icon"
+             src={twitter}
+             height="20px"
+             width="20px" /></li>
+        <li><img className="social-media-icon"
+             src={pinterest}
+             height="20px"
+             width="20px" /></li>
+      </ul>
     </div>
   )
 }
