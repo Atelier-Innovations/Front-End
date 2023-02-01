@@ -65,7 +65,7 @@ app.get('/products/:id/styles', (req: Request, res: Response) => {
 });
 
 // get all questions
-app.get('/qa/questions:product_id', (req: Request, res: Response) => {
+app.get('/qa/questions/:product_id', (req: Request, res: Response) => {
   axios(`http://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=${req.params.id}`, {
     headers: {
       Authorization: process.env.API_KEY,
