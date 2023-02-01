@@ -6,7 +6,8 @@ const ButtonPanel: React.FC = (props) => {
   const [quantityRange, setQuantityRange] = React.useState(0);
 
   const handleSizeChange = event => {
-    setSizeSelected(event.target.selectedIndex);
+    //gotta be minus 1 to account for Select Size option; sizes start at 1.
+    setSizeSelected(event.target.selectedIndex - 1);
   }
 
   React.useEffect( () => {
@@ -19,7 +20,6 @@ const ButtonPanel: React.FC = (props) => {
       } else {
         setOutOfStock(false);
       }
-
       setQuantityRange(props.currentStyle.skus[props.skus[sizeSelected]].quantity);
     }
   }, [props.currentStyle, sizeSelected])
@@ -30,10 +30,10 @@ const ButtonPanel: React.FC = (props) => {
         <select className="size-button" disabled={outOfStock} onChange={handleSizeChange}>
           {outOfStock ?
           <option>OUT OF STOCK</option> : <option>Select Size</option>}
-          {props.skus.map((sku, index) => {
+          {props.skus.map(sku => {
             if (props.currentStyle.skus[sku].quantity > 0) {
               return (
-                <option key={index}>{props.currentStyle.skus[sku].size}</option>
+                <option key={sku}>{props.currentStyle.skus[sku].size}</option>
               )
             }
           })}
@@ -42,7 +42,7 @@ const ButtonPanel: React.FC = (props) => {
                                      true : false}>
           <option>-</option>
           {Array.from(Array(quantityRange).keys()).map( num => (
-            <option>{num}</option>
+            <option key={num}>{num}</option>
           ))}
 
         </select>
