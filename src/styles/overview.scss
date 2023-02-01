@@ -65,7 +65,8 @@
 
       .style-selector {
         height: 33%;
-        width: 28rem;
+        width: 100%;
+        max-width: 21rem;
         border: 1px solid pink;
         display: flex;
         flex-wrap: wrap;
@@ -73,9 +74,9 @@
         .circle {
           border: 1px solid black;
           border-radius: 50%;
-          width: 4.5rem;
-          height: 4.5rem;
-          margin: 1rem;
+          width: 4rem;
+          height: 4rem;
+          margin-right: 1rem;
         }
 
         .selected {
