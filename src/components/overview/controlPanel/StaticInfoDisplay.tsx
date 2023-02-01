@@ -26,7 +26,7 @@ const StaticInfoDisplay: React.FC<StaticInfoProps> = (props) => {
         <span> ${props.currentStyle.sale_price} SALE!!!</span>
       </> :
       <span>${props.currentStyle.original_price}</span>}
-
+      {props.product.slogan ? <p>{props.product.slogan}</p> : null}
     </div>
   )
 }
