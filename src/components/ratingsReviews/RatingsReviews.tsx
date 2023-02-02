@@ -9,6 +9,7 @@ interface RatingsReviewsProps {
   currentProductID: string
 }
 
+
 const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
   const [ currentReviews, setCurrentReviews ] = useState({})
   const [ productMetaData, setProductMetaData ] = useState({})
@@ -46,7 +47,7 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
 
   // console.log(sort)
 
-  // console.log('MetaData from R/R:', productMetaData)
+  console.log('MetaData from R/R:', productMetaData)
   // console.log('Current Reviews from R/R:', currentReviews)
 
 
@@ -57,7 +58,7 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
       </div>
 
       <div className="overall">
-        < RatingsList />
+        < RatingsList productMetaData={ productMetaData }/>
         < ReviewList sort={ sort } setSort={ setSort } currentReviews={ currentReviews } />
       </div>
 
