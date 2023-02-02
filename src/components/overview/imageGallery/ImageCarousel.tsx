@@ -25,7 +25,6 @@ const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) 
   }, [props.style])
 
   const handleThumbnailClick = event => {
-    console.log(event.target.id);
     props.changeImage(event.target.id);
     setCurrentImage(Number(event.target.id));
   }
