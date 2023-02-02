@@ -14,7 +14,7 @@ interface ReviewListProps {
 const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort }) => {
 
 
-  console.log('From ReviewList:', currentReviews.results)
+  // console.log('From ReviewList:', currentReviews.results)
 
   // console.log(currentReviews.results.review_id)
 
