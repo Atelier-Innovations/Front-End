@@ -2,43 +2,38 @@ import React, { FC } from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from './Card';
+import { getRelatedProductsFromDB } from '../../helperFunctions'
 
-interface RelatedProductsProps {}
+interface RelatedProductsProps {
+  currentProductID: string;
+  currentProductData: object;
+  setCurrentProductID: (active: string) => void;
+}
 
 interface ProductIds {}
 
-const RelatedProducts: FC<RelatedProductsProps> = (props) => {
+const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  currentProductID}) => {
 
-  //temporary currentProductId, change to props once added
-  const [currentProductId, setCurrentProductId] = useState<string>('37311');
+  const [relatedProductIDs, setRelatedProductIDs] = useState<Array<string>>([]);
 
-  // get related product ids from database
-  const [relatedProductIds, setRelatedProductIds] = useState<Array<string>>([]);
-
-  // get related roducts from db
-  const getRelatedProductsFromDB = () => {
-    axios
-      .get(`http://localhost:6969/products/${currentProductId}/related`, {})
-      .then((result) => {
-        setRelatedProductIds(result.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // make http request for data
+  // get related products data
   useEffect(() => {
-    getRelatedProductsFromDB();
+    getRelatedProductsFromDB(currentProductID, setRelatedProductIDs);
   }, []);
-
 
   return (
     <section className='related-products widget'>
       <h2 className='title'>Related Products</h2>
       <div className='carousel'>
-        {relatedProductIds.map((productId) => {
-          return <Card id={productId} key={productId} />;
+        {relatedProductIDs.map((cardID) => {
+          return (
+            <Card
+              currentProductID={currentProductID}
+              currentProductData={currentProductData}
+              cardID={cardID}
+              key={cardID}
+            />
+          );
         })}
       </div>
       <h2 className='title'>Your Outfit</h2>

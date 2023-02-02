@@ -2,34 +2,26 @@ import React, { FC } from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from '../shared/Modal';
-import ComparisonModal from '../shared/ComparisonModal';
+import ComparisonModal from './ComparisonModal';
+import { getProductDataFromDB } from '../../helperFunctions';
 
-// category, name, price (price for default style), and rating
+
 interface CardProps {
-  id: string;
+  currentProductID: string;
+  cardID: string;
+  currentProductData: object;
 }
 
-const Card: FC<CardProps> = (props) => {
-  const [productData, setProductData] = useState({});
+const Card: FC<CardProps> = ({currentProductID, cardID, currentProductData}) => {
+
+  const [cardProductData, setCardProductData] = useState({});
   const [productImage, setProductImage] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  // get product data
-  const getProductDataFromDB = () => {
-    axios
-      .get(`http://localhost:6969/products/${props.id}`, {})
-      .then((result) => {
-        setProductData(result.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   // get product img
-  const getProductImgFromDB = async () => {
+  const getCardProductImgFromDB = async () => {
     let response = await axios.get(
-      `http://localhost:6969/products/${props.id}/styles`
+      `http://localhost:6969/products/${cardID}/styles`
     );
     let img = response.data.results[0].photos[0].thumbnail_url;
     // check image for null value and display "not available" if true
@@ -42,10 +34,10 @@ const Card: FC<CardProps> = (props) => {
     }
   };
 
-  // retreive all data
+  // retrieve all data
   useEffect(() => {
-    getProductDataFromDB();
-    getProductImgFromDB();
+    getProductDataFromDB(cardID, setCardProductData);
+    getCardProductImgFromDB();
   }, []);
 
   // create product object type and perform type check
@@ -54,9 +46,7 @@ const Card: FC<CardProps> = (props) => {
     category?: string;
     default_price?: string;
   };
-  const product: ProductObject = productData;
-
-  // handle modal open and close
+  const product: ProductObject = cardProductData;
 
   return (
     <>
@@ -66,8 +56,12 @@ const Card: FC<CardProps> = (props) => {
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
       >
-        <ComparisonModal />
+        <ComparisonModal
+          currentProductData={currentProductData}
+          cardProductData={cardProductData}
+        />
       </Modal>
+
       <div className='card' onClick={() => setModalIsOpen(true)}>
         <div
           className='cardImage'
