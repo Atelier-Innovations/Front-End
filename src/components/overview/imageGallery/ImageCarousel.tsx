@@ -33,7 +33,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) 
   }
   return (
     <div className="image-carousel">
-      <img src={up} className="small-arrow up" />
+      {firstImage > 0 ? <img src={up} className="small-arrow up" /> : null}
       {images.map( (image, index) => {
         if (index >= firstImage && index <= lastImage) {
           return (
