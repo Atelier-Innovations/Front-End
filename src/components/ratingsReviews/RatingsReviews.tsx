@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import ReviewsList from './ReviewsPanel/ReviewList'
+import ReviewList from './ReviewsPanel/ReviewList'
 import RatingsList from './RatingsPanel/RatingsList';
 import axios from 'axios';
 import { useState, useEffect } from 'react'
@@ -11,26 +11,22 @@ interface RatingsReviewsProps {
 
 const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
   const [ currentReviews, setCurrentReviews ] = useState({})
+  const [ sort, setSort ] = useState('')
 
-  useEffect(() => {
-    reviewData();
-  }, [])
 
-  const reviewData = () => {
-    axios.get('http://localhost:6969/reviews', {
-      params: {
-        id: props.currentProductID
-      }
-    })
+  const getReviewData = () => {
+    axios.get(`http://localhost:6969/reviews?id=${props.currentProductID}`)
       .then((results) => {
-
         setCurrentReviews(results.data)
-
       })
       .catch((err) => {
         console.log(err);
       })
   }
+
+  useEffect(() => {
+    getReviewData();
+  }, [])
 
   return (
     <div className="widget reviews-ratings">
@@ -40,7 +36,7 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
 
       <div className="overall">
         < RatingsList />
-        < ReviewsList currentReviews={currentReviews}/>
+        < ReviewList sort={ sort } setSort={ setSort }currentReviews={currentReviews}/>
       </div>
 
       <div className="button-panel">
