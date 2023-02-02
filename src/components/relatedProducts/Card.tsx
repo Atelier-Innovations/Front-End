@@ -16,7 +16,7 @@ const Card: FC<CardProps> = ({
   currentProductData,
 }) => {
 
-  const [productData, setProductData] = useState({});
+  const [cardProductData, setCardProductData] = useState({});
   const [productImage, setProductImage] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -25,7 +25,7 @@ const Card: FC<CardProps> = ({
     axios
       .get(`http://localhost:6969/products/${cardID}`, {})
       .then((result) => {
-        setProductData(result.data);
+        setCardProductData(result.data);
       })
       .catch((err) => {
         console.log(err);
@@ -60,7 +60,7 @@ const Card: FC<CardProps> = ({
     category?: string;
     default_price?: string;
   };
-  const product: ProductObject = productData;
+  const product: ProductObject = cardProductData;
 
   return (
     <>

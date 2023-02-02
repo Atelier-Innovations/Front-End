@@ -4,7 +4,7 @@ import axios from 'axios';
 import Modal from '../shared/Modal';
 
 // category, name, price (price for default style), and rating
-interface CardProps {
+interface ComparisonModalProps {
   cardID: string;
   currentProductID: string;
   currentProductData: object;
@@ -31,16 +31,36 @@ interface CardProps {
 //   ],
 // }
 
-const ComparisonModal: FC<CardProps> = ({ currentProductID, cardID }) => {
+const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, currentProductID, cardID }) => {
   // X pass in ids of currentProductId and modalProductId
   // X get product info for each product
+  // X create set of all features to map through
   // create object for each product, key is feature and value is value
-  // create set of all features to map through
   // if feature does not exist, output 'N/A'
 
-  let [currentProductDetails, setCurrentProductDetails] = useState({});
-  let [cardProductDetails, setCardProductDetails] = useState({});
+  // let [currentProductDetails, setCurrentProductDetails] = useState({});
+  let [cardProductData, setCardProductData] = useState({});
 
+  const makeFeatureObject = (data) => {
+    let features = data.features
+    let result = {}
+    features.forEach(item => {
+      result[item] += item.value;
+    })
+  }
+
+  if (Object.values(currentProductData).length > 1) {
+    const currentProductFeatures = makeFeatureObject(currentProductData)
+  }
+
+  if (Object.values(cardProductData).length > 1) {
+    const cardProductFeatures = makeFeatureObject(cardProductData)
+  }
+
+  console.log('current: ', currentProductData)
+
+
+  // get card product data
   const getProductDataFromDB = (productId, setFunction) => {
     axios
       .get(`http://localhost:6969/products/${productId}`, {})
@@ -53,8 +73,7 @@ const ComparisonModal: FC<CardProps> = ({ currentProductID, cardID }) => {
   };
 
   useEffect(() => {
-    getProductDataFromDB(currentProductID, setCurrentProductDetails);
-    getProductDataFromDB(cardID, setCardProductDetails);
+    getProductDataFromDB(cardID, setCardProductData);
   }, []);
 
   // build feature list
@@ -70,7 +89,7 @@ const ComparisonModal: FC<CardProps> = ({ currentProductID, cardID }) => {
     }
   };
 
-  buildCombinedFeatureList(currentProductDetails, cardProductDetails);
+  buildCombinedFeatureList(currentProductData, cardProductData);
 
   // convert feature list to an array to map it
   let featureListArray = Array.from(featureList);
@@ -82,24 +101,24 @@ const ComparisonModal: FC<CardProps> = ({ currentProductID, cardID }) => {
       </div>
 
       <div className='comparison-modal-titlebox'>
-        <h3>{currentProductDetails.name}</h3>
-        <h3>{cardProductDetails.name}</h3>
+        <h3>{currentProductData.name}</h3>
+        <h3>{cardProductData.name}</h3>
       </div>
 
       <div className='comparison-modal-table'>
         {/* price */}
         <div className='comparison-modal-row'>
-          <div>{currentProductDetails.default_price}</div>
+          <div>{currentProductData.default_price}</div>
           <div>Price</div>
-          <div>{cardProductDetails.default_price}</div>
+          <div>{cardProductData.default_price}</div>
         </div>
         {/* other features */}
         {featureListArray.map((feature: string) => {
           return (
             <div className='comparison-modal-row'>
-              <div>x</div>
+              <div>{currentProductData.slogan}</div>
               <div>{feature}</div>
-              <div>x</div>
+              <div>{cardProductData.slogan}</div>
             </div>
           );
         })}

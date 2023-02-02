@@ -24,6 +24,12 @@ export const App: React.FC = () => {
       });
   };
 
+  useEffect(() => {
+    getCurrentProductDataFromDB()
+  }, [])
+
+  console.log('current product data app: ', currentProductData)
+
   return (
     <div className='app'>
       <nav></nav>

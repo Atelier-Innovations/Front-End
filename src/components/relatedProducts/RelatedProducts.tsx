@@ -34,7 +34,7 @@ const RelatedProducts: FC<RelatedProductsProps> = ({
     getRelatedProductsFromDB();
   }, []);
 
-  console.log('related products: ', relatedProductIDs)
+  console.log('currentProductData RP', currentProductData)
 
   return (
     <section className='related-products widget'>
