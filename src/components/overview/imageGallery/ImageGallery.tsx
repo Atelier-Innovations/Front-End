@@ -21,23 +21,35 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
     }
   }, [props.style])
 
-  const changeImage = (id) => {
+  const changeImage = (id: number) => {
     // setCurrentImageURL(props.style.photos[id].url)
     setCurrentImage(id);
   }
 
   const handleRight = event => {
+    let newImage = currentImage + 1;
+    if (newImage > imageList.length - 1) {
+      newImage = 0;
+    }
+    setCurrentImage(newImage);
+  }
 
+  const handleLeft = event => {
+    let newImage = currentImage - 1;
+    if (newImage < 0) {
+      newImage = imageList.length - 1;
+    }
+    setCurrentImage(newImage);
   }
 
   return (
     <div className="image-gallery">
       <img className="expand-icon" src={expand} />
-      <img className="arrow left" src={left} />
+      <img className="arrow left" src={left} onClick={handleLeft} />
       <img className="arrow right" src={right} onClick={handleRight} />
       {imageList.length > 0 ?
       <img className="big-image" src={imageList[currentImage].url} />  : null}
-      <ImageCarousel style={props.style} changeImage={changeImage} />
+      <ImageCarousel style={props.style} changeImage={changeImage} currentImage={currentImage} />
     </div>
   );
 }

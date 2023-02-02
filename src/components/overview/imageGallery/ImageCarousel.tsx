@@ -6,15 +6,17 @@ const down = require('../../../icons/arrow-down-solid.svg');
 interface ImageCarouselProps {
   style: {
     photos: Array<string>,
-    changeImage: (id: string) => void
-  }
+
+  },
+  changeImage: (id: string) => void,
+  currentImage: number
 }
 
 const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) => {
   const [firstImage, setFirstImage] = React.useState(null);
   const [lastImage, setLastImage] = React.useState(null);
   const [images, setImages] = React.useState([]);
-  const [currentThumbnail, setCurrentThumbnail] = React.useState(0);
+  // const [currentThumbnail, setCurrentThumbnail] = React.useState(0);
 
   React.useEffect( () => {
     if (props.style.photos) {
@@ -23,13 +25,12 @@ const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) 
         props.style.photos.length >= 7 ? 6 : props.style.photos.length - 1
       );
       setImages(props.style.photos);
-      setCurrentThumbnail(0);
+      props.changeImage(0);
     }
   }, [props.style])
 
   const handleThumbnailClick = event => {
-    props.changeImage(event.target.id);
-    setCurrentThumbnail(Number(event.target.id));
+    props.changeImage(Number(event.target.id));
   }
   return (
     <div className="image-carousel">
@@ -41,7 +42,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) 
                             key={index}
                             onClick={handleThumbnailClick}
                             id={index}
-                            selected={currentThumbnail === index ? true : false} />
+                            selected={props.currentImage === index ? true : false} />
           )
         }
       })}
