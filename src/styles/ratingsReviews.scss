@@ -19,7 +19,7 @@
   .overall {
     display: flex;
     flex-direction: row;
-    height: 85%;
+    height: 96%;
     border: 1px solid red;
 
     .ratings-panel {
@@ -45,6 +45,28 @@
       .filter-by-star {
         padding-top: 0.5rem;
 
+        progress[value] {
+          -webkit-appearance: none;
+          appearance: none;
+          display: inline-block;
+          margin-left: 1.2rem;
+          width: 69%;
+          height: 0.45rem;
+          margin-bottom: .2rem;
+
+        }
+
+
+        progress[value]::-webkit-progress-bar {
+          background-color: rgba(223, 214, 214, 0.6);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+        }
+
+        progress[value]::-webkit-progress-value {
+          background-color: rgb(82, 82, 82);
+        }
+
+
         .stars {
           padding-top: 0.7rem;
           text-decoration: underline;
@@ -57,7 +79,7 @@
       display: flex;
       flex-direction: column;
       height: 100%;
-      width: 71%;
+      width: 73%;
       border: 2px solid $text;
 
       .sort-by {

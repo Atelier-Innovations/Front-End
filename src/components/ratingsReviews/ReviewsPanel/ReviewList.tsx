@@ -24,6 +24,10 @@ const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort }) => {
       { currentReviews.results && currentReviews.results.map((review, id) => {
         return < Review key={id} review={review}/>
       }) }
+      <div className="button-panel">
+        <button>More Reviews</button>
+        <button>Add A Review +</button>
+      </div>
     </div>
   )
 }

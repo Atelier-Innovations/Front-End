@@ -38,16 +38,17 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
 
   useEffect(() => {
     getReviewData();
-  }, [sort])
+  }, [sort, props.currentProductID])
 
   useEffect(() => {
     getRatingsData();
   }, [])
 
 
+
   // console.log(sort)
 
-  console.log('MetaData from R/R:', productMetaData)
+  // console.log('MetaData from R/R:', productMetaData)
   // console.log('Current Reviews from R/R:', currentReviews)
 
 
@@ -61,14 +62,6 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
         < RatingsList productMetaData={ productMetaData }/>
         < ReviewList sort={ sort } setSort={ setSort } currentReviews={ currentReviews } />
       </div>
-
-      <div className="button-panel">
-        <button>More Reviews</button>
-        <button>Add A Review +</button>
-      </div>
-
-
-
     </div>
   )
 }
