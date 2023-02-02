@@ -45,7 +45,8 @@ const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
                       styleList={styleList}
                       setCurrentStyle={setCurrentStyle} />
       </div>
-      <ProductDescriptionPanel />
+      <ProductDescriptionPanel currentStyle={currentStyle}
+                               product={currentProduct}/>
     </section>
   )
 }

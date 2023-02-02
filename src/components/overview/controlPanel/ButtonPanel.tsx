@@ -2,11 +2,23 @@ import React from 'react';
 
 const ButtonPanel: React.FC = (props) => {
   const [outOfStock, setOutOfStock] = React.useState(false);
-  const [sizeSelected, setSizeSelected] = React.useState(0);
+  const [sizeSelected, setSizeSelected] = React.useState(null);
   const [quantityRange, setQuantityRange] = React.useState(0);
 
   const handleSizeChange = event => {
-    setSizeSelected(event.target.selectedIndex);
+    if (event.target.selectedIndex === 0) {
+      setSizeSelected(null);
+    } else {
+      setSizeSelected(event.target.selectedIndex);
+    }
+  }
+
+  const handleAdd = event => {
+    if (sizeSelected === null) {
+      alert('Select a size first!');
+    } else {
+      console.log('Ka-ching!');
+    }
   }
 
   React.useEffect( () => {
@@ -19,8 +31,14 @@ const ButtonPanel: React.FC = (props) => {
       } else {
         setOutOfStock(false);
       }
-
-      setQuantityRange(props.currentStyle.skus[props.skus[sizeSelected]].quantity);
+      if (sizeSelected !== null) {
+        let quantityOfSize = props.currentStyle.skus[props.skus[sizeSelected - 1]].quantity;
+        quantityOfSize >= 15 ?
+        setQuantityRange(16) :
+        setQuantityRange(props.currentStyle.skus[props.skus[sizeSelected - 1]].quantity + 1);
+      } else {
+        setQuantityRange(0);
+      }
     }
   }, [props.currentStyle, sizeSelected])
 
@@ -30,25 +48,26 @@ const ButtonPanel: React.FC = (props) => {
         <select className="size-button" disabled={outOfStock} onChange={handleSizeChange}>
           {outOfStock ?
           <option>OUT OF STOCK</option> : <option>Select Size</option>}
-          {props.skus.map((sku, index) => {
+          {props.skus.map(sku => {
             if (props.currentStyle.skus[sku].quantity > 0) {
               return (
-                <option key={index}>{props.currentStyle.skus[sku].size}</option>
+                <option key={sku}>{props.currentStyle.skus[sku].size}</option>
               )
             }
           })}
         </select>
-        <select className="quantity" disabled={sizeSelected === 0 ?
+        <select className="quantity" disabled={sizeSelected === null ?
                                      true : false}>
-          <option>-</option>
-          {Array.from(Array(quantityRange).keys()).map( num => (
-            <option>{num}</option>
+          {sizeSelected === null ? <option>-</option> : null}
+          {Array.from(Array(quantityRange).keys()).slice(1).map( num => (
+            <option key={num}>{num}</option>
           ))}
 
         </select>
       </div>
       <div className="row-2">
-        <button className="add-to-bag">Add To Bag</button>
+        {outOfStock ? null : <button className="add-to-bag"
+                                     onClick={handleAdd}>Add To Bag</button>}
         <button className="favorite">*</button>
       </div>
     </div>

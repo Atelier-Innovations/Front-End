@@ -12,7 +12,7 @@ import Fixtures from './fixtures.js';
 
 
 //Product Information Tests
-xdescribe('StaticInfoDisplay should display info for currently selected product and style', () => {
+describe('StaticInfoDisplay should display info for currently selected product and style', () => {
 
   beforeEach(() => {
     render (
@@ -28,12 +28,12 @@ xdescribe('StaticInfoDisplay should display info for currently selected product 
   });
 
   test('Should display sale price if not null', () => {
-    expect(screen.getByText('$100.00')).toBeInTheDocument();
+    expect(screen.getByText('$100.00', {exact: false})).toBeInTheDocument();
   });
 
 });
 
-xdescribe('StyleSelector should display available styles and selected style', () => {
+describe('StyleSelector should display available styles and selected style', () => {
     beforeEach( () => {
       render (
         <StyleSelector styles={Fixtures.camoOnesieStyles}
@@ -99,7 +99,7 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
     )
     const user = userEvent.setup();
 
-    await userEvent.selectOptions(getByDisplayValue('Select Size'), 'L');
+    await userEvent.selectOptions(screen.getByDisplayValue('Select Size'), 'S');
     expect(screen.getByDisplayValue('1')).toBeInTheDocument();
   })
 
@@ -114,7 +114,8 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
 
   test('Add to cart button should not appear if item is out of stock', () => {
     render (
-      <ButtonPanel style={Fixtures.outOfStockProductStyles.results[0]} />
+      <ButtonPanel currentStyle={Fixtures.outOfStockProductStyles.results[0]}
+                   skus={Object.keys(Fixtures.outOfStockProductStyles.results[0].skus)} />
     )
 
     expect(screen.queryByDisplayValue('Add To Cart')).toBe(null);

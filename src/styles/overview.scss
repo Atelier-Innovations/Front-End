@@ -61,11 +61,23 @@
           text-decoration: line-through;
           color: red;
         }
+
+        .social-media-icons {
+          list-style: none;
+          li {
+            display: inline;
+            margin-right: 1rem;
+            img:hover {
+              filter: invert(0.5) sepia(1) hue-rotate(90deg);
+            }
+          }
+        }
       }
 
       .style-selector {
         height: 33%;
-        width: 28rem;
+        width: 100%;
+        max-width: 21rem;
         border: 1px solid pink;
         display: flex;
         flex-wrap: wrap;
@@ -73,9 +85,9 @@
         .circle {
           border: 1px solid black;
           border-radius: 50%;
-          width: 4.5rem;
-          height: 4.5rem;
-          margin: 1rem;
+          width: 4rem;
+          height: 4rem;
+          margin-right: 1rem;
         }
 
         .selected {
@@ -146,6 +158,13 @@
 
     .checklist {
       font-size: 1.25rem;
+      ul {
+        list-style: none;
+      }
+
+      ul li:before {
+        content: '✓';
+      }
     }
   }
 }
