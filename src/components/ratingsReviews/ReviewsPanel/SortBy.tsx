@@ -2,9 +2,10 @@ import React, { FC } from 'react';
 
 interface SortByProps {
   setSort: Function;
+  sort: string;
 };
 
-const SortBy: FC<SortByProps> = ({ setSort }) => {
+const SortBy: FC<SortByProps> = ({ setSort, sort }) => {
 
 
   // need to somehow sort through all reviews on all pages?
@@ -14,13 +15,14 @@ const SortBy: FC<SortByProps> = ({ setSort }) => {
   // figure out correct type for event
   const onSortChange = (event) => {
     // console.log(event.target.value)
-    setSort(event.target.value)
-  }
+    let sortMethod = event.target.value
+    setSort(sortMethod)
+    }
 
   return (
     <div className="sort-by">
       ### reviews, sorted by &nbsp;
-      <select onChange={ onSortChange } name="sort-selector" id="sorter">
+      <select onChange={ onSortChange } name="sort-selector" id="sorter" value={ sort }>
         <option value="relevant">relevance</option>
         <option value="helpful">helpfulness</option>
         <option value="newest">most recent</option>

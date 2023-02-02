@@ -12,7 +12,7 @@ interface RatingsReviewsProps {
 const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
   const [ currentReviews, setCurrentReviews ] = useState({})
   const [ productMetaData, setProductMetaData ] = useState({})
-  const [ sort, setSort ] = useState('')
+  const [ sort, setSort ] = useState('relevant')
 
 
   const getReviewData = () => {
@@ -37,15 +37,17 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
 
   useEffect(() => {
     getReviewData();
-  }, [])
+  }, [sort])
 
   useEffect(() => {
     getRatingsData();
   }, [])
 
 
-  console.log('MetaData from R/R:', productMetaData)
-  console.log('Current Reviews from R/R:', currentReviews)
+  console.log(sort)
+
+  // console.log('MetaData from R/R:', productMetaData)
+  // console.log('Current Reviews from R/R:', currentReviews)
 
 
   return (
@@ -56,7 +58,7 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
 
       <div className="overall">
         < RatingsList />
-        < ReviewList setSort={ setSort } currentReviews={currentReviews}/>
+        < ReviewList sort={ sort } setSort={ setSort } currentReviews={currentReviews}/>
       </div>
 
       <div className="button-panel">

@@ -7,10 +7,11 @@ interface ReviewListProps {
     results?: [];
   }
   setSort: Function
+  sort: string
 }
 
 
-const ReviewList: FC<ReviewListProps> = ({ currentReviews, setSort }) => {
+const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort }) => {
 
 
   console.log('From ReviewList:', currentReviews.results)
@@ -19,7 +20,7 @@ const ReviewList: FC<ReviewListProps> = ({ currentReviews, setSort }) => {
 
   return (
     <div className="review-list">
-      < SortBy setSort={ setSort }/>
+      < SortBy sort={ sort } setSort={ setSort }/>
       { currentReviews.results && currentReviews.results.map((review, id) => {
         return < Review key={id} review={review}/>
       }) }
