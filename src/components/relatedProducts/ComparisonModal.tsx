@@ -43,21 +43,33 @@ const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, current
   // create object for each product, key is feature and value is value
   // if feature does not exist, output 'N/A'
 
-  const makeFeatureObject = (data) => {
-    let features = data.features
-    let result = {}
-    features.forEach(item => {
-      result[item] += item.value;
-    })
-  }
+const makeFeatureObject = (data) => {
+  let features = data.features
+  let result = {}
+  features.forEach(item => {
+    result[item.feature] = item.value;
+  })
+  console.log(result)
+  return result
+}
 
-  if (Object.values(currentProductData).length > 1) {
-    const currentProductFeatures = makeFeatureObject(currentProductData)
-  }
+let currentProductFeatures: object
+let cardProductFeatures: object
 
-  if (Object.values(cardProductData).length > 1) {
-    const cardProductFeatures = makeFeatureObject(cardProductData)
-  }
+if (Object.values(currentProductData).length > 1) {
+  currentProductFeatures = makeFeatureObject(currentProductData)
+}
+if (Object.values(cardProductData).length > 1) {
+  cardProductFeatures = makeFeatureObject(cardProductData)
+}
+
+  // if (Object.values(cardProductData).length > 1) {
+  //   const cardProductFeatures = makeFeatureObject(cardProductData)
+  // }
+
+  console.log('current features: ', currentProductFeatures)
+  // console.log('current features: ', currentProudctFeatures)
+
 
   // // get card product data
   // const getProductDataFromDB = (productId, setFunction) => {
@@ -72,12 +84,10 @@ const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, current
   // };
 
   useEffect(() => {
-    getProductDataFromDB(cardID, setCardProductData);
   }, []);
 
   // build feature list
   let featureList = new Set();
-
   const buildCombinedFeatureList = function (product1, product2) {
     if (Object.keys(product1).length > 0 && Object.keys(product2).length > 0) {
       for (let i = 0; i < arguments.length; i++) {
@@ -87,7 +97,6 @@ const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, current
       }
     }
   };
-
   buildCombinedFeatureList(currentProductData, cardProductData);
 
   // convert feature list to an array to map it
@@ -115,9 +124,9 @@ const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, current
         {featureListArray.map((feature: string) => {
           return (
             <div className='comparison-modal-row'>
-              <div>{currentProductData.slogan}</div>
+              <div>{currentProductFeatures[feature] || 'N/A'}</div>
               <div>{feature}</div>
-              <div>{cardProductData.slogan}</div>
+              <div>{cardProductFeatures[feature] || 'N/A'}</div>
             </div>
           );
         })}
