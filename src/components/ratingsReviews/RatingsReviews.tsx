@@ -58,7 +58,7 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
 
       <div className="overall">
         < RatingsList />
-        < ReviewList sort={ sort } setSort={ setSort } currentReviews={currentReviews}/>
+        < ReviewList sort={ sort } setSort={ setSort } currentReviews={ currentReviews } />
       </div>
 
       <div className="button-panel">

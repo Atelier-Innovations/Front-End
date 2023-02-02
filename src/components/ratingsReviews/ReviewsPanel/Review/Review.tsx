@@ -28,8 +28,8 @@ const Review: FC<ReviewProps> = ({ review }) => {
   return (
     <div className="single-review">
       <div className="info-bar">
-        < RatingStars rating={review.rating}/>
-        < UserAndTime />
+        < RatingStars rating={ review.rating }/>
+        < UserAndTime date={ review.date } reviewer_name={ review.reviewer_name }/>
       </div>
       <div className="review-text">
         < Summary summary={review.summary}/>

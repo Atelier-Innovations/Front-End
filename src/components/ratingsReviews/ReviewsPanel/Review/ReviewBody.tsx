@@ -10,7 +10,7 @@ const ReviewBody: FC<ReviewBodyProps> = ({ body }) => {
   // console.log(body)
   return (
     <div className="review-body">
-      { body}
+      { body }
     </div>
   )
 }
