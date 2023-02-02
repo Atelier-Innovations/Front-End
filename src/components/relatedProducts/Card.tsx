@@ -62,11 +62,15 @@ const Card: FC<CardProps> = ({currentProductID, cardID, currentProductData}) => 
         />
       </Modal>
 
-      <div className='card' onClick={() => setModalIsOpen(true)}>
+      <div className='card'>
         <div
           className='cardImage'
           style={{ backgroundImage: `url(${productImage})` }}
-        ></div>
+        >
+          <div className='button_div'>
+            <button className="compare_button" onClick={() => setModalIsOpen(true)}>Compare</button>
+          </div>
+        </div>
         <div className='cardInfo'>
           <p>{product.category}</p>
           <p>{product.name}</p>

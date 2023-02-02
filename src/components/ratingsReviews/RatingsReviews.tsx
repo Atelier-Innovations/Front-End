@@ -47,7 +47,7 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
 
   // console.log(sort)
 
-  console.log('MetaData from R/R:', productMetaData)
+  // console.log('MetaData from R/R:', productMetaData)
   // console.log('Current Reviews from R/R:', currentReviews)
 
 

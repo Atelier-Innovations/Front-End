@@ -25,6 +25,12 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    padding: 5px;
+  }
+
+  .button_div {
+    display: flex;
+    justify-content: flex-end;
   }
 
   .cardInfo {
