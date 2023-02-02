@@ -1,92 +1,40 @@
 import React, { FC } from 'react';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import Modal from '../shared/Modal';
-import { getProductDataFromDB } from '../../helperFunctions';
 
-
-
-// category, name, price (price for default style), and rating
 interface ComparisonModalProps {
-  cardID: string;
-  cardProductData: object;
-  currentProductID: string;
-  currentProductData: object;
-  setCardProductData: (active: boolean) => void;
+  currentProductData: ProductObject;
+  cardProductData: ProductObject;
 }
 
-// sample api data
-// {
-//   "id": 11,
-//   "name": "Air Minis 250",
-//   "slogan": "Full court support",
-//   "description": "This optimized air cushion pocket reduces impact but keeps a perfect balance underfoot.",
-//   "category": "Basketball Shoes",
-//   "default_price": "0",
-//   "features": [
-//   {
-//           "feature": "Sole",
-//           "value": "Rubber"
-//       },
-//   {
-//           "feature": "Material",
-//           "value": "FullControlSkin"
-//       },
-//   // ...
-//   ],
-// }
-
-const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, currentProductID, cardProductData, cardID, setCardProductData }) => {
-  // X pass in ids of currentProductId and modalProductId
-  // X get product info for each product
-  // X create set of all features to map through
-  // create object for each product, key is feature and value is value
-  // if feature does not exist, output 'N/A'
-
-const makeFeatureObject = (data) => {
-  let features = data.features
-  let result = {}
-  features.forEach(item => {
-    result[item.feature] = item.value;
-  })
-  console.log(result)
-  return result
-}
-
-let currentProductFeatures: object
-let cardProductFeatures: object
-
-if (Object.values(currentProductData).length > 1) {
-  currentProductFeatures = makeFeatureObject(currentProductData)
-}
-if (Object.values(cardProductData).length > 1) {
-  cardProductFeatures = makeFeatureObject(cardProductData)
-}
-
-  // if (Object.values(cardProductData).length > 1) {
-  //   const cardProductFeatures = makeFeatureObject(cardProductData)
-  // }
-
-  console.log('current features: ', currentProductFeatures)
-  // console.log('current features: ', currentProudctFeatures)
+type ProductObject = {
+  name?: string;
+  category?: string;
+  default_price?: string;
+};
 
 
-  // // get card product data
-  // const getProductDataFromDB = (productId, setFunction) => {
-  //   axios
-  //     .get(`http://localhost:6969/products/${productId}`, {})
-  //     .then((result) => {
-  //       setFunction(result.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, cardProductData }) => {
 
-  useEffect(() => {
-  }, []);
+  const makeFeatureObject = (data) => {
+    let features = data.features
+    let result = {}
+    features.forEach(item => {
+      result[item.feature] = item.value;
+    })
+    return result
+  }
 
-  // build feature list
+  // build object with features for each product
+  let currentProductFeatures: object
+  let cardProductFeatures: object
+
+  if (Object.values(currentProductData).length > 1) {
+    currentProductFeatures = makeFeatureObject(currentProductData)
+  }
+  if (Object.values(cardProductData).length > 1) {
+    cardProductFeatures = makeFeatureObject(cardProductData)
+  }
+
+  // build list with features from both products
   let featureList = new Set();
   const buildCombinedFeatureList = function (product1, product2) {
     if (Object.keys(product1).length > 0 && Object.keys(product2).length > 0) {
@@ -108,6 +56,7 @@ if (Object.values(cardProductData).length > 1) {
         <h4>COMPARISON</h4>
       </div>
 
+      {/* product names */}
       <div className='comparison-modal-titlebox'>
         <h3>{currentProductData.name}</h3>
         <h3>{cardProductData.name}</h3>
@@ -120,10 +69,11 @@ if (Object.values(cardProductData).length > 1) {
           <div>Price</div>
           <div>{cardProductData.default_price}</div>
         </div>
+
         {/* other features */}
-        {featureListArray.map((feature: string) => {
+        {featureListArray.map((feature: string, index) => {
           return (
-            <div className='comparison-modal-row'>
+            <div key={index} className='comparison-modal-row'>
               <div>{currentProductFeatures[feature] || 'N/A'}</div>
               <div>{feature}</div>
               <div>{cardProductFeatures[feature] || 'N/A'}</div>

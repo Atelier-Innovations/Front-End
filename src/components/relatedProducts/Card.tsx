@@ -12,11 +12,7 @@ interface CardProps {
   currentProductData: object;
 }
 
-const Card: FC<CardProps> = ({
-  currentProductID,
-  cardID,
-  currentProductData,
-}) => {
+const Card: FC<CardProps> = ({currentProductID, cardID, currentProductData}) => {
 
   const [cardProductData, setCardProductData] = useState({});
   const [productImage, setProductImage] = useState('');
@@ -61,12 +57,8 @@ const Card: FC<CardProps> = ({
         setModalIsOpen={setModalIsOpen}
       >
         <ComparisonModal
-          currentProductID={currentProductID}
           currentProductData={currentProductData}
-          cardID={cardID}
           cardProductData={cardProductData}
-          setCardProductData={setCardProductData}
-
         />
       </Modal>
 
