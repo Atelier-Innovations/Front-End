@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 
 interface SortByProps {
-
+  sort: string;
+  setSort: Function;
 };
 
 const SortBy: FC<SortByProps> = (props) => {
