@@ -1,19 +1,16 @@
 import React, { FC } from 'react';
 import SortBy from './SortBy';
 import Review from './Review/Review';
-import { useState } from 'react';
 
 interface ReviewListProps {
   currentReviews: {
     results?: [];
-
   }
-  sort: string;
   setSort: Function
 }
 
 
-const ReviewList: FC<ReviewListProps> = ({ currentReviews }) => {
+const ReviewList: FC<ReviewListProps> = ({ currentReviews, setSort }) => {
 
 
   console.log('From ReviewList:', currentReviews.results)
@@ -22,10 +19,10 @@ const ReviewList: FC<ReviewListProps> = ({ currentReviews }) => {
 
   return (
     <div className="review-list">
-      < SortBy />
+      < SortBy setSort={ setSort }/>
       { currentReviews.results && currentReviews.results.map((review, id) => {
         return < Review key={id} review={review}/>
-      })}
+      }) }
     </div>
   )
 }
