@@ -27,16 +27,16 @@ const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, cardPro
   let currentProductFeatures: object
   let cardProductFeatures: object
 
-  if (Object.values(currentProductData).length > 1) {
+  if (Object.values(currentProductData).length > 0) {
     currentProductFeatures = makeFeatureObject(currentProductData)
   }
-  if (Object.values(cardProductData).length > 1) {
+  if (Object.values(cardProductData).length > 0) {
     cardProductFeatures = makeFeatureObject(cardProductData)
   }
 
   // build list with features from both products
   let featureList = new Set();
-  const buildCombinedFeatureList = function (product1, product2) {
+  const buildCombinedFeatureList = function (product1: object , product2: object) {
     if (Object.keys(product1).length > 0 && Object.keys(product2).length > 0) {
       for (let i = 0; i < arguments.length; i++) {
         arguments[i].features.forEach((featureItem) => {

@@ -16,7 +16,7 @@ const Answer: FC <AnswerProps> = (props: AnswerProps) => {
   // const [currentProductID, setCurrentProductID] = React.useState<number>(37311);
   // iterate over input array of questions, angrab their data
   // const answer = AnswerProps.answer;
-  console.log('what is props: ', props);
+  // console.log('what is props: ', props);
   return (
     <div className="answer-info-container">
       <p>{props.answer.body}</p>
