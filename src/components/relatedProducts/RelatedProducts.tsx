@@ -3,24 +3,26 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from './Card';
 
-interface RelatedProductsProps {}
+interface RelatedProductsProps {
+  currentProductID: string;
+  currentProductData: object;
+}
 
 interface ProductIds {}
 
-const RelatedProducts: FC<RelatedProductsProps> = (props) => {
-
-  //temporary currentProductId, change to props once added
-  const [currentProductId, setCurrentProductId] = useState<string>('37311');
-
+const RelatedProducts: FC<RelatedProductsProps> = ({
+  currentProductData,
+  currentProductID,
+}) => {
   // get related product ids from database
-  const [relatedProductIds, setRelatedProductIds] = useState<Array<string>>([]);
+  const [relatedProductIDs, setRelatedProductIDs] = useState<Array<string>>([]);
 
   // get related roducts from db
   const getRelatedProductsFromDB = () => {
     axios
-      .get(`http://localhost:6969/products/${currentProductId}/related`, {})
+      .get(`http://localhost:6969/products/${currentProductID}/related`, {})
       .then((result) => {
-        setRelatedProductIds(result.data);
+        setRelatedProductIDs(result.data);
       })
       .catch((err) => {
         console.log(err);
@@ -32,13 +34,21 @@ const RelatedProducts: FC<RelatedProductsProps> = (props) => {
     getRelatedProductsFromDB();
   }, []);
 
+  console.log('related products: ', relatedProductIDs)
 
   return (
     <section className='related-products widget'>
       <h2 className='title'>Related Products</h2>
       <div className='carousel'>
-        {relatedProductIds.map((productId) => {
-          return <Card id={productId} key={productId} />;
+        {relatedProductIDs.map((cardID) => {
+          return (
+            <Card
+              currentProductID={currentProductID}
+              currentProductData={currentProductData}
+              cardID={cardID}
+              key={cardID}
+            />
+          );
         })}
       </div>
       <h2 className='title'>Your Outfit</h2>
