@@ -2,25 +2,28 @@ import React, { FC } from 'react';
 import SortBy from './SortBy';
 import Review from './Review/Review';
 
-interface ReviwListProps {
+interface ReviewListProps {
   currentReviews: {
-    // currentReviews: object;
-
+    results?: [];
   }
+  setSort: Function
+  sort: string
 }
 
 
-const ReviewList: FC<ReviwListProps> = ({ currentReviews }) => {
+const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort }) => {
 
-  // console.log(currentReviews.results)
+
+  // console.log('From ReviewList:', currentReviews.results)
+
+  // console.log(currentReviews.results.review_id)
 
   return (
     <div className="review-list">
-      < SortBy />
-      {/* { currentReviews.results.map((review: object) => {
-        return < Review review={review} />
-      })} */}
-      < Review />
+      < SortBy sort={ sort } setSort={ setSort }/>
+      { currentReviews.results && currentReviews.results.map((review, id) => {
+        return < Review key={id} review={review}/>
+      }) }
     </div>
   )
 }

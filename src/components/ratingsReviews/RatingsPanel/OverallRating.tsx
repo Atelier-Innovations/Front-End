@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 interface OverallRatingProps {
-
+  ratings: object;
 };
 
 const OverallRating: FC<OverallRatingProps> = (props) => {

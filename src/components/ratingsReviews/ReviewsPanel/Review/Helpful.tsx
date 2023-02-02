@@ -1,16 +1,16 @@
 import React, { FC } from 'react';
 
 interface HelpfulProps {
-
+  helpfulness: number;
 };
 
 
-const Helpful: FC<HelpfulProps> = (props) => {
+const Helpful: FC<HelpfulProps> = ({ helpfulness }) => {
 
 
   return (
     <div className="helpful">
-      Helpful? Yes | Report
+      Helpful? Yes ({helpfulness}) | Report
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 interface StarChartProps {
-
+  ratings: object;
 };
 
 const StarChart: FC<StarChartProps> = (props) => {

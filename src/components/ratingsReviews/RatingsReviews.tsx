@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import ReviewsList from './ReviewsPanel/ReviewList'
+import ReviewList from './ReviewsPanel/ReviewList'
 import RatingsList from './RatingsPanel/RatingsList';
 import axios from 'axios';
 import { useState, useEffect } from 'react'
@@ -9,28 +9,47 @@ interface RatingsReviewsProps {
   currentProductID: string
 }
 
+
 const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
   const [ currentReviews, setCurrentReviews ] = useState({})
+  const [ productMetaData, setProductMetaData ] = useState({})
+  const [ sort, setSort ] = useState('relevant')
 
-  useEffect(() => {
-    reviewData();
-  }, [])
 
-  const reviewData = () => {
-    axios.get('http://localhost:6969/reviews', {
-      params: {
-        id: props.currentProductID
-      }
-    })
+  const getReviewData = () => {
+    axios.get(`http://localhost:6969/reviews?id=${props.currentProductID}&sort=${sort}`)
       .then((results) => {
-
         setCurrentReviews(results.data)
-
       })
       .catch((err) => {
         console.log(err);
       })
   }
+
+  const getRatingsData = () => {
+    axios.get(`http://localhost:6969/reviews/meta?id=${props.currentProductID}`)
+    .then((results) => {
+      setProductMetaData(results.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  useEffect(() => {
+    getReviewData();
+  }, [sort])
+
+  useEffect(() => {
+    getRatingsData();
+  }, [])
+
+
+  // console.log(sort)
+
+  console.log('MetaData from R/R:', productMetaData)
+  // console.log('Current Reviews from R/R:', currentReviews)
+
 
   return (
     <div className="widget reviews-ratings">
@@ -39,8 +58,8 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
       </div>
 
       <div className="overall">
-        < RatingsList />
-        < ReviewsList currentReviews={currentReviews}/>
+        < RatingsList productMetaData={ productMetaData }/>
+        < ReviewList sort={ sort } setSort={ setSort } currentReviews={ currentReviews } />
       </div>
 
       <div className="button-panel">
