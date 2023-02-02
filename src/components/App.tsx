@@ -13,13 +13,18 @@ export const App: React.FC = () => {
   useEffect(() => {
     // get current product data
     getProductDataFromDB(currentProductID, setCurrentProductData)
-  }, [])
+  }, [currentProductID])
+
+  const handleCardClick = (cardID) => {
+    setCurrentProductID(cardID)
+  }
+
 
   return (
     <div className='app'>
       <nav></nav>
       <Overview currentProductID={currentProductID} />
-      <RelatedProducts currentProductID={currentProductID} currentProductData={currentProductData} setCurrentProductID={setCurrentProductID} />
+      <RelatedProducts currentProductID={currentProductID} currentProductData={currentProductData} handleCardClick={handleCardClick} />
       <QandA currentProductID={currentProductID} />
       <RatingsReviews currentProductID={currentProductID} />
     </div>

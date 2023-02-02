@@ -14,6 +14,8 @@ type ProductObject = {
 
 const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, cardProductData }) => {
 
+
+  // refactor with type checking
   const makeFeatureObject = (data) => {
     let features = data.features
     let result = {}
@@ -22,6 +24,10 @@ const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, cardPro
     })
     return result
   }
+
+  // type L = {
+  //   [key: string]: string;
+  // }
 
   // build object with features for each product
   let currentProductFeatures: object

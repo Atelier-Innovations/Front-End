@@ -7,12 +7,14 @@ import { getProductDataFromDB } from '../../helperFunctions';
 
 
 interface CardProps {
+  cardType: string,
   currentProductID: string;
   cardID: string;
   currentProductData: object;
+  handleCardClick?: (active: string) => void;
 }
 
-const Card: FC<CardProps> = ({currentProductID, cardID, currentProductData}) => {
+const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProductData, handleCardClick}) => {
 
   const [cardProductData, setCardProductData] = useState({});
   const [productImage, setProductImage] = useState('');
@@ -48,6 +50,13 @@ const Card: FC<CardProps> = ({currentProductID, cardID, currentProductData}) => 
   };
   const product: ProductObject = cardProductData;
 
+  const onCardClick = (e) => {
+    // Check to see if click came from compare button, if it did don't execute handleCardClick
+    if (e.target.innerHTML !== 'Compare') {
+      handleCardClick(cardID.toString())
+    }
+  }
+
   return (
     <>
       <Modal
@@ -66,12 +75,20 @@ const Card: FC<CardProps> = ({currentProductID, cardID, currentProductData}) => 
         <div
           className='cardImage'
           style={{ backgroundImage: `url(${productImage})` }}
+          onClick={(e) => onCardClick(e)}
         >
-          <div className='button_div'>
+        {cardType === 'product' ?
+        <div className='button_div'>
             <button className="compare_button" onClick={() => setModalIsOpen(true)}>Compare</button>
-          </div>
+        </div> :
+        <div className='button_div'>
+          <button className="remove_button" onClick={() => setModalIsOpen(true)}>X</button>
         </div>
-        <div className='cardInfo'>
+        }
+
+
+        </div>
+        <div className='cardInfo' onClick={(e) => onCardClick(e)}>
           <p>{product.category}</p>
           <p>{product.name}</p>
           <p>{product.default_price}</p>
