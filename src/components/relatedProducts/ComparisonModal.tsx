@@ -2,12 +2,17 @@ import React, { FC } from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from '../shared/Modal';
+import { getProductDataFromDB } from '../../helperFunctions';
+
+
 
 // category, name, price (price for default style), and rating
 interface ComparisonModalProps {
   cardID: string;
+  cardProductData: object;
   currentProductID: string;
   currentProductData: object;
+  setCardProductData: (active: boolean) => void;
 }
 
 // sample api data
@@ -31,15 +36,12 @@ interface ComparisonModalProps {
 //   ],
 // }
 
-const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, currentProductID, cardID }) => {
+const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, currentProductID, cardProductData, cardID, setCardProductData }) => {
   // X pass in ids of currentProductId and modalProductId
   // X get product info for each product
   // X create set of all features to map through
   // create object for each product, key is feature and value is value
   // if feature does not exist, output 'N/A'
-
-  // let [currentProductDetails, setCurrentProductDetails] = useState({});
-  let [cardProductData, setCardProductData] = useState({});
 
   const makeFeatureObject = (data) => {
     let features = data.features
@@ -57,20 +59,17 @@ const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, current
     const cardProductFeatures = makeFeatureObject(cardProductData)
   }
 
-  console.log('current: ', currentProductData)
-
-
-  // get card product data
-  const getProductDataFromDB = (productId, setFunction) => {
-    axios
-      .get(`http://localhost:6969/products/${productId}`, {})
-      .then((result) => {
-        setFunction(result.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // // get card product data
+  // const getProductDataFromDB = (productId, setFunction) => {
+  //   axios
+  //     .get(`http://localhost:6969/products/${productId}`, {})
+  //     .then((result) => {
+  //       setFunction(result.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   useEffect(() => {
     getProductDataFromDB(cardID, setCardProductData);

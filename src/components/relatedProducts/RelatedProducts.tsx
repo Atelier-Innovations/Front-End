@@ -2,39 +2,24 @@ import React, { FC } from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from './Card';
+import { getRelatedProductsFromDB } from '../../helperFunctions'
 
 interface RelatedProductsProps {
   currentProductID: string;
   currentProductData: object;
+  setCurrentProductID: (active: string) => void;
 }
 
 interface ProductIds {}
 
-const RelatedProducts: FC<RelatedProductsProps> = ({
-  currentProductData,
-  currentProductID,
-}) => {
-  // get related product ids from database
+const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  currentProductID}) => {
+
   const [relatedProductIDs, setRelatedProductIDs] = useState<Array<string>>([]);
 
-  // get related roducts from db
-  const getRelatedProductsFromDB = () => {
-    axios
-      .get(`http://localhost:6969/products/${currentProductID}/related`, {})
-      .then((result) => {
-        setRelatedProductIDs(result.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // make http request for data
+  // get related products data
   useEffect(() => {
-    getRelatedProductsFromDB();
+    getRelatedProductsFromDB(currentProductID, setRelatedProductIDs);
   }, []);
-
-  console.log('currentProductData RP', currentProductData)
 
   return (
     <section className='related-products widget'>

@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from '../shared/Modal';
 import ComparisonModal from './ComparisonModal';
+import { getProductDataFromDB } from '../../helperFunctions';
+
 
 interface CardProps {
   currentProductID: string;
@@ -19,18 +21,6 @@ const Card: FC<CardProps> = ({
   const [cardProductData, setCardProductData] = useState({});
   const [productImage, setProductImage] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  // get product data
-  const getCardProductDataFromDB = () => {
-    axios
-      .get(`http://localhost:6969/products/${cardID}`, {})
-      .then((result) => {
-        setCardProductData(result.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   // get product img
   const getCardProductImgFromDB = async () => {
@@ -50,7 +40,7 @@ const Card: FC<CardProps> = ({
 
   // retrieve all data
   useEffect(() => {
-    getCardProductDataFromDB();
+    getProductDataFromDB(cardID, setCardProductData);
     getCardProductImgFromDB();
   }, []);
 
@@ -72,8 +62,11 @@ const Card: FC<CardProps> = ({
       >
         <ComparisonModal
           currentProductID={currentProductID}
-          cardID={cardID}
           currentProductData={currentProductData}
+          cardID={cardID}
+          cardProductData={cardProductData}
+          setCardProductData={setCardProductData}
+
         />
       </Modal>
 
