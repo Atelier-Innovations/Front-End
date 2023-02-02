@@ -1,8 +1,19 @@
 import React from 'react';
 
-const ImageThumbnail: React.FC = (props) => {
+interface ImageThumbnailProps {
+  image: string,
+  onClick: Function,
+  id: number,
+  selected: boolean
+}
 
-  return <div className="box"></div>
+const ImageThumbnail: React.FC<ImageThumbnailProps> = (props: ImageThumbnailProps) => {
+
+  return <div className={props.selected ? 'box selected' : 'box'}>
+    <img src={props.image}
+         onClick={props.onClick}
+         id={props.id} />
+  </div>
 }
 
 export default ImageThumbnail;

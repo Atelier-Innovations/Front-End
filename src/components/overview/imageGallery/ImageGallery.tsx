@@ -15,11 +15,15 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
     }
   }, [props.style])
 
+  const changeImage = (id) => {
+    setCurrentImage(props.style.photos[id].url)
+  }
+
   return (
     <div className="image-gallery">
       <img className="expand-icon" src={expand} />
       <img src={currentImage} />
-      <ImageCarousel />
+      <ImageCarousel style={props.style} changeImage={changeImage} />
     </div>
   );
 }
