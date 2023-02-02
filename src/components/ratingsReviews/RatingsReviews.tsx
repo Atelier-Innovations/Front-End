@@ -11,11 +11,12 @@ interface RatingsReviewsProps {
 
 const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
   const [ currentReviews, setCurrentReviews ] = useState({})
+  const [ productMetaData, setProductMetaData ] = useState({})
   const [ sort, setSort ] = useState('')
 
 
   const getReviewData = () => {
-    axios.get(`http://localhost:6969/reviews?id=${props.currentProductID}`)
+    axios.get(`http://localhost:6969/reviews?id=${props.currentProductID}&sort=${sort}`)
       .then((results) => {
         setCurrentReviews(results.data)
       })
@@ -24,9 +25,28 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
       })
   }
 
+  const getRatingsData = () => {
+    axios.get(`http://localhost:6969/reviews/meta?id=${props.currentProductID}`)
+    .then((results) => {
+      setProductMetaData(results.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   useEffect(() => {
     getReviewData();
   }, [])
+
+  useEffect(() => {
+    getRatingsData();
+  }, [])
+
+
+  console.log('MetaData from R/R:', productMetaData)
+  console.log('Current Reviews from R/R:', currentReviews)
+
 
   return (
     <div className="widget reviews-ratings">
@@ -36,7 +56,7 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
 
       <div className="overall">
         < RatingsList />
-        < ReviewList sort={ sort } setSort={ setSort }currentReviews={currentReviews}/>
+        < ReviewList setSort={ setSort } currentReviews={currentReviews}/>
       </div>
 
       <div className="button-panel">
