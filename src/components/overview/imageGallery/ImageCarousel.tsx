@@ -1,5 +1,7 @@
 import React from 'react';
 import ImageThumbnail from './ImageThumbnail';
+const up = require('../../../icons/arrow-up-solid.svg');
+const down = require('../../../icons/arrow-down-solid.svg');
 
 interface ImageCarouselProps {
   style: {
@@ -31,6 +33,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) 
   }
   return (
     <div className="image-carousel">
+      <img src={up} className="small-arrow up" />
       {images.map( (image, index) => {
         if (index >= firstImage && index <= lastImage) {
           return (
@@ -42,6 +45,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) 
           )
         }
       })}
+      <img src={down} className="small-arrow down" />
     </div>
   )
 }
