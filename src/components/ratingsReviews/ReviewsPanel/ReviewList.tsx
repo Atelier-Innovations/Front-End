@@ -8,15 +8,18 @@ interface ReviewListProps {
   }
   setSort: Function
   sort: string
+  reviewCount: number;
+  setReviewCount: Function;
 }
 
 
-const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort }) => {
-
-
+const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, reviewCount, setReviewCount }) => {
   // console.log('From ReviewList:', currentReviews.results)
-
   // console.log(currentReviews.results.review_id)
+
+  const onClickMoreReviews = () => {
+    setReviewCount(reviewCount += 2)
+  }
 
   return (
     <div className="review-list">
@@ -25,7 +28,7 @@ const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort }) => {
         return < Review key={id} review={review}/>
       }) }
       <div className="button-panel">
-        <button>More Reviews</button>
+        <button onClick={ onClickMoreReviews }>More Reviews</button>
         <button>Add A Review +</button>
       </div>
     </div>

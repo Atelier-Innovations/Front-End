@@ -110,7 +110,7 @@ app.post('/qa/questions', (req: Request, res: Response) => {
 
 app.get('/reviews', (req: Request, res: Response) => {
   // console.log('Bryce:', req.query);
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?page=1&count=2&sort=${req.query.sort}&product_id=${req.query.id}`, {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?page=1&count=${req.query.count}&sort=${req.query.sort}&product_id=${req.query.id}`, {
     headers: {
       Authorization: process.env.API_KEY,
     }

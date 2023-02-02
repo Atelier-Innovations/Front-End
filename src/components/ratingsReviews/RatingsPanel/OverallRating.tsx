@@ -29,8 +29,6 @@ const OverallRating: FC<OverallRatingProps> = ({ ratings }) => {
     }
   }
 
-  console.log(averageRating(ratings))
-
   return (
     <div className="overall-rating">
       { averageRating(ratings) }
