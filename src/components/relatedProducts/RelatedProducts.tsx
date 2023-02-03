@@ -14,8 +14,8 @@ interface RelatedProductsProps {
 
 const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  currentProductID, handleCardClick}) => {
 
-  const [relatedProductIDs, setRelatedProductIDs] = useState<Array<string>>([]);
-  const [outfitProductIDs, setOutfitProductIDs] = useState<Array<string>>([])
+  const [relatedProductIDs, setRelatedProductIDs] = useState(new Set());
+  const [outfitProductIDs, setOutfitProductIDs] = useState<Array<string>>([]);
 
   // get related products data
   useEffect(() => {
@@ -24,7 +24,7 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
 
   const handleAddOutfit = (currentProductID) => {
     if (outfitProductIDs.includes(currentProductID)){
-      alert('This item is already in your outfit collection.')
+      alert(`${currentProductData.name} is already in your outfit collection.`)
     } else {
       setOutfitProductIDs([...outfitProductIDs, currentProductID])
     }
@@ -36,13 +36,11 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
     })
   }
 
-  console.log(outfitProductIDs)
-
   return (
     <section className='related-products widget'>
       <h2 className='title'>Related Products</h2>
       <div className='carousel carousel_related'>
-        {relatedProductIDs.map((cardID, index) => {
+        {[...relatedProductIDs].map((cardID, index) => {
           while (index < 4) {
             return (
               <Card
@@ -70,6 +68,7 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
                 cardID={cardID}
                 key={cardID}
                 handleRemoveOutfit={handleRemoveOutfit}
+                handleCardClick={handleCardClick}
               />
             );
             }

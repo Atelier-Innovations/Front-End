@@ -6,7 +6,7 @@ const AddToOutfitCard = ({currentProductData, handleAddOutfit, currentProductID}
 
     <div className='card add_to_outfit_card' onClick={() => handleAddOutfit(currentProductID)}>
       <div className='plus_sign'>+</div>
-      <p>Add <strong>{currentProductData.name}</strong> to your outfit collection!</p>
+      <p>Add <strong>{currentProductData.name}</strong> to your outfit!</p>
     </div>
   )
 }
