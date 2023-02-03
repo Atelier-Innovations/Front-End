@@ -22,23 +22,81 @@
 
     .image-gallery {
       border: 1px solid blue;
-      width: 60%;
+      width: 62%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      .expand-icon {
+        position: absolute;
+
+        right: 2.5%;
+        top: 2.5%;
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+      }
+      .big-image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        z-index: 1;
+      }
+
+      .arrow {
+        position: absolute;
+        height: 25px;
+        width: 25px;
+        top: 50%;
+        z-index: 15;
+        cursor: pointer;
+        // opacity: 0.55;
+      }
+
+      .left {
+        left: 15%;
+      }
+
+      .right {
+        left: 90%;
+      }
 
       .image-carousel {
         display: flex;
         flex-direction: column;
-        position: relative;
-        left: 1.5rem;
+        position: absolute;
+        top: 1.5rem;
+        left: 1.25rem;
         width: 5rem;
         height: 26rem;
-        border: 1px solid black;
-        justify-content: space-around;
+        justify-content: flex-start;
         align-items: center;
-
+        z-index: 5;
+        // transition: all 1s ease;
+        .small-arrow {
+          height: 20px;
+          width: 20px;
+          cursor: pointer;
+        }
+        .up {
+          margin-bottom: 0.75rem;
+        }
+        .down {
+          // margin-top: 0.75rem;
+        }
         .box {
           width: 4rem;
           height: 4rem;
           border: 1px solid black;
+          cursor: pointer;
+          margin-bottom: 1.25rem;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .selected {
+          border: 5px solid blue;
         }
       }
     }
@@ -68,6 +126,7 @@
             display: inline;
             margin-right: 1rem;
             img:hover {
+              cursor: pointer;
               filter: invert(0.5) sepia(1) hue-rotate(90deg);
             }
           }
@@ -88,6 +147,7 @@
           width: 4rem;
           height: 4rem;
           margin-right: 1rem;
+          cursor: pointer;
         }
 
         .selected {

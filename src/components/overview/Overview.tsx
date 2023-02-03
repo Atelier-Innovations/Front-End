@@ -39,7 +39,7 @@ const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
     <section className="widget overview">
       <Banner />
       <div className="main-panel">
-        <ImageGallery />
+        <ImageGallery style={currentStyle}/>
         <ControlPanel product={currentProduct}
                       currentStyle={currentStyle}
                       styleList={styleList}
