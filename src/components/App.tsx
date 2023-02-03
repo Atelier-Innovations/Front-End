@@ -9,7 +9,7 @@ import ReactModal from 'react-modal';
 export const App: React.FC = () => {
 
 
-  const [currentProductID, setCurrentProductID] = React.useState<string>('37311');
+  const [currentProductID, setCurrentProductID] = React.useState<string>('37315');
 
   return (
     <div className="app">
