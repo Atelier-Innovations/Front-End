@@ -9,8 +9,17 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .carousel_related {
+    justify-content: space-between;
+  }
+
+  .carousel_outfit {
+    justify-content: flex-start;
   }
 
   .card {

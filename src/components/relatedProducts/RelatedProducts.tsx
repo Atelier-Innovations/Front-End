@@ -31,7 +31,7 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
   return (
     <section className='related-products widget'>
       <h2 className='title'>Related Products</h2>
-      <div className='carousel'>
+      <div className='carousel carousel_related'>
         {relatedProductIDs.map((cardID, index) => {
           while (index < 4) {
             return (
@@ -48,7 +48,7 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
         })}
       </div>
       <h2 className='title'>Your Outfit</h2>
-      <div className='carousel'>
+      <div className='carousel carousel_outfit'>
         <AddToOutfitCard currentProductData={currentProductData} handleAddOutfit={handleAddOutfit} currentProductID={currentProductID} />
         {outfitProductIDs.length > 0 && outfitProductIDs.map((cardID, index) => {
           while (index < 3) {
