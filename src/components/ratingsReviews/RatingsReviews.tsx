@@ -43,7 +43,7 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
 
   useEffect(() => {
     getRatingsData();
-  }, [])
+  }, [props.currentProductID])
 
 
 

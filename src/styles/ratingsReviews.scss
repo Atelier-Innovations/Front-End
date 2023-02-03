@@ -78,6 +78,8 @@
     .review-list {
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      overflow-y: auto;
       height: 100%;
       width: 73%;
       border: 2px solid $text;
@@ -91,6 +93,8 @@
         display: flex;
         border: 1px solid $text;
         flex-direction: column;
+        margin-bottom: 1.4rem;
+
 
         .info-bar {
           display: flex;
