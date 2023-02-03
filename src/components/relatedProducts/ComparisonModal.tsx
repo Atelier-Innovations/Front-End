@@ -14,6 +14,8 @@ type ProductObject = {
 
 const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, cardProductData }) => {
 
+
+  // refactor with type checking
   const makeFeatureObject = (data) => {
     let features = data.features
     let result = {}
@@ -23,20 +25,24 @@ const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, cardPro
     return result
   }
 
+  // type L = {
+  //   [key: string]: string;
+  // }
+
   // build object with features for each product
   let currentProductFeatures: object
   let cardProductFeatures: object
 
-  if (Object.values(currentProductData).length > 1) {
+  if (Object.values(currentProductData).length > 0) {
     currentProductFeatures = makeFeatureObject(currentProductData)
   }
-  if (Object.values(cardProductData).length > 1) {
+  if (Object.values(cardProductData).length > 0) {
     cardProductFeatures = makeFeatureObject(cardProductData)
   }
 
   // build list with features from both products
   let featureList = new Set();
-  const buildCombinedFeatureList = function (product1, product2) {
+  const buildCombinedFeatureList = function (product1: object , product2: object) {
     if (Object.keys(product1).length > 0 && Object.keys(product2).length > 0) {
       for (let i = 0; i < arguments.length; i++) {
         arguments[i].features.forEach((featureItem) => {
@@ -55,14 +61,14 @@ const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, cardPro
       <div className='modal-title'>
         <h4>COMPARISON</h4>
       </div>
-
-      {/* product names */}
-      <div className='comparison-modal-titlebox'>
-        <h3>{currentProductData.name}</h3>
-        <h3>{cardProductData.name}</h3>
-      </div>
-
       <div className='comparison-modal-table'>
+        {/* product names */}
+        <div className='comparison-modal-row'>
+          <h3>{currentProductData.name}</h3>
+          <div></div>
+          <h3>{cardProductData.name}</h3>
+        </div>
+
         {/* price */}
         <div className='comparison-modal-row'>
           <div>{currentProductData.default_price}</div>

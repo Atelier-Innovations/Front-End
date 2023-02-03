@@ -69,8 +69,8 @@ const AnswersList: FC<AnswersListProps> = (props: AnswersListProps) => {
       <p className="answers-title">A: </p>
 
       <div className="answers-list">
-       {currAnswers.map((answer, i) =>
-        <Answer answer={answer}/>
+       {currAnswers.map((answer, index) =>
+        <Answer key={index} answer={answer}/>
        )}
           <button className="action-btn-load-more-answers">LOAD MORE ANSWERS</button>
         </div>

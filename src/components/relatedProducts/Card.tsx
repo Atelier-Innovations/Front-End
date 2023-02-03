@@ -7,12 +7,15 @@ import { getProductDataFromDB } from '../../helperFunctions';
 
 
 interface CardProps {
+  cardType: string,
   currentProductID: string;
   cardID: string;
   currentProductData: object;
+  handleCardClick?: (active: string) => void;
+  handleRemoveOutfit?: (active: string) => void;
 }
 
-const Card: FC<CardProps> = ({currentProductID, cardID, currentProductData}) => {
+const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProductData, handleCardClick, handleRemoveOutfit}) => {
 
   const [cardProductData, setCardProductData] = useState({});
   const [productImage, setProductImage] = useState('');
@@ -48,6 +51,13 @@ const Card: FC<CardProps> = ({currentProductID, cardID, currentProductData}) => 
   };
   const product: ProductObject = cardProductData;
 
+  const onCardClick = (e) => {
+    // Check to see if click came from compare or remove buttons, if it did don't execute handleCardClick
+    if (e.target.innerHTML !== 'Compare' && e.target.innerHTML !== 'X') {
+      handleCardClick(cardID.toString())
+    }
+  }
+
   return (
     <>
       <Modal
@@ -62,12 +72,24 @@ const Card: FC<CardProps> = ({currentProductID, cardID, currentProductData}) => 
         />
       </Modal>
 
-      <div className='card' onClick={() => setModalIsOpen(true)}>
+      <div className='card'>
         <div
           className='cardImage'
           style={{ backgroundImage: `url(${productImage})` }}
-        ></div>
-        <div className='cardInfo'>
+          onClick={(e) => onCardClick(e)}
+        >
+        {cardType === 'product' ?
+        <div className='button_div'>
+            <button className="compare_button" onClick={() => setModalIsOpen(true)}>Compare</button>
+        </div> :
+        <div className='button_div'>
+          <button className="remove_button" onClick={() => handleRemoveOutfit(cardID)}>X</button>
+        </div>
+        }
+
+
+        </div>
+        <div className='cardInfo' onClick={(e) => onCardClick(e)}>
           <p>{product.category}</p>
           <p>{product.name}</p>
           <p>{product.default_price}</p>

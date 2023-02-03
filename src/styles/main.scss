@@ -1,4 +1,4 @@
-$main: #faf0bf;
+$main: #eaeaea;
 $nav: #404b56;
 $accent-light: #cc0e1d;
 $accent-dark: #a2141a;
@@ -48,28 +48,30 @@ nav {
 
 .comparisonModal {
   background-color: white;
-  height: 300px;
+
   width: 450px;
   border: 1px solid black;
   position: absolute;
   top: 30%;
   left: 30%;
   padding: 10px;
+  text-align: center;
 
   .modal-title {
     padding: 0px;
 
+    h3 {
+      text-align: center;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      padding: 0;
+    }
+
     h4 {
+      text-align: left;
       margin: 0;
       font-weight: 100;
     }
-  }
-
-  .comparison-modal-titlebox {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
   }
 
   .comparison-modal-table {
@@ -80,10 +82,10 @@ nav {
   }
 
   .comparison-modal-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     width: 90%;
     margin-bottom: 5px;
+    padding: 0;
   }
 }
