@@ -22,8 +22,18 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
     getRelatedProductsFromDB(currentProductID, setRelatedProductIDs);
   }, [currentProductID]);
 
-  const handleAddOutfit = (currentProductID, prev) => {
-    setOutfitProductIDs([...outfitProductIDs, currentProductID])
+  const handleAddOutfit = (currentProductID) => {
+    if (outfitProductIDs.includes(currentProductID)){
+      alert('This item is already in your outfit collection.')
+    } else {
+      setOutfitProductIDs([...outfitProductIDs, currentProductID])
+    }
+  }
+
+  const handleRemoveOutfit = (clickedCardID) => {
+    setOutfitProductIDs((prev) => {
+      return prev.filter(product => product !== clickedCardID)
+    })
   }
 
   console.log(outfitProductIDs)
@@ -59,6 +69,7 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
                 currentProductData={currentProductData}
                 cardID={cardID}
                 key={cardID}
+                handleRemoveOutfit={handleRemoveOutfit}
               />
             );
             }

@@ -12,9 +12,10 @@ interface CardProps {
   cardID: string;
   currentProductData: object;
   handleCardClick?: (active: string) => void;
+  handleRemoveOutfit?: (active: string) => void;
 }
 
-const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProductData, handleCardClick}) => {
+const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProductData, handleCardClick, handleRemoveOutfit}) => {
 
   const [cardProductData, setCardProductData] = useState({});
   const [productImage, setProductImage] = useState('');
@@ -51,8 +52,8 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
   const product: ProductObject = cardProductData;
 
   const onCardClick = (e) => {
-    // Check to see if click came from compare button, if it did don't execute handleCardClick
-    if (e.target.innerHTML !== 'Compare') {
+    // Check to see if click came from compare or remove buttons, if it did don't execute handleCardClick
+    if (e.target.innerHTML !== 'Compare' && e.target.innerHTML !== 'X') {
       handleCardClick(cardID.toString())
     }
   }
@@ -82,7 +83,7 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
             <button className="compare_button" onClick={() => setModalIsOpen(true)}>Compare</button>
         </div> :
         <div className='button_div'>
-          <button className="remove_button" onClick={() => setModalIsOpen(true)}>X</button>
+          <button className="remove_button" onClick={() => handleRemoveOutfit(cardID)}>X</button>
         </div>
         }
 
