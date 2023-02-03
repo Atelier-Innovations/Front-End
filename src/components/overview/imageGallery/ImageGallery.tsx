@@ -12,12 +12,16 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
   // const [currentImageURL, setCurrentImageURL] = React.useState('');
   const [imageList, setImageList] = React.useState([]);
   const [currentImage, setCurrentImage] = React.useState(0);
+  const [displayedImages, setDisplayedImages] = React.useState([]);
 
   React.useEffect( () => {
     if (props.style.photos) {
       // setCurrentImageURL(props.style.photos[0].url
       setImageList(props.style.photos);
       setCurrentImage(0);
+      setDisplayedImages(props.style.photos.length >= 7 ?
+        Array.from(Array(7).keys()) :
+        Array.from(Array(props.style.photos.length - 1).keys()));
     }
   }, [props.style])
 
@@ -32,6 +36,12 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
       newImage = 0;
     }
     setCurrentImage(newImage);
+
+    if (displayedImages.indexOf(newImage) === -1) {
+      let newDisplayedImages = displayedImages.slice(1);
+      newDisplayedImages.push(newImage);
+      setDisplayedImages(newDisplayedImages);
+    }
   }
 
   const handleLeft = event => {
@@ -40,6 +50,12 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
       newImage = imageList.length - 1;
     }
     setCurrentImage(newImage);
+
+    if (displayedImages.indexOf(newImage) === -1) {
+      let newDisplayedImages = displayedImages.slice(0, displayedImages.length - 1);
+      newDisplayedImages.unshift(newImage);
+      setDisplayedImages(newDisplayedImages);
+    }
   }
 
   return (
@@ -49,7 +65,11 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
       <img className="arrow right" src={right} onClick={handleRight} />
       {imageList.length > 0 ?
       <img className="big-image" src={imageList[currentImage].url} />  : null}
-      <ImageCarousel style={props.style} changeImage={changeImage} currentImage={currentImage} />
+      <ImageCarousel style={props.style}
+                     changeImage={changeImage}
+                     currentImage={currentImage}
+                     displayedImages={displayedImages}
+                     setDisplayedImages={setDisplayedImages} />
     </div>
   );
 }
