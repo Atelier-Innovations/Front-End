@@ -8,14 +8,20 @@ interface RatingsListProps {
   productMetaData: {
     characteristics?: object;
     product_id?: number;
-    ratings?: object;
+    ratings?: {
+      1: string;
+      2: string;
+      3: string;
+      4: string;
+      5: string;
+    };
     recommended?: object;
   }
 }
 
 const RatingsList: FC<RatingsListProps> = ({ productMetaData }) => {
 
-  // console.log('From RatingsList:', productMetaData)
+  // console.log('From RatingsList:', productMetaData.ratings)
 
   return (
   <div className="ratings-panel">

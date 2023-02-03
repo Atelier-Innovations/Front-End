@@ -1,17 +1,25 @@
 import React, { FC } from 'react';
-// need to look into correct way to handle type for this case
+import { format, parse } from 'fecha'
 
 interface UserAndTimeProps {
   reviewer_name: string;
   date: string;
 }
 
+
 const UserAndTime: FC<UserAndTimeProps> = ({ reviewer_name, date }) => {
   // need to verify actual date formatting required
-  // currently formatting to "# months ago" as default of TimeAgo
+  const dateFormatted = () => {
+    let longDate = parse(date, 'isoDateTime').toString();
+    let shortDate = longDate.slice(4, 15)
+    return shortDate
+  }
+
+
+
   return (
     <div className="username-date">
-      {reviewer_name}, {date}
+      {reviewer_name}, {dateFormatted()}
     </div>
   )
 }

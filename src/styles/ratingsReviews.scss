@@ -19,7 +19,7 @@
   .overall {
     display: flex;
     flex-direction: row;
-    height: 85%;
+    height: 96%;
     border: 1px solid red;
 
     .ratings-panel {
@@ -45,6 +45,28 @@
       .filter-by-star {
         padding-top: 0.5rem;
 
+        progress[value] {
+          -webkit-appearance: none;
+          appearance: none;
+          display: inline-block;
+          margin-left: 1.2rem;
+          width: 69%;
+          height: 0.45rem;
+          margin-bottom: .2rem;
+
+        }
+
+
+        progress[value]::-webkit-progress-bar {
+          background-color: rgba(223, 214, 214, 0.6);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+        }
+
+        progress[value]::-webkit-progress-value {
+          background-color: rgb(82, 82, 82);
+        }
+
+
         .stars {
           padding-top: 0.7rem;
           text-decoration: underline;
@@ -56,19 +78,43 @@
     .review-list {
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      overflow-y: auto;
       height: 100%;
-      width: 71%;
+      width: 73%;
       border: 2px solid $text;
+
+      button {
+        border: 1px black solid;
+        background: none;
+        font-weight: bold;
+        font-size: 0.9rem;
+        height: 3rem;
+        margin-right: 1rem
+
+      }
 
       .sort-by {
         font-weight: bold;
-        margin-bottom: 2rem;
+        margin-bottom: 1.35rem;
+
+        #sorter {
+          border: none;
+          background: none;
+          font-weight: bold;
+          font-size: 0.9rem;
+          margin-left: -.45rem;
+          border-bottom: 3px solid rgb(71, 71, 71);
+
+        }
       }
 
       .single-review {
         display: flex;
         border: 1px solid $text;
         flex-direction: column;
+        margin-bottom: 1.4rem;
+
 
         .info-bar {
           display: flex;
