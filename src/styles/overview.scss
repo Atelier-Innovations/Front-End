@@ -20,6 +20,7 @@
     justify-content: space-between;
     height: 75%;
 
+
     .image-gallery {
       border: 1px solid blue;
       width: 62%;
@@ -99,6 +100,10 @@
           border: 5px solid blue;
         }
       }
+    }
+
+    .expanded {
+      width: 100%;
     }
 
     .control-panel {

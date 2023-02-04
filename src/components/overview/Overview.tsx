@@ -15,6 +15,13 @@ const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
 
   const [currentStyle, setCurrentStyle] = React.useState({});
   const [styleList, setStyleList] = React.useState({results: []});
+  const [imageExpanded, setImageExpanded] = React.useState(false);
+
+  const toggleExpanded = () => {
+    setImageExpanded(
+      imageExpanded ? false : true
+    );
+  };
 
   React.useEffect(() => {
     axios(`http://localhost:6969/products/${props.currentProductID}/styles`)
@@ -31,11 +38,15 @@ const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
     <section className="widget overview">
       <Banner />
       <div className="main-panel">
-        <ImageGallery style={currentStyle}/>
+          <ImageGallery style={currentStyle}
+                        imageExpanded={imageExpanded}
+                        toggleExpanded={toggleExpanded}/>
+
+        {imageExpanded ? null :
         <ControlPanel product={props.currentProductData}
                       currentStyle={currentStyle}
                       styleList={styleList}
-                      setCurrentStyle={setCurrentStyle} />
+                      setCurrentStyle={setCurrentStyle} />}
       </div>
       <ProductDescriptionPanel currentStyle={currentStyle}
                                product={props.currentProductData}/>
