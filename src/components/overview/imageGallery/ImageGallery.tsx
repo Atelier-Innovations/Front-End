@@ -70,7 +70,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
                      changeImage={changeImage}
                      currentImage={currentImage}
                      displayedImages={displayedImages}
-                     setDisplayedImages={setDisplayedImages} />
+                     setDisplayedImages={setDisplayedImages}
+                     imageExpanded ={props.imageExpanded} />
     </div>
   );
 }

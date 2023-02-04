@@ -9,7 +9,9 @@ interface ImageThumbnailProps {
 
 const ImageThumbnail: React.FC<ImageThumbnailProps> = (props: ImageThumbnailProps) => {
 
-  return <div className={props.selected ? 'box selected' : 'box'}>
+  return <div className={'box ' + (props.selected ? 'selected ' : '') +
+                         (props.icon ? 'icon' : '')}
+                         >
     <img src={props.image}
          onClick={props.onClick}
          id={props.id} />

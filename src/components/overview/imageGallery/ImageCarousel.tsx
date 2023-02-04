@@ -58,7 +58,9 @@ const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) 
   };
 
   return (
-    <div className="image-carousel">
+    <div className={props.imageExpanded ?
+    "image-carousel icon-mode" : "image-carousel"}>
+
       <img src={up} className="small-arrow up"
                     onClick={handleUp} />
       {props.displayedImages.map( (index) => {
@@ -68,7 +70,8 @@ const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) 
                             key={index}
                             onClick={handleThumbnailClick}
                             id={index}
-                            selected={props.currentImage === index ? true : false} />
+                            selected={props.currentImage === index ? true : false}
+                            icon={props.imageExpanded} />
           )
       })}
       <img src={down} className="small-arrow down"
