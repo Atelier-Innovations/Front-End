@@ -47,12 +47,12 @@
         cursor: zoom-in;
       }
       .expanded {
-        cursor: all-scroll;
+        cursor: crosshair;
       }
       .zoomed {
         width: 250%;
         height: auto;
-        cursor: crosshair;
+        cursor: zoom-out;
       }
 
       .arrow {

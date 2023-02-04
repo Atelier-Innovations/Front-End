@@ -14,6 +14,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
   const [currentImage, setCurrentImage] = React.useState(0);
   const [displayedImages, setDisplayedImages] = React.useState([]);
   const [zoomed, setZoomed] = React.useState(false);
+  const [zoomCoords, setZoomCoords] = React.useState([0, 0]);
 
   React.useEffect( () => {
     if (props.style.photos) {
@@ -26,6 +27,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
     }
   }, [props.style])
 
+
   const changeImage = (id: number) => {
     // setCurrentImageURL(props.style.photos[id].url)
     setCurrentImage(id);
@@ -36,6 +38,10 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
       zoomed ? false : true
     );
   };
+
+  const handleMouseMove = (event) => {
+    setZoomCoords([event.nativeEvent.offsetX, event.nativeEvent.offsetY]);
+  }
 
   const handleRight = event => {
     let newImage = currentImage + 1;
@@ -77,7 +83,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
                      (zoomed ? 'zoomed ' : '')}
            src={imageList[currentImage].url}
            onClick={props.imageExpanded ?
-           toggleZoom : props.toggleExpanded}/>  : null}
+           toggleZoom : props.toggleExpanded}
+           onMouseMove={zoomed ? handleMouseMove : null} />  : null}
 
       <ImageCarousel style={props.style}
                      changeImage={changeImage}
