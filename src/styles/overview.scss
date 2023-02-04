@@ -43,6 +43,17 @@
         object-fit: cover;
         z-index: 1;
       }
+      .default {
+        cursor: zoom-in;
+      }
+      .expanded {
+        cursor: all-scroll;
+      }
+      .zoomed {
+        width: 250%;
+        height: auto;
+        cursor: crosshair;
+      }
 
       .arrow {
         position: absolute;

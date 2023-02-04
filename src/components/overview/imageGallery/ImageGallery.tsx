@@ -13,6 +13,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
   const [imageList, setImageList] = React.useState([]);
   const [currentImage, setCurrentImage] = React.useState(0);
   const [displayedImages, setDisplayedImages] = React.useState([]);
+  const [zoomed, setZoomed] = React.useState(false);
 
   React.useEffect( () => {
     if (props.style.photos) {
@@ -29,6 +30,12 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
     // setCurrentImageURL(props.style.photos[id].url)
     setCurrentImage(id);
   }
+
+  const toggleZoom = () => {
+    setZoomed(
+      zoomed ? false : true
+    );
+  };
 
   const handleRight = event => {
     let newImage = currentImage + 1;
@@ -65,7 +72,13 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
       <img className="arrow left" src={left} onClick={handleLeft} />
       <img className="arrow right" src={right} onClick={handleRight} />
       {imageList.length > 0 ?
-      <img className="big-image" src={imageList[currentImage].url} />  : null}
+
+      <img className={'big-image ' + (props.imageExpanded ? 'expanded ' : 'default ') +
+                     (zoomed ? 'zoomed ' : '')}
+           src={imageList[currentImage].url}
+           onClick={props.imageExpanded ?
+           toggleZoom : props.toggleExpanded}/>  : null}
+
       <ImageCarousel style={props.style}
                      changeImage={changeImage}
                      currentImage={currentImage}
