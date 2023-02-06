@@ -48,7 +48,6 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
     // console.log(gallery);
     image.style.objectPosition = `-${(zoomCoords[0]/gallery.clientWidth) * (image.clientWidth - gallery.clientWidth)}px
                                   -${(zoomCoords[1]/gallery.clientHeight) * (image.clientHeight - gallery.clientHeight)}px`;
-    console.log(`${(zoomCoords[0]/gallery.clientWidth) * 100}`);
   }
 
   const handleRight = event => {
