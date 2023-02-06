@@ -1,5 +1,9 @@
 import React, { FC } from 'react';
 
+
+// https://slider-react-component.vercel.app/demo/slider
+
+
 interface SlidersProps {
 
 }

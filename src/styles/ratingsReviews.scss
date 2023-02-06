@@ -32,8 +32,17 @@
       text-align: start;
 
       .overall-rating {
+        display:flex;
+        flex-direction: row;
         font-size: 2.75rem;
         font-weight: 600;
+        align-content: center;
+        justify-content: flex-start;
+        .overall-stars {
+          position:relative;
+          top: -1rem;
+          left: 0.45rem;
+        }
       }
 
       .recommendation {
@@ -59,7 +68,7 @@
 
         progress[value]::-webkit-progress-bar {
           background-color: rgba(223, 214, 214, 0.6);
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.251) inset;
         }
 
         progress[value]::-webkit-progress-value {
@@ -90,7 +99,8 @@
         font-weight: bold;
         font-size: 0.9rem;
         height: 3rem;
-        margin-right: 1rem
+        margin-right: 1rem;
+        cursor: pointer;
 
       }
 

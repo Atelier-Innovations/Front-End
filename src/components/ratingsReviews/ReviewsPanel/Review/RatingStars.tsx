@@ -1,4 +1,11 @@
 import React, { FC } from 'react';
+import { Rating } from 'react-simple-star-rating';
+
+
+
+// https://www.npmjs.com/package/react-simple-star-rating
+
+
 
 interface RatingStarsProps {
   rating: number;
@@ -17,8 +24,8 @@ const RatingStars: FC<RatingStarsProps> = ({ rating }) => {
 
 
   return (
-    <div>
-      { starCount(rating) }
+    <div className="review-rating">
+      < Rating readonly={true} initialValue={ rating } size={ 18 } fillColor="#525252" emptyColor="#00000040" />
     </div>
   )
 }
