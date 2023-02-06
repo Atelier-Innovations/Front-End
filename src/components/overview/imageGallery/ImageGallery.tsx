@@ -23,7 +23,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
       setCurrentImage(0);
       setDisplayedImages(props.style.photos.length >= 7 ?
         Array.from(Array(7).keys()) :
-        Array.from(Array(props.style.photos.length - 1).keys()));
+        Array.from(Array(props.style.photos.length).keys()));
     }
   }, [props.style])
 
