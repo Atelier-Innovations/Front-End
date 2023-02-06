@@ -37,10 +37,18 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
     setZoomed(
       zoomed ? false : true
     );
+    document.getElementsByClassName('big-image')[0].style.objectPosition = '0px 0px';
   };
+
 
   const handleMouseMove = (event) => {
     setZoomCoords([event.nativeEvent.offsetX, event.nativeEvent.offsetY]);
+    const gallery = document.getElementsByClassName('image-gallery')[0];
+    const image = document.getElementsByClassName('big-image')[0];
+    // console.log(gallery);
+    image.style.objectPosition = `-${(zoomCoords[0]/gallery.clientWidth) * (image.clientWidth - gallery.clientWidth)}px
+                                  -${(zoomCoords[1]/gallery.clientHeight) * (image.clientHeight - gallery.clientHeight)}px`;
+    console.log(`${(zoomCoords[0]/gallery.clientWidth) * 100}`);
   }
 
   const handleRight = event => {
@@ -73,7 +81,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
 
   return (
     <div className={props.imageExpanded ?
-     "image-gallery expanded" : "image-gallery"}>
+     "image-gallery expanded" : "image-gallery"}
+         onMouseMove={zoomed ? handleMouseMove : null}>
       <img className="expand-icon" src={expand} onClick={props.toggleExpanded}/>
       <img className="arrow left" src={left} onClick={handleLeft} />
       <img className="arrow right" src={right} onClick={handleRight} />
@@ -83,8 +92,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
                      (zoomed ? 'zoomed ' : '')}
            src={imageList[currentImage].url}
            onClick={props.imageExpanded ?
-           toggleZoom : props.toggleExpanded}
-           onMouseMove={zoomed ? handleMouseMove : null} />  : null}
+           toggleZoom : props.toggleExpanded} />  : null}
 
       <ImageCarousel style={props.style}
                      changeImage={changeImage}
