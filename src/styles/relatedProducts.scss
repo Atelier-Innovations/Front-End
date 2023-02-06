@@ -12,6 +12,7 @@
     margin-bottom: 50px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    position: relative;
   }
 
   .carousel_related {
@@ -75,5 +76,35 @@
 
   .title {
     align-self: flex-start;
+  }
+
+
+
+  // carousel
+
+  .arrow {
+    position: absolute;
+    height: 100%;
+    width: 70px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .arrow-left {
+    left: 0;
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 1));
+    &:hover {
+      background-image: linear-gradient(to left, rgba(220, 220, 220, 0.90), rgba(220, 220, 220, 1))
+    }
+  }
+
+  .arrow-right {
+    right: 0;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 1));
+    &:hover {
+      background-image: linear-gradient(to right, rgba(220, 220, 220, 0.90), rgba(220, 220, 220, 1))
+    }
   }
 }

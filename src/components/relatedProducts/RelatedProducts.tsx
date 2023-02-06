@@ -54,6 +54,8 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
             );
             }
         })}
+        <div className='arrow arrow-left'>{'<'}</div>
+        <div className='arrow arrow-right'>{'>'}</div>
       </div>
       <h2 className='title'>Your Outfit</h2>
       <div className='carousel carousel_outfit'>
