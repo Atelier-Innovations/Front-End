@@ -8,7 +8,9 @@ import Fixtures from './fixtures.js';
 
 
 interface OverviewProps {
-  currentProductID: string
+  currentProductID: string,
+  currentProductData: object,
+  productMetaData: object
 }
 
 const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
@@ -46,7 +48,8 @@ const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
         <ControlPanel product={props.currentProductData}
                       currentStyle={currentStyle}
                       styleList={styleList}
-                      setCurrentStyle={setCurrentStyle} />}
+                      setCurrentStyle={setCurrentStyle}
+                      productMetaData={props.productMetaData} />}
       </div>
       <ProductDescriptionPanel currentStyle={currentStyle}
                                product={props.currentProductData}/>

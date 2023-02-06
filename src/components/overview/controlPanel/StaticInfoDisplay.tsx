@@ -1,4 +1,5 @@
 import React from 'react';
+import { Rating } from 'react-simple-star-rating';
 const facebook = require('../../../icons/facebook.svg');
 const instagram = require('../../../icons/instagram.svg');
 const twitter = require('../../../icons/twitter.svg');
@@ -20,18 +21,40 @@ interface StaticInfoProps {
 
 }
 
-const StaticInfoDisplay: React.FC<StaticInfoProps> = (props) => {
+const StaticInfoDisplay: React.FC<StaticInfoProps> = ({product, currentStyle, reviews}) => {
+  let overallRating = 0;
+  if (reviews.ratings) {
+    overallRating = Math.round(((Number(reviews.ratings['1']) * 1) +
+                                (Number(reviews.ratings['2']) * 2) +
+                                (Number(reviews.ratings['3']) * 3) +
+                                (Number(reviews.ratings['4']) * 4) +
+                                (Number(reviews.ratings['5']) * 5)) /
+                                (Number(reviews.ratings['1']) +
+                                 Number(reviews.ratings['2']) +
+                                 Number(reviews.ratings['3']) +
+                                 Number(reviews.ratings['4']) +
+                                 Number(reviews.ratings['5'])) * 10) / 10;
+  }
+
   return (
     <div className="static-info">
-      <div className="stars">STARS</div>
-      <h3>{props.product.category}</h3>
-      <h2>{props.product.name}</h2>
-      {props.currentStyle.sale_price ?
+      <div className="stars">
+        <Rating readonly={true}
+                initialValue={overallRating}
+                size={18}
+                fillColor="#525252"
+                emptyColor="#00000040"
+                allowFraction={true} />
+
+      </div>
+      <h3>{product.category}</h3>
+      <h2>{product.name}</h2>
+      {currentStyle.sale_price ?
       <>
-        <span className="on-sale">${props.currentStyle.original_price}</span>
-        <span> ${props.currentStyle.sale_price} SALE!!!</span>
+        <span className="on-sale">${currentStyle.original_price}</span>
+        <span> ${currentStyle.sale_price} SALE!!!</span>
       </> :
-      <span>${props.currentStyle.original_price}</span>}
+      <span>${currentStyle.original_price}</span>}
       <ul className="social-media-icons">
         <li><img className="social-media-icon"
              src={facebook}
