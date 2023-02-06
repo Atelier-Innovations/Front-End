@@ -1,4 +1,5 @@
 import React from 'react';
+const star = require('../../../icons/star-regular.svg');
 
 const ButtonPanel: React.FC = (props) => {
   const [outOfStock, setOutOfStock] = React.useState(false);
@@ -70,7 +71,9 @@ const ButtonPanel: React.FC = (props) => {
       <div className="row-2">
         {outOfStock ? null : <button className="add-to-bag"
                                      onClick={handleAdd}>Add To Bag</button>}
-        <button className="favorite">*</button>
+        <button className="favorite">
+          <img src={star} className="star" />
+        </button>
       </div>
     </div>
   )

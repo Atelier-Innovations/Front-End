@@ -232,6 +232,14 @@
             width: 15%;
             height: 65%;
             border: 1px solid black;
+            .star {
+              width: 25px;
+              height: 25px;
+            }
+            .star:hover {
+              cursor: pointer;
+              filter: invert(0.5) sepia(1) hue-rotate(90deg);
+            }
           }
         }
       }
