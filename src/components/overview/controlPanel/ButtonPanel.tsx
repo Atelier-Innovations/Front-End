@@ -4,6 +4,7 @@ const ButtonPanel: React.FC = (props) => {
   const [outOfStock, setOutOfStock] = React.useState(false);
   const [sizeSelected, setSizeSelected] = React.useState(null);
   const [quantityRange, setQuantityRange] = React.useState(0);
+  const [displayNotification, setDisplayNotification] = React.useState(false);
 
   const handleSizeChange = event => {
     if (event.target.selectedIndex === 0) {
@@ -15,7 +16,7 @@ const ButtonPanel: React.FC = (props) => {
 
   const handleAdd = event => {
     if (sizeSelected === null) {
-      alert('Select a size first!');
+      setDisplayNotification(true);
     } else {
       console.log('Ka-ching!');
     }
@@ -44,6 +45,7 @@ const ButtonPanel: React.FC = (props) => {
 
   return (
     <div className="controls">
+      {!sizeSelected && displayNotification ? <span>Please select size</span> : null}
       <div className="row-1">
         <select className="size-button" disabled={outOfStock} onChange={handleSizeChange}>
           {outOfStock ?
