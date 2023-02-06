@@ -1,11 +1,12 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 const star = require('../../../icons/star-regular.svg');
 
-const ButtonPanel: React.FC = (props) => {
-  const [outOfStock, setOutOfStock] = React.useState(false);
-  const [sizeSelected, setSizeSelected] = React.useState(null);
-  const [quantityRange, setQuantityRange] = React.useState(0);
-  const [displayNotification, setDisplayNotification] = React.useState(false);
+const ButtonPanel: React.FC = ({currentStyle, skus}) => {
+  const [outOfStock, setOutOfStock] = useState(false);
+  const [sizeSelected, setSizeSelected] = useState(null);
+  const [quantityRange, setQuantityRange] = useState(0);
+  const [displayNotification, setDisplayNotification] = useState(false);
 
   const handleSizeChange = event => {
     if (event.target.selectedIndex === 0) {
@@ -23,10 +24,10 @@ const ButtonPanel: React.FC = (props) => {
     }
   }
 
-  React.useEffect( () => {
-    if (props.skus.length > 0) {
-      let total = props.skus.reduce( (mem, sku) => {
-        return mem + props.currentStyle.skus[sku].quantity
+  useEffect( () => {
+    if (skus.length > 0) {
+      let total = skus.reduce( (mem, sku) => {
+        return mem + currentStyle.skus[sku].quantity
       }, 0)
       if (!(total > 0)) {
         setOutOfStock(true);
@@ -34,15 +35,15 @@ const ButtonPanel: React.FC = (props) => {
         setOutOfStock(false);
       }
       if (sizeSelected !== null) {
-        let quantityOfSize = props.currentStyle.skus[props.skus[sizeSelected - 1]].quantity;
+        let quantityOfSize = currentStyle.skus[skus[sizeSelected - 1]].quantity;
         quantityOfSize >= 15 ?
         setQuantityRange(16) :
-        setQuantityRange(props.currentStyle.skus[props.skus[sizeSelected - 1]].quantity + 1);
+        setQuantityRange(currentStyle.skus[skus[sizeSelected - 1]].quantity + 1);
       } else {
         setQuantityRange(0);
       }
     }
-  }, [props.currentStyle, sizeSelected])
+  }, [currentStyle, sizeSelected])
 
   return (
     <div className="controls">
@@ -51,10 +52,10 @@ const ButtonPanel: React.FC = (props) => {
         <select className="size-button" disabled={outOfStock} onChange={handleSizeChange}>
           {outOfStock ?
           <option>OUT OF STOCK</option> : <option>Select Size</option>}
-          {props.skus.map(sku => {
-            if (props.currentStyle.skus[sku].quantity > 0) {
+          {skus.map(sku => {
+            if (currentStyle.skus[sku].quantity > 0) {
               return (
-                <option key={sku}>{props.currentStyle.skus[sku].size}</option>
+                <option key={sku}>{currentStyle.skus[sku].size}</option>
               )
             }
           })}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import Banner from './Banner';
 import ImageGallery from './imageGallery/ImageGallery';
 import ControlPanel from './controlPanel/ControlPanel';
@@ -13,9 +14,9 @@ interface OverviewProps {
 
 const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
 
-  const [currentStyle, setCurrentStyle] = React.useState({});
-  const [styleList, setStyleList] = React.useState({results: []});
-  const [imageExpanded, setImageExpanded] = React.useState(false);
+  const [currentStyle, setCurrentStyle] = useState({});
+  const [styleList, setStyleList] = useState({results: []});
+  const [imageExpanded, setImageExpanded] = useState(false);
 
   const toggleExpanded = () => {
     setImageExpanded(
@@ -23,7 +24,7 @@ const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
     );
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     axios(`http://localhost:6969/products/${props.currentProductID}/styles`)
     .then( results => {
       setStyleList(results.data);

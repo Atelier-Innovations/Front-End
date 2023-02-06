@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import ImageThumbnail from './ImageThumbnail';
 const up = require('../../../icons/arrow-up-solid.svg');
 const down = require('../../../icons/arrow-down-solid.svg');
@@ -12,11 +13,11 @@ interface ImageCarouselProps {
   currentImage: number
 }
 
-const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) => {
+const ImageCarousel: FC<ImageCarouselProps> = (props: ImageCarouselProps) => {
 
-  const [allImages, setAllImages] = React.useState([]);
+  const [allImages, setAllImages] = useState([]);
 
-  React.useEffect( () => {
+  useEffect( () => {
     const photos = props.style.photos;
     if (photos) {
 
