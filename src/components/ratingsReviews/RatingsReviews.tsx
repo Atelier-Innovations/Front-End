@@ -7,12 +7,24 @@ import { useState, useEffect } from 'react'
 
 interface RatingsReviewsProps {
   currentProductID: string
+  productMetaData: {
+    characteristics?: object;
+    product_id?: number;
+    ratings?: {
+      1: string;
+      2: string;
+      3: string;
+      4: string;
+      5: string;
+    };
+    recommended?: object;
+  }
 }
 
 
 const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
   const [ currentReviews, setCurrentReviews ] = useState({})
-  const [ productMetaData, setProductMetaData ] = useState({})
+  // const [ productMetaData, setProductMetaData ] = useState({})
   const [ sort, setSort ] = useState('relevant')
   const [ reviewCount, setReviewCount ] = useState(2);
 
@@ -27,23 +39,23 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
       })
   }
 
-  const getRatingsData = () => {
-    axios.get(`http://localhost:6969/reviews/meta?id=${props.currentProductID}`)
-    .then((results) => {
-      setProductMetaData(results.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+  // const getRatingsData = () => {
+  //   axios.get(`http://localhost:6969/reviews/meta?id=${props.currentProductID}`)
+  //   .then((results) => {
+  //     setProductMetaData(results.data);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   })
+  // }
 
   useEffect(() => {
     getReviewData();
   }, [sort, props.currentProductID, reviewCount])
 
-  useEffect(() => {
-    getRatingsData();
-  }, [props.currentProductID])
+  // useEffect(() => {
+  //   getRatingsData();
+  // }, [currentProductID])
 
 
 
@@ -60,8 +72,8 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
       </div>
 
       <div className="overall">
-        < RatingsList productMetaData={ productMetaData }/>
-        < ReviewList reviewCount={ reviewCount } setReviewCount={ setReviewCount } sort={ sort } setSort={ setSort } currentReviews={ currentReviews } productMetaData={ productMetaData }/>
+        < RatingsList productMetaData={ props.productMetaData }/>
+        < ReviewList reviewCount={ reviewCount } setReviewCount={ setReviewCount } sort={ sort } setSort={ setSort } currentReviews={ currentReviews } productMetaData={ props.productMetaData }/>
       </div>
     </div>
   )

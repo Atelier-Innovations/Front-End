@@ -22,3 +22,12 @@ export const getRelatedProductsFromDB = (productID, setterFunction) => {
     });
 };
 
+export const getRatingsDataFromDB = (productID, setterFunction) => {
+  axios.get(`http://localhost:6969/reviews/meta?id=${productID}`)
+  .then((result) => {
+    setterFunction(result.data);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+};
