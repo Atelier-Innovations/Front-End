@@ -30,7 +30,7 @@ const OverallRating: FC<OverallRatingProps> = ({ ratings }) => {
     }
   }
 
-  console.log()
+  // console.log()
 
   return (
     <div className="overall-rating">

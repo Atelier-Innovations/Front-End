@@ -4,15 +4,17 @@ import Overview from './overview/Overview';
 import RatingsReviews from './ratingsReviews/RatingsReviews';
 import RelatedProducts from './relatedProducts/RelatedProducts';
 import QandA from './qAndA/QandA';
-import { getProductDataFromDB } from '../helperFunctions';
+import { getProductDataFromDB, getRatingsDataFromDB } from '../helperFunctions';
 
 export const App: React.FC = () => {
   const [currentProductID, setCurrentProductID] = useState<string>('37311');
   const [currentProductData, setCurrentProductData] = useState<object>({})
+  const [ productMetaData, setProductMetaData ] = useState({})
 
   useEffect(() => {
     // get current product data
     getProductDataFromDB(currentProductID, setCurrentProductData)
+    getRatingsDataFromDB(currentProductID, setProductMetaData)
   }, [currentProductID])
 
   const handleCardClick = (cardID) => {
@@ -27,7 +29,7 @@ export const App: React.FC = () => {
                 currentProductData={currentProductData} />
       <RelatedProducts currentProductID={currentProductID} currentProductData={currentProductData} handleCardClick={handleCardClick} />
       <QandA currentProductID={currentProductID} />
-      <RatingsReviews currentProductID={currentProductID} />
+      <RatingsReviews currentProductID={currentProductID} productMetaData={ productMetaData }/>
     </div>
   );
 };
