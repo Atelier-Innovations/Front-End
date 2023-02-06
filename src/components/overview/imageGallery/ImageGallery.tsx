@@ -13,6 +13,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
   const [imageList, setImageList] = React.useState([]);
   const [currentImage, setCurrentImage] = React.useState(0);
   const [displayedImages, setDisplayedImages] = React.useState([]);
+  const [zoomed, setZoomed] = React.useState(false);
+  const [zoomCoords, setZoomCoords] = React.useState([0, 0]);
 
   React.useEffect( () => {
     if (props.style.photos) {
@@ -25,9 +27,28 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
     }
   }, [props.style])
 
+
   const changeImage = (id: number) => {
     // setCurrentImageURL(props.style.photos[id].url)
     setCurrentImage(id);
+  }
+
+  const toggleZoom = () => {
+    setZoomed(
+      zoomed ? false : true
+    );
+    document.getElementsByClassName('big-image')[0].style.objectPosition = '0px 0px';
+  };
+
+
+  const handleMouseMove = (event) => {
+    setZoomCoords([event.nativeEvent.offsetX, event.nativeEvent.offsetY]);
+    const gallery = document.getElementsByClassName('image-gallery')[0];
+    const image = document.getElementsByClassName('big-image')[0];
+    // console.log(gallery);
+    image.style.objectPosition = `-${(zoomCoords[0]/gallery.clientWidth) * (image.clientWidth - gallery.clientWidth)}px
+                                  -${(zoomCoords[1]/gallery.clientHeight) * (image.clientHeight - gallery.clientHeight)}px`;
+    console.log(`${(zoomCoords[0]/gallery.clientWidth) * 100}`);
   }
 
   const handleRight = event => {
@@ -59,17 +80,26 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
   }
 
   return (
-    <div className="image-gallery">
-      <img className="expand-icon" src={expand} />
+    <div className={props.imageExpanded ?
+     "image-gallery expanded" : "image-gallery"}
+         onMouseMove={zoomed ? handleMouseMove : null}>
+      <img className="expand-icon" src={expand} onClick={props.toggleExpanded}/>
       <img className="arrow left" src={left} onClick={handleLeft} />
       <img className="arrow right" src={right} onClick={handleRight} />
       {imageList.length > 0 ?
-      <img className="big-image" src={imageList[currentImage].url} />  : null}
+
+      <img className={'big-image ' + (props.imageExpanded ? 'expanded ' : 'default ') +
+                     (zoomed ? 'zoomed ' : '')}
+           src={imageList[currentImage].url}
+           onClick={props.imageExpanded ?
+           toggleZoom : props.toggleExpanded} />  : null}
+
       <ImageCarousel style={props.style}
                      changeImage={changeImage}
                      currentImage={currentImage}
                      displayedImages={displayedImages}
-                     setDisplayedImages={setDisplayedImages} />
+                     setDisplayedImages={setDisplayedImages}
+                     imageExpanded ={props.imageExpanded} />
     </div>
   );
 }
