@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Rating } from 'react-simple-star-rating';
 
 interface OverallRatingProps {
   ratings: {
@@ -29,9 +30,12 @@ const OverallRating: FC<OverallRatingProps> = ({ ratings }) => {
     }
   }
 
+  console.log()
+
   return (
     <div className="overall-rating">
-      { averageRating(ratings) }
+      <div>{ averageRating(ratings) }</div>
+      <div className="overall-stars"> < Rating readonly={true} initialValue={ Number(averageRating(ratings)) } size={ 18 } fillColor="#525252" emptyColor="#00000040" allowFraction={ true }/> </div>
     </div>
   )
 }
