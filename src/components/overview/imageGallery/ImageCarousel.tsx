@@ -30,31 +30,25 @@ const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) 
   }
 
   const handleUp = event => {
-    let newImage = props.currentImage - 1;
+    let newImage = props.displayedImages[0] - 1;
     if (newImage < 0) {
       newImage = allImages.length - 1;
     }
-    props.changeImage(newImage);
 
-    if (props.displayedImages.indexOf(newImage) === -1) {
-      let newDisplayedImages = props.displayedImages.slice(0, props.displayedImages.length - 1);
-      newDisplayedImages.unshift(newImage);
-      props.setDisplayedImages(newDisplayedImages);
-    }
+    let newDisplayedImages = props.displayedImages.slice(0, props.displayedImages.length - 1);
+    newDisplayedImages.unshift(newImage);
+    props.setDisplayedImages(newDisplayedImages);
   };
 
   const handleDown = event => {
-    let newImage = props.currentImage + 1;
+    let newImage = props.displayedImages[props.displayedImages.length - 1] + 1;
     if (newImage > allImages.length - 1) {
       newImage = 0;
     }
-    props.changeImage(newImage);
 
-    if (props.displayedImages.indexOf(newImage) === -1) {
-      let newDisplayedImages = props.displayedImages.slice(1);
-      newDisplayedImages.push(newImage);
-      props.setDisplayedImages(newDisplayedImages);
-    }
+    let newDisplayedImages = props.displayedImages.slice(1);
+    newDisplayedImages.push(newImage);
+    props.setDisplayedImages(newDisplayedImages);
   };
 
   return (
