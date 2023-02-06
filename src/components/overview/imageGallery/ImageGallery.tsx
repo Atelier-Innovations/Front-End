@@ -82,12 +82,12 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
     <div className={props.imageExpanded ?
      "image-gallery expanded" : "image-gallery"}
          onMouseMove={zoomed ? handleMouseMove : null}>
-      <img className="expand-icon"
+      {!zoomed ? <img className="expand-icon"
            src={expand}
-           onClick={zoomed ? null : props.toggleExpanded}/>
-      {currentImage !== 0 ? <img className="arrow left" src={left}
+           onClick={props.toggleExpanded}/> : null}
+      {currentImage !== 0 && !zoomed ? <img className="arrow left" src={left}
                                  onClick={handleLeft} /> : null}
-      {currentImage !== imageList.length - 1 ? <img className="arrow right" src={right}
+      {currentImage !== imageList.length - 1 && !zoomed ? <img className="arrow right" src={right}
                                    onClick={handleRight} /> : null}
 
       {imageList.length > 0 ?
@@ -103,7 +103,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
                      currentImage={currentImage}
                      displayedImages={displayedImages}
                      setDisplayedImages={setDisplayedImages}
-                     imageExpanded ={props.imageExpanded} />
+                     imageExpanded ={props.imageExpanded}
+                     zoomed={zoomed} />
     </div>
   );
 }

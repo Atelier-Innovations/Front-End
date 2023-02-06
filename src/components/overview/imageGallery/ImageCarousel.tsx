@@ -23,7 +23,8 @@ const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) 
       setAllImages(photos);
 
     }
-  }, [props.style])
+
+  }, [props.style, props.zoomed])
 
   const handleThumbnailClick = event => {
     props.changeImage(Number(event.target.id));
@@ -53,11 +54,12 @@ const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) 
 
   return (
     <div className={props.imageExpanded ?
-    "image-carousel icon-mode" : "image-carousel"}>
+    "image-carousel icon-mode " + (props.zoomed ? "zoomed" : "") : "image-carousel"}>
 
-      <img src={up} className="small-arrow up"
-                    onClick={handleUp} />
-      {props.displayedImages.map( (index) => {
+      {!props.zoomed ? <img src={up} className="small-arrow up"
+                    onClick={handleUp} /> : null}
+
+      {!props.zoomed ? props.displayedImages.map( (index) => {
 
           return (
             <ImageThumbnail image={allImages[index].thumbnail_url}
@@ -67,9 +69,9 @@ const ImageCarousel: React.FC<ImageCarouselProps> = (props: ImageCarouselProps) 
                             selected={props.currentImage === index ? true : false}
                             icon={props.imageExpanded} />
           )
-      })}
-      <img src={down} className="small-arrow down"
-                      onClick={handleDown} />
+      }) : null}
+      {!props.zoomed ? <img src={down} className="small-arrow down"
+                      onClick={handleDown} /> : null}
     </div>
   )
 }
