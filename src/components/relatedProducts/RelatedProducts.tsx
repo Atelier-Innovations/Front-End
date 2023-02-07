@@ -4,6 +4,7 @@ import axios from 'axios';
 import Card from './Card';
 import { getRelatedProductsFromDB } from '../../helperFunctions'
 import AddToOutfitCard from './AddToOutfitCard';
+import Carousel from './Carousel'
 
 interface RelatedProductsProps {
   currentProductID: string;
@@ -14,7 +15,7 @@ interface RelatedProductsProps {
 
 const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  currentProductID, handleCardClick}) => {
 
-  const [relatedProductIDs, setRelatedProductIDs] = useState(new Set());
+  const [relatedProductIDs, setRelatedProductIDs] = useState<Array<string>>([]);
   const [outfitProductIDs, setOutfitProductIDs] = useState<Array<string>>([]);
 
   // get related products data
@@ -39,41 +40,26 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
   return (
     <section className='related-products widget'>
       <h2 className='title'>Related Products</h2>
-      <div className='carousel carousel_related'>
-        {[...relatedProductIDs].map((cardID, index) => {
-          while (index < 4) {
-            return (
-              <Card
-                cardType='product'
-                currentProductID={currentProductID}
-                currentProductData={currentProductData}
-                cardID={cardID}
-                key={cardID}
-                handleCardClick={handleCardClick}
-              />
-            );
-            }
-        })}
-      </div>
+      <Carousel
+        items={relatedProductIDs}
+        currentProductID={currentProductID}
+        currentProductData={currentProductData}
+        handleCardClick={handleCardClick}
+        carouselType='relatedProducts'
+      />
+
       <h2 className='title'>Your Outfit</h2>
-      <div className='carousel carousel_outfit'>
-        <AddToOutfitCard currentProductData={currentProductData} handleAddOutfit={handleAddOutfit} currentProductID={currentProductID} />
-        {outfitProductIDs.length > 0 && outfitProductIDs.map((cardID, index) => {
-          while (index < 3) {
-            return (
-              <Card
-                cardType='outfit'
-                currentProductID={currentProductID}
-                currentProductData={currentProductData}
-                cardID={cardID}
-                key={cardID}
-                handleRemoveOutfit={handleRemoveOutfit}
-                handleCardClick={handleCardClick}
-              />
-            );
-            }
-        })}
-      </div>
+      <Carousel
+        items={outfitProductIDs}
+        currentProductID={currentProductID}
+        currentProductData={currentProductData}
+        handleCardClick={handleCardClick}
+        handleRemoveOutfit={handleRemoveOutfit}
+        handleAddOutfit={handleAddOutfit}
+        outfitProductIDs={outfitProductIDs}
+        carouselType='outfit'
+      />
+
     </section>
   );
 };
