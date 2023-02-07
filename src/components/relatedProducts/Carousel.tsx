@@ -17,7 +17,6 @@ interface CarouselProps {
 }
 
 const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductData, handleCardClick, carouselType, handleAddOutfit, handleRemoveOutfit, productMetaData}) => {
-  console.log('items: ', items)
 
   // create itemsToDisplay state array with a slice, change range for each type of carousel
   // create functions for forward and back that update
@@ -34,7 +33,6 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
   }, [items])
 
   const handleForwardClick = () => {
-    console.log('clicked!')
     // check if more items
     if (items.length > lastItemIndex) {
       setfirstItemIndex(firstItemIndex + 1)
