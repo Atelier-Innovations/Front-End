@@ -20,18 +20,18 @@ interface StaticInfoProps {
 
 }
 
-const StaticInfoDisplay: React.FC<StaticInfoProps> = (props) => {
+const StaticInfoDisplay: React.FC<StaticInfoProps> = ({product, currentStyle}) => {
   return (
     <div className="static-info">
       <div className="stars">STARS</div>
-      <h3>{props.product.category}</h3>
-      <h2>{props.product.name}</h2>
-      {props.currentStyle.sale_price ?
+      <h3>{product.category}</h3>
+      <h2>{product.name}</h2>
+      {currentStyle.sale_price ?
       <>
-        <span className="on-sale">${props.currentStyle.original_price}</span>
-        <span> ${props.currentStyle.sale_price} SALE!!!</span>
+        <span className="on-sale">${currentStyle.original_price}</span>
+        <span className="sale"> ${currentStyle.sale_price} SALE!!!</span>
       </> :
-      <span>${props.currentStyle.original_price}</span>}
+      <span>${currentStyle.original_price}</span>}
       <ul className="social-media-icons">
         <li><img className="social-media-icon"
              src={facebook}
