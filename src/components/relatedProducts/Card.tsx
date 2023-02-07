@@ -16,7 +16,6 @@ interface CardProps {
   handleCardClick?: (active: string) => void;
   handleRemoveOutfit?: (active: string) => void;
   productMetaData: object;
-
 }
 
 const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProductData, handleCardClick, handleRemoveOutfit, productMetaData}) => {
@@ -41,6 +40,8 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
   };
   const product: ProductObject = cardProductData;
 
+
+
   const onCardClick = (e) => {
     // Check to see if click came from compare or remove buttons, if it did don't execute handleCardClick
     if (e.target.innerHTML !== 'Compare' && e.target.innerHTML !== 'X') {
@@ -51,8 +52,6 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
   // get product meta data and calculate rating
   const cardRating:string = averageRating(cardMetaData.ratings)
   const currentProductRating:string = averageRating(productMetaData.ratings)
-
-
 
   return (
     <>

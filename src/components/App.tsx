@@ -15,6 +15,7 @@ export const App: React.FC = () => {
     // get current product data
     getProductDataFromDB(currentProductID, setCurrentProductData)
     getRatingsDataFromDB(currentProductID, setProductMetaData)
+    window.scrollTo(0, 105)
   }, [currentProductID])
 
   const handleCardClick = (cardID) => {

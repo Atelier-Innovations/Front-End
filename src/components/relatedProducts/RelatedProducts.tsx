@@ -21,6 +21,18 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
   const [relatedProductIDs, setRelatedProductIDs] = useState<Array<string>>([]);
   const [outfitProductIDs, setOutfitProductIDs] = useState<Array<string>>([]);
 
+  // get outfits from local storage
+  useEffect(() => {
+    const userOutfits = JSON.parse(window.localStorage.getItem('userOutfits'));
+    console.log('user outfits: ', userOutfits)
+    setOutfitProductIDs(userOutfits)
+  }, []);
+
+  // update local storage
+  useEffect(() => {
+    window.localStorage.setItem('userOutfits', JSON.stringify(outfitProductIDs));
+  }, [outfitProductIDs]);
+
   // get related products data
   useEffect(() => {
     getRelatedProductsFromDB(currentProductID, setRelatedProductIDs);
