@@ -46,7 +46,6 @@ const ImageGallery: FC<ImageGalleryProps> = (props: ImageGalleryProps) => {
     setZoomCoords([event.nativeEvent.offsetX, event.nativeEvent.offsetY]);
     const gallery = document.getElementsByClassName('image-gallery')[0];
     const image = document.getElementsByClassName('big-image')[0];
-    // console.log(gallery);
     image.style.objectPosition = `-${(zoomCoords[0]/gallery.clientWidth) * (image.clientWidth - gallery.clientWidth)}px
                                   -${(zoomCoords[1]/gallery.clientHeight) * (image.clientHeight - gallery.clientHeight)}px`;
   }

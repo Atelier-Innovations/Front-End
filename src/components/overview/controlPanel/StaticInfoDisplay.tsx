@@ -1,4 +1,5 @@
 import React from 'react';
+import { Rating } from 'react-simple-star-rating';
 const facebook = require('../../../icons/facebook.svg');
 const instagram = require('../../../icons/instagram.svg');
 const twitter = require('../../../icons/twitter.svg');
@@ -20,16 +21,50 @@ interface StaticInfoProps {
 
 }
 
-const StaticInfoDisplay: React.FC<StaticInfoProps> = ({product, currentStyle}) => {
+const StaticInfoDisplay: React.FC<StaticInfoProps> = ({product, currentStyle, reviews}) => {
+  let overallRating = 0;
+  let totalReviews = 0;
+  console.log(reviews);
+  if (reviews.ratings) {
+    overallRating = Math.round(((Number(reviews.ratings['1']) * 1) +
+                                (Number(reviews.ratings['2']) * 2) +
+                                (Number(reviews.ratings['3']) * 3) +
+                                (Number(reviews.ratings['4']) * 4) +
+                                (Number(reviews.ratings['5']) * 5)) /
+                                (Number(reviews.ratings['1']) +
+                                 Number(reviews.ratings['2']) +
+                                 Number(reviews.ratings['3']) +
+                                 Number(reviews.ratings['4']) +
+                                 Number(reviews.ratings['5'])) * 10) / 10;
+
+    totalReviews = Number(reviews.ratings['1']) + Number(reviews.ratings['2']) +
+                   Number(reviews.ratings['3']) + Number(reviews.ratings['4']) +
+                   Number(reviews.ratings['5']);
+  }
+
   return (
     <div className="static-info">
-      <div className="stars">STARS</div>
+
+      {reviews.ratings ?
+      <div className="stars">
+        <Rating readonly={true}
+                initialValue={overallRating}
+                size={18}
+                fillColor="#525252"
+                emptyColor="#00000040"
+                allowFraction={true} />
+        <span><a href="#reviews-ratings">Read all {totalReviews} reviews</a></span>
+      </div> : null}
+
+      
+      
       <h3>{product.category}</h3>
       <h2>{product.name}</h2>
       {currentStyle.sale_price ?
       <>
         <span className="on-sale">${currentStyle.original_price}</span>
-        <span className="sale"> ${currentStyle.sale_price} SALE!!!</span>
+        <span> ${currentStyle.sale_price} SALE!!!</span>
+
       </> :
       <span>${currentStyle.original_price}</span>}
       <ul className="social-media-icons">
