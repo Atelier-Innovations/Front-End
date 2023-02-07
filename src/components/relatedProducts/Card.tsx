@@ -48,7 +48,6 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
     }
   }
 
-  console.log('md', cardMetaData)
   // get product meta data and calculate rating
   const cardRating:string = averageRating(cardMetaData.ratings)
   const currentProductRating:string = averageRating(productMetaData.ratings)
