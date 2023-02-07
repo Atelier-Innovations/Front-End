@@ -25,8 +25,7 @@ export const App: React.FC = () => {
   return (
     <div className='app'>
       <nav></nav>
-      <Overview currentProductID={currentProductID}
-                currentProductData={currentProductData} />
+      <Overview currentProductID={currentProductID} currentProductData={currentProductData} />
       <RelatedProducts currentProductID={currentProductID} currentProductData={currentProductData} handleCardClick={handleCardClick} />
       <QandA currentProductID={currentProductID} />
       <RatingsReviews currentProductID={currentProductID} productMetaData={ productMetaData }/>
