@@ -16,6 +16,7 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
   const [firstItemIndex, setfirstItemIndex] = useState(0)
   const [lastItemIndex, setLastItemIndex] = useState(4)
 
+  // make exception for last item in shorter outfit array
   useEffect(() => {
     if (carouselType === 'outfit') {
       setLastItemIndex(3)
@@ -33,9 +34,24 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
 
   const handleBackwardClick = () => {
     // check if firstItemIndex > 0
+    if (firstItemIndex > 0) {
+      setfirstItemIndex(firstItemIndex - 1)
+      setLastItemIndex(lastItemIndex - 1)
+    }
+  }
+
+  const renderForwardArrow = () => {
+    if (items.length > lastItemIndex) {return true}
+    return false
+  }
+
+  const renderBackwardsArrow = () => {
+    if (firstItemIndex > 0) {return true}
+    return false
   }
 
   const itemsToDisplay = items.slice(firstItemIndex, lastItemIndex)
+  console.log('Items to display: ', itemsToDisplay)
 
   return (
     <div className='carousel carousel_related'>
@@ -61,7 +77,7 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
       <>
         <AddToOutfitCard currentProductData={currentProductData} handleAddOutfit={handleAddOutfit} currentProductID={currentProductID} />
         {items.length > 0 &&
-          items.map((cardID, index) => {
+          itemsToDisplay.map((cardID, index) => {
             if (index < 3) {
               return (
                 <Card
@@ -80,8 +96,8 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
       </>
     }
 
-      <div className='arrow arrow-left' onClick={handleBackwardClick}>{'<'}</div>
-      <div className='arrow arrow-right' onClick={handleForwardClick}>{'>'}</div>
+      {renderBackwardsArrow() && <div className='arrow arrow-left' onClick={handleBackwardClick}>{'<'}</div>}
+      {renderForwardArrow() && <div className='arrow arrow-right' onClick={handleForwardClick}>{'>'}</div>}
     </div>
   );
 }
