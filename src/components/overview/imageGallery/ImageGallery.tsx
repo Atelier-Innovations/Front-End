@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import ImageCarousel from './ImageCarousel';
 const expand = require('../../../icons/expand-solid.svg');
 const left = require('../../../icons/arrow-left-solid.svg');
@@ -8,22 +9,22 @@ interface ImageGalleryProps {
   style: object
 }
 
-const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => {
-  // const [currentImageURL, setCurrentImageURL] = React.useState('');
-  const [imageList, setImageList] = React.useState([]);
-  const [currentImage, setCurrentImage] = React.useState(0);
-  const [displayedImages, setDisplayedImages] = React.useState([]);
-  const [zoomed, setZoomed] = React.useState(false);
-  const [zoomCoords, setZoomCoords] = React.useState([0, 0]);
+const ImageGallery: FC<ImageGalleryProps> = (props: ImageGalleryProps) => {
+  // const [currentImageURL, setCurrentImageURL] = useState('');
+  const [imageList, setImageList] = useState([]);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [displayedImages, setDisplayedImages] = useState([]);
+  const [zoomed, setZoomed] = useState(false);
+  const [zoomCoords, setZoomCoords] = useState([0, 0]);
 
-  React.useEffect( () => {
+  useEffect( () => {
     if (props.style.photos) {
       // setCurrentImageURL(props.style.photos[0].url
       setImageList(props.style.photos);
-      setCurrentImage(0);
+      // setCurrentImage(0);
       setDisplayedImages(props.style.photos.length >= 7 ?
         Array.from(Array(7).keys()) :
-        Array.from(Array(props.style.photos.length - 1).keys()));
+        Array.from(Array(props.style.photos.length).keys()));
     }
   }, [props.style])
 
@@ -81,9 +82,14 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
     <div className={props.imageExpanded ?
      "image-gallery expanded" : "image-gallery"}
          onMouseMove={zoomed ? handleMouseMove : null}>
-      <img className="expand-icon" src={expand} onClick={props.toggleExpanded}/>
-      <img className="arrow left" src={left} onClick={handleLeft} />
-      <img className="arrow right" src={right} onClick={handleRight} />
+      {!zoomed ? <img className="expand-icon"
+           src={expand}
+           onClick={props.toggleExpanded}/> : null}
+      {currentImage !== 0 && !zoomed ? <img className="arrow left" src={left}
+                                 onClick={handleLeft} /> : null}
+      {currentImage !== imageList.length - 1 && !zoomed ? <img className="arrow right" src={right}
+                                   onClick={handleRight} /> : null}
+
       {imageList.length > 0 ?
 
       <img className={'big-image ' + (props.imageExpanded ? 'expanded ' : 'default ') +
@@ -97,7 +103,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = (props: ImageGalleryProps) => 
                      currentImage={currentImage}
                      displayedImages={displayedImages}
                      setDisplayedImages={setDisplayedImages}
-                     imageExpanded ={props.imageExpanded} />
+                     imageExpanded ={props.imageExpanded}
+                     zoomed={zoomed} />
     </div>
   );
 }

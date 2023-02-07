@@ -40,9 +40,9 @@
       .big-image {
         position: relative;
         width: 100%;
-        height: auto;
+        height: 100%;
 
-        // object-fit: cover;
+        object-fit: cover;
         z-index: 1;
       }
       .default {
@@ -124,6 +124,9 @@
       .icon-mode {
         justify-content: center;
       }
+      .zoomed {
+        cursor: zoom-out;
+      }
     }
 
     .expanded {
@@ -146,6 +149,8 @@
         }
         .on-sale {
           text-decoration: line-through;
+        }
+        .sale {
           color: red;
         }
 
@@ -228,6 +233,14 @@
             width: 15%;
             height: 65%;
             border: 1px solid black;
+            .star {
+              width: 25px;
+              height: 25px;
+            }
+            .star:hover {
+              cursor: pointer;
+              filter: invert(0.5) sepia(1) hue-rotate(90deg);
+            }
           }
         }
       }
