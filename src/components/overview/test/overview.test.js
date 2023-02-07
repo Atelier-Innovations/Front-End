@@ -123,8 +123,16 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
   });
 
 
-  xtest('Add to cart button should prompt user to select size if no size selected', () => {
-    //TODO -- again, will research more and try to implement later
+  test('Add to cart button should prompt user to select size if no size selected', async () => {
+    render (
+      <ButtonPanel skus={Object.keys(camoOnesieStyles.results[0].skus)}
+                   currentStyle={camoOnesieStyles.results[0]} />
+      )
+
+      const user = userEvent.setup();
+      await userEvent.click(screen.getByText('Add To Bag'));
+
+      expect(screen.getByText('Please select size')).toBeInTheDocument();
   });
 
   test('Add to cart button should not appear if item is out of stock', () => {
@@ -133,7 +141,7 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
                    skus={Object.keys(outOfStockProductStyles.results[0].skus)} />
     )
 
-    expect(screen.queryByDisplayValue('Add To Cart')).toBe(null);
+    expect(screen.queryByDisplayValue('Add To Bag')).toBe(null);
   });
 
   test('Add to cart button should add items to cart if size is selected', () => {
