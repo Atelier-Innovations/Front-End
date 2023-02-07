@@ -1,18 +1,23 @@
 import React, { FC } from 'react';
+import { Rating } from 'react-simple-star-rating';
 
 interface ComparisonModalProps {
-  currentProductData: ProductObject;
-  cardProductData: ProductObject;
+  currentProductData: {
+    name?: string;
+    category?: string;
+    default_price?: number;
+  }
+  cardProductData: {
+    name?: string;
+    category?: string;
+    default_price?: number;
+  }
+  cardRating: string;
+  currentProductRating: string
 }
 
-type ProductObject = {
-  name?: string;
-  category?: string;
-  default_price?: string;
-};
 
-
-const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, cardProductData }) => {
+const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, cardProductData, cardRating, currentProductRating }) => {
 
 
   // refactor with type checking
@@ -67,9 +72,16 @@ const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, cardPro
 
         {/* price */}
         <div className='comparison-modal-row'>
-          <div>{currentProductData.default_price}</div>
+          <div>${Math.round(currentProductData.default_price)}</div>
           <div>Price</div>
-          <div>{cardProductData.default_price}</div>
+          <div>${Math.round(cardProductData.default_price)}</div>
+        </div>
+
+        {/* Rating */}
+        <div className='comparison-modal-row'>
+          <div>< Rating readonly={true} initialValue={cardRating} size={ 18 } fillColor="#525252" emptyColor="#00000040" allowFraction={ true }/> </div>
+          <div>Rating</div>
+          <div>< Rating readonly={true} initialValue={currentProductRating} size={ 18 } fillColor="#525252" emptyColor="#00000040" allowFraction={ true }/> </div>
         </div>
 
         {/* other features */}

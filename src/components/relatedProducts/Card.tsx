@@ -4,6 +4,8 @@ import axios from 'axios';
 import Modal from '../shared/Modal';
 import ComparisonModal from './ComparisonModal';
 import { getProductDataFromDB } from '../../helperFunctions';
+import { averageRating, getRatingsDataFromDB, getCardProductImgFromDB  } from '../../helperFunctions';
+import { Rating } from 'react-simple-star-rating';
 
 
 interface CardProps {
@@ -13,34 +15,22 @@ interface CardProps {
   currentProductData: object;
   handleCardClick?: (active: string) => void;
   handleRemoveOutfit?: (active: string) => void;
+  productMetaData: object;
+
 }
 
-const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProductData, handleCardClick, handleRemoveOutfit}) => {
+const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProductData, handleCardClick, handleRemoveOutfit, productMetaData}) => {
 
   const [cardProductData, setCardProductData] = useState({});
   const [productImage, setProductImage] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  // get product img
-  const getCardProductImgFromDB = async () => {
-    let response = await axios.get(
-      `http://localhost:6969/products/${cardID}/styles`
-    );
-    let img = response.data.results[0].photos[0].thumbnail_url;
-    // check image for null value and display "not available" if true
-    if (img === null) {
-      setProductImage(
-        'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg'
-      );
-    } else {
-      setProductImage(img);
-    }
-  };
+  const [cardMetaData, setCardMetaData] = useState({});
 
   // retrieve all data
   useEffect(() => {
     getProductDataFromDB(cardID, setCardProductData);
-    getCardProductImgFromDB();
+    getCardProductImgFromDB(cardID, setProductImage);
+    getRatingsDataFromDB(cardID, setCardMetaData)
   }, []);
 
   // create product object type and perform type check
@@ -58,6 +48,12 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
     }
   }
 
+  // get product meta data and calculate rating
+  const cardRating:string = averageRating(cardMetaData.ratings)
+  const currentProductRating:string = averageRating(productMetaData.ratings)
+
+
+
   return (
     <>
       <Modal
@@ -69,6 +65,8 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
         <ComparisonModal
           currentProductData={currentProductData}
           cardProductData={cardProductData}
+          cardRating={cardRating}
+          currentProductRating={currentProductRating}
         />
       </Modal>
 
@@ -90,10 +88,10 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
 
         </div>
         <div className='cardInfo' onClick={(e) => onCardClick(e)}>
-          <p>{product.category}</p>
-          <p>{product.name}</p>
-          <p>{product.default_price}</p>
-          <p>Stars go here</p>
+          <p>{cardProductData.category}</p>
+          <p>{cardProductData.name}</p>
+          <p>${Math.round(cardProductData.default_price)}</p>
+          <div className="overall-stars"> < Rating readonly={true} initialValue={cardRating} size={ 18 } fillColor="#525252" emptyColor="#00000040" allowFraction={ true }/> </div>
         </div>
       </div>
     </>

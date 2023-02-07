@@ -4,10 +4,19 @@ import Card from './Card';
 import AddToOutfitCard from './AddToOutfitCard';
 
 interface CarouselProps {
+  items?: Array<string>;
+  currentProductID: string;
+  currentProductData: object;
+  handleCardClick: (active: string) => void;
+  handleAddOutfit: (active: string) => void;
+  handleRemoveOutfit: (active: string) => void;
+  carouselType: string,
+  productMetaData: {
+    ratings: object;
+  }
 }
 
-const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductData, handleCardClick, carouselType, handleAddOutfit, handleRemoveOutfit}) => {
-  console.log('items: ', items)
+const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductData, handleCardClick, carouselType, handleAddOutfit, handleRemoveOutfit, productMetaData}) => {
 
   // create itemsToDisplay state array with a slice, change range for each type of carousel
   // create functions for forward and back that update
@@ -24,7 +33,6 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
   }, [items])
 
   const handleForwardClick = () => {
-    console.log('clicked!')
     // check if more items
     if (items.length > lastItemIndex) {
       setfirstItemIndex(firstItemIndex + 1)
@@ -51,7 +59,6 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
   }
 
   const itemsToDisplay = items.slice(firstItemIndex, lastItemIndex)
-  console.log('Items to display: ', itemsToDisplay)
 
   return (
     <div className='carousel carousel_related'>
@@ -67,6 +74,7 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
               cardID={cardID}
               key={cardID}
               handleCardClick={handleCardClick}
+              productMetaData={productMetaData}
             />
           );
         }
@@ -88,6 +96,7 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
                   key={cardID}
                   handleRemoveOutfit={handleRemoveOutfit}
                   handleCardClick={handleCardClick}
+                  productMetaData={productMetaData}
                 />
               );
             }
