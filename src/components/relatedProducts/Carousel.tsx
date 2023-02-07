@@ -4,9 +4,19 @@ import Card from './Card';
 import AddToOutfitCard from './AddToOutfitCard';
 
 interface CarouselProps {
+  items?: Array<string>;
+  currentProductID: string;
+  currentProductData: object;
+  handleCardClick: (active: string) => void;
+  handleAddOutfit: (active: string) => void;
+  handleRemoveOutfit: (active: string) => void;
+  carouselType: string,
+  productMetaData: {
+    ratings: object;
+  }
 }
 
-const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductData, handleCardClick, carouselType, handleAddOutfit, handleRemoveOutfit}) => {
+const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductData, handleCardClick, carouselType, handleAddOutfit, handleRemoveOutfit, productMetaData}) => {
   console.log('items: ', items)
 
   // create itemsToDisplay state array with a slice, change range for each type of carousel
@@ -51,7 +61,6 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
   }
 
   const itemsToDisplay = items.slice(firstItemIndex, lastItemIndex)
-  console.log('Items to display: ', itemsToDisplay)
 
   return (
     <div className='carousel carousel_related'>
@@ -67,6 +76,7 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
               cardID={cardID}
               key={cardID}
               handleCardClick={handleCardClick}
+              productMetaData={productMetaData}
             />
           );
         }
@@ -88,6 +98,7 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
                   key={cardID}
                   handleRemoveOutfit={handleRemoveOutfit}
                   handleCardClick={handleCardClick}
+                  productMetaData={productMetaData}
                 />
               );
             }

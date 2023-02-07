@@ -28,7 +28,7 @@ export const App: React.FC = () => {
       <Overview currentProductID={currentProductID}
                 currentProductData={currentProductData}
                 productMetaData={productMetaData} />
-      <RelatedProducts currentProductID={currentProductID} currentProductData={currentProductData} handleCardClick={handleCardClick} />
+      <RelatedProducts currentProductID={currentProductID} currentProductData={currentProductData} handleCardClick={handleCardClick} productMetaData={productMetaData}/>
       <QandA currentProductID={currentProductID} />
       <RatingsReviews currentProductID={currentProductID} productMetaData={ productMetaData }/>
     </div>

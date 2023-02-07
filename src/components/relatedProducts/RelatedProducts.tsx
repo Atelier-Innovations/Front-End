@@ -8,12 +8,15 @@ import Carousel from './Carousel'
 
 interface RelatedProductsProps {
   currentProductID: string;
-  currentProductData: object;
+  currentProductData: {
+    name: string;
+  }
   handleCardClick: (active: string) => void;
+  productMetaData: object;
 }
 
 
-const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  currentProductID, handleCardClick}) => {
+const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  currentProductID, handleCardClick, productMetaData}) => {
 
   const [relatedProductIDs, setRelatedProductIDs] = useState<Array<string>>([]);
   const [outfitProductIDs, setOutfitProductIDs] = useState<Array<string>>([]);
@@ -46,6 +49,7 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
         currentProductData={currentProductData}
         handleCardClick={handleCardClick}
         carouselType='relatedProducts'
+        productMetaData={productMetaData}
       />
 
       <h2 className='title'>Your Outfit</h2>
@@ -58,6 +62,7 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
         handleAddOutfit={handleAddOutfit}
         outfitProductIDs={outfitProductIDs}
         carouselType='outfit'
+        productMetaData={productMetaData}
       />
 
     </section>
