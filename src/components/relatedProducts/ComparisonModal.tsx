@@ -77,7 +77,7 @@ const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, cardPro
           <div>${Math.round(cardProductData.default_price)}</div>
         </div>
 
-        {/* price */}
+        {/* Rating */}
         <div className='comparison-modal-row'>
           <div>< Rating readonly={true} initialValue={cardRating} size={ 18 } fillColor="#525252" emptyColor="#00000040" allowFraction={ true }/> </div>
           <div>Rating</div>
