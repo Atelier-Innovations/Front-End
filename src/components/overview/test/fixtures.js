@@ -1,4 +1,5 @@
 const Fixtures = {
+
   camoOnesie: {
     "id": 37311,
     "campus": "hr-rfe",
@@ -512,7 +513,40 @@ const Fixtures = {
           },
 
       ]
-    }
+    },
+
+    camoOnesieMetadata: {
+        "product_id": "37311",
+        "ratings": {
+            "1": "70",
+            "2": "32",
+            "3": "94",
+            "4": "140",
+            "5": "337"
+        },
+        "recommended": {
+            "false": "116",
+            "true": "557"
+        },
+        "characteristics": {
+            "Fit": {
+                "id": 125031,
+                "value": "3.0711111111111111"
+            },
+            "Length": {
+                "id": 125032,
+                "value": "3.1173913043478261"
+            },
+            "Comfort": {
+                "id": 125033,
+                "value": "3.1908045977011494"
+            },
+            "Quality": {
+                "id": 125034,
+                "value": "3.2230046948356808"
+            }
+        }
+      }
 };
 
-export default Fixtures;
+module.exports = Fixtures;

@@ -1,14 +1,15 @@
 import React from 'react';
-import Overview from './Overview';
-import StaticInfoDisplay from './controlPanel/StaticInfoDisplay';
-import StyleSelector from './controlPanel/StyleSelector';
-import ButtonPanel from './controlPanel/ButtonPanel';
+import Overview from '../Overview';
+import StaticInfoDisplay from '../controlPanel/StaticInfoDisplay';
+import StyleSelector from '../controlPanel/StyleSelector';
+import ButtonPanel from '../controlPanel/ButtonPanel';
 import renderer from 'react-test-renderer';
 import {render, screen} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
-import App from '../App';
-import Fixtures from './fixtures.js';
+import App from '../../App';
+import { camoOnesie, camoOnesieStyles, outOfStockProductStyles,
+         fakeProductStyles, camoOnesieMetadata } from './fixtures.js';
 
 
 //Product Information Tests
@@ -16,7 +17,9 @@ describe('StaticInfoDisplay should display info for currently selected product a
 
   beforeEach(() => {
     render (
-      <StaticInfoDisplay product={Fixtures.camoOnesie} currentStyle={Fixtures.camoOnesieStyles.results[2]} />
+      <StaticInfoDisplay product={camoOnesie}
+                         currentStyle={camoOnesieStyles.results[2]}
+                         reviews={camoOnesieMetadata}/>
       )
   })
 
@@ -36,8 +39,8 @@ describe('StaticInfoDisplay should display info for currently selected product a
 describe('StyleSelector should display available styles and selected style', () => {
     beforeEach( () => {
       render (
-        <StyleSelector styles={Fixtures.camoOnesieStyles}
-                       currentStyle={Fixtures.camoOnesieStyles.results[0]}/>
+        <StyleSelector styles={camoOnesieStyles}
+                       currentStyle={camoOnesieStyles.results[0]}/>
       )
     });
 
@@ -55,8 +58,8 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
 
   test('By default, size selector should display "Select Size"', () => {
     render (
-      <ButtonPanel skus={Object.keys(Fixtures.camoOnesieStyles.results[2].skus)}
-                   currentStyle={Fixtures.camoOnesieStyles.results[2]} />
+      <ButtonPanel skus={Object.keys(camoOnesieStyles.results[2].skus)}
+                   currentStyle={camoOnesieStyles.results[2]} />
     )
 
     expect(screen.getByDisplayValue('Select Size')).toBeInTheDocument();
@@ -64,8 +67,8 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
 
   test('Only sizes that are available should appear in the size selector', () => {
     render (
-      <ButtonPanel skus={Object.keys(Fixtures.camoOnesieStyles.results[0].skus)}
-                   currentStyle={Fixtures.fakeProductStyles.results[0]} />
+      <ButtonPanel skus={Object.keys(camoOnesieStyles.results[0].skus)}
+                   currentStyle={fakeProductStyles.results[0]} />
     )
 
     expect(screen.queryByDisplayValue('L')).toBe(null);
@@ -73,8 +76,8 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
 
   test('size selector should read "OUT OF STOCK" and be deactivated if no stock left in current style', async () => {
     render (
-      <ButtonPanel skus={Object.keys(Fixtures.outOfStockProductStyles.results[0].skus)}
-                   currentStyle={Fixtures.outOfStockProductStyles.results[0]} />
+      <ButtonPanel skus={Object.keys(outOfStockProductStyles.results[0].skus)}
+                   currentStyle={outOfStockProductStyles.results[0]} />
     )
 
     expect(screen.getByDisplayValue('OUT OF STOCK')).toBeInTheDocument();
@@ -84,8 +87,8 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
 
   test('By default, quantity dropdown should display "-" and be disabled', () => {
     render (
-      <ButtonPanel skus={Object.keys(Fixtures.camoOnesieStyles.results[0].skus)}
-                   currentStyle={Fixtures.fakeProductStyles.results[0]} />
+      <ButtonPanel skus={Object.keys(camoOnesieStyles.results[0].skus)}
+                   currentStyle={fakeProductStyles.results[0]} />
     )
 
     expect(screen.getByDisplayValue('-')).toBeInTheDocument();
@@ -94,8 +97,8 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
 
   test('Once size is selected, quantity dropdown should display "1"', async () => {
     render (
-      <ButtonPanel skus={Object.keys(Fixtures.camoOnesieStyles.results[0].skus)}
-                   currentStyle={Fixtures.fakeProductStyles.results[0]} />
+      <ButtonPanel skus={Object.keys(camoOnesieStyles.results[0].skus)}
+                   currentStyle={fakeProductStyles.results[0]} />
     )
     const user = userEvent.setup();
 
@@ -103,8 +106,20 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
     expect(screen.getByDisplayValue('1')).toBeInTheDocument();
   })
 
-  xtest('Quantity dropdown should display integers ranging from 1 to maximum stock, capped at 15', () => {
-    //TODO -- not sure how to test that, will revisit
+  test('Quantity dropdown should display integers ranging from 1 to maximum stock, capped at 15', async () => {
+    render (
+    <ButtonPanel skus={Object.keys(camoOnesieStyles.results[0].skus)}
+                 currentStyle={camoOnesieStyles.results[0]} />
+    )
+
+    const user = userEvent.setup();
+    await userEvent.selectOptions(screen.getByDisplayValue('Select Size'), 'S');
+
+    for (let i = 1; i <= 15; i++) {
+      expect(screen.getByRole('option', {name: `${i}`})).toBeInTheDocument();
+    }
+    expect(screen.queryByRole('option', {name: '16'})).toBeNull();
+
   });
 
 
@@ -114,8 +129,8 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
 
   test('Add to cart button should not appear if item is out of stock', () => {
     render (
-      <ButtonPanel currentStyle={Fixtures.outOfStockProductStyles.results[0]}
-                   skus={Object.keys(Fixtures.outOfStockProductStyles.results[0].skus)} />
+      <ButtonPanel currentStyle={outOfStockProductStyles.results[0]}
+                   skus={Object.keys(outOfStockProductStyles.results[0].skus)} />
     )
 
     expect(screen.queryByDisplayValue('Add To Cart')).toBe(null);
