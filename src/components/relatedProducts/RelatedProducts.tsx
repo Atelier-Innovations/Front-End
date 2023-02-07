@@ -52,11 +52,19 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
     })
   }
 
+  function removeDuplicates(arr) {
+    return Array.from(new Set(arr));
+  }
+
+  const relatedItems = removeDuplicates(relatedProductIDs)
+
+  console.log('related: ', relatedProductIDs)
+
   return (
     <section className='related-products widget'>
       <h2 className='title'>Related Products</h2>
       <Carousel
-        items={relatedProductIDs}
+        items={relatedItems}
         currentProductID={currentProductID}
         currentProductData={currentProductData}
         handleCardClick={handleCardClick}

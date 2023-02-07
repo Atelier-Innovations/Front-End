@@ -40,8 +40,6 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
   };
   const product: ProductObject = cardProductData;
 
-
-
   const onCardClick = (e) => {
     // Check to see if click came from compare or remove buttons, if it did don't execute handleCardClick
     if (e.target.innerHTML !== 'Compare' && e.target.innerHTML !== 'X') {
