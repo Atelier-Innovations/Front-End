@@ -26,7 +26,7 @@ const Size: FC<SizeProps> = ({ position }) => {
         <div className="pointer" style={{
           position: "absolute",
           left: `${pointerPosition(position)}`,
-        }}>V</div>
+        }}>&#9660;</div>
       </div>
       <div className="slider-tags">
         <div>Too Small</div> <div>Perfect</div> <div>Too Large</div>

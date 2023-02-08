@@ -43,20 +43,30 @@ interface SlidersProps {
 const Sliders: FC<SlidersProps> = ({ characteristics }) => {
   // max position for pointer(far right) is 94% width (depends on max width of screen)
   // set position based on half the width of the pointer element to center it properly
+  // console.log(characteristics);
 
-  const convertToPercent = (characteristics) => {
-    console.log(characteristics)
-    if (!characteristics) {
+
+  let newCharacteristics;
+  if (characteristics) {
+    newCharacteristics = JSON.parse(JSON.stringify(characteristics));
+  }
+
+  const convertToPercent = (newCharacteristics) => {
+    // console.log('from convert func', characteristics)
+
+    if (!newCharacteristics) {
       return '';
     }
 
-    for (let key in characteristics) {
-      characteristics[key].value = (Number(characteristics[key].value) * 20).toString();
+    for (let key in newCharacteristics) {
+      var num = newCharacteristics[key].value
+      newCharacteristics[key].value = (num * 20).toPrecision(4)
     }
-    return characteristics;
+    return newCharacteristics;
   }
 
-  let positionObject = convertToPercent(characteristics);
+  const positionObject = convertToPercent(newCharacteristics);
+  // console.log('positionObject:', positionObject);
 
   const ifComfort = () => {
     if (positionObject.Comfort) {
@@ -110,10 +120,10 @@ const Sliders: FC<SlidersProps> = ({ characteristics }) => {
     <div>
       { ifComfort() }
       { ifFit() }
-      { ifLength() }
-      { ifQuality() }
-      { ifWidth() }
       { ifSize() }
+      { ifQuality() }
+      { ifLength() }
+      { ifWidth() }
     </div>
   )
 }

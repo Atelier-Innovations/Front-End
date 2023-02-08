@@ -29,9 +29,11 @@
       height: 100%;
       margin-right: 3rem;
       text-align: start;
+      overflow: hidden;
+      overflow-y: auto;
 
       .ratings-sliders {
-        margin-top: 1.3rem;
+        margin-top: 1.25rem;
 
         .slider-title {
           font-size: 0.95rem;
@@ -54,9 +56,16 @@
           .bar {
             height: 0.5rem;
             width: 32.5%;
-            background-color: rgb(207, 207, 207);
+            background-color: rgba(207, 207, 207, 0.8);
+          }
+
+          .bar4 {
+            height: 0.5rem;
+            width: 24%;
+            background-color: rgba(207, 207, 207, 0.8);
           }
         }
+
       }
 
 

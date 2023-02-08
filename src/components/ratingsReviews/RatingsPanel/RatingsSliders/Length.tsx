@@ -16,7 +16,6 @@ const Length: FC<LengthProps> = ({ position }) => {
     return position.value + "%";
   }
 
-  console.log(typeof pointerPosition(position))
 
 
   return (
@@ -29,7 +28,7 @@ const Length: FC<LengthProps> = ({ position }) => {
       <div className="pointer" style={{
         position: "absolute",
         left: `${pointerPosition(position)}`,
-      }}>V</div>
+      }}>&#9660;</div>
     </div>
     <div className="slider-tags">
         <div>Too Short</div> <div>Perfect</div> <div>Too Long</div>

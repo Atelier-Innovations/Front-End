@@ -20,13 +20,14 @@ const Comfort: FC<ComfortProps> = ({ position }) => {
     <div className="ratings-sliders">
       <span className="slider-title">Comfort</span>
       <div className="slider">
-        <div className="bar"></div>
-        <div className="bar"></div>
-        <div className="bar"></div>
+        <div className="bar4"></div>
+        <div className="bar4"></div>
+        <div className="bar4"></div>
+        <div className="bar4"></div>
         <div className="pointer" style={{
           position: "absolute",
           left: `${pointerPosition(position)}`,
-        }}>V</div>
+        }}>&#9660;</div>
       </div>
       <div className="slider-tags">
         <div>Poor</div> <div>Perfect</div>
