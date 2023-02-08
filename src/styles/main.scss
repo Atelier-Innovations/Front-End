@@ -49,19 +49,23 @@ nav {
   color: $main;
   h1 {
     margin-left: 1rem;
-    font-size: 120px;
+    font-size: 45px;
+    display: inline;
   }
   ul {
+    display: flex;
     list-style: none;
     li {
+      display: flex;
       transition: background 0.5s ease;
       display: inline;
       margin-right: 0;
-      padding: 100% 1.25rem;
+      padding: 100% 1rem;
       background: $nav;
       a {
         text-decoration: none;
         color: $main;
+        flex-grow: 1;
       };
     }
     li:hover {
