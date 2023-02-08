@@ -3,16 +3,20 @@
 .related-products {
   display: flex;
   flex-direction: column;
-  height: 55rem;
+  background-color: white;
+  border: 0px solid white;
+  width: 1050px;
 
   .carousel {
     width: 100%;
+    position: relative;
     display: flex;
     flex-direction: row;
     margin-bottom: 50px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    position: relative;
+    grid-gap: 35px;
+
   }
 
   .carousel_related {
@@ -25,13 +29,12 @@
 
   .card {
     background-color: white;
-    height: 340px;
-    width: 210px;
-    border: 1px solid black;
+    // height: 340px;
+    border: 1px solid rgb(138, 138, 138);
   }
 
   .cardImage {
-    min-height: 215px;
+    min-height: 230px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -69,7 +72,7 @@
 
   .cardInfo {
     border-top: 1px solid black;
-    line-height: 0.5rem;
+    line-height: 1.5rem;
     padding: 5px;
     cursor: pointer;
   }
@@ -95,16 +98,86 @@
   .arrow-left {
     left: 0;
     background-image: linear-gradient(to left, rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 1));
-    &:hover {
-      background-image: linear-gradient(to left, rgba(220, 220, 220, 0.90), rgba(220, 220, 220, 1))
-    }
+    z-index: 1;
   }
+
+  .arrow-left::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: radial-gradient(circle at center, rgba(220, 220, 220, 0.60), rgba(220, 220, 220, .1));
+    filter: blur(2px);
+    z-index: -1;
+    transition: opacity 0.15s ease-in-out;
+    opacity: 0;
+  }
+
+  .arrow-left:hover::before {
+    opacity: 1;
+  }
+
 
   .arrow-right {
     right: 0;
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 1));
-    &:hover {
-      background-image: linear-gradient(to right, rgba(220, 220, 220, 0.90), rgba(220, 220, 220, 1))
-    }
+    z-index: 1;
   }
+
+  .arrow-right::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: radial-gradient(circle at center, rgba(220, 220, 220, 0.60), rgba(220, 220, 220, .1));
+    filter: blur(2px);
+    z-index: -1;
+    transition: opacity 0.15s ease-in-out;
+    opacity: 0;
+  }
+
+  .arrow-right:hover::before {
+    opacity: 1;
+  }
+
+
+
+  // original
+  // .arrow-right {
+  //   right: 0;
+  //   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 1));
+  //   transition: background-image 10s ease-in-out;
+  //   &:hover {
+  //     background-image: linear-gradient(to right, rgba(220, 220, 220, 0.90), rgba(220, 220, 220, 1));
+  //   }
+  // }
+
+  // medium version
+  // .arrow-right {
+  //   height: 100%;
+  //   width: 70px;
+  //   right: 0;
+  //   background: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 1));
+  //   z-index: 1;
+
+  //   &::before {
+  //     position: absolute;
+  //     top: 0;
+  //     right: 0;
+  //     bottom: 0;
+  //     left: 0;
+  //     background: linear-gradient(to right, rgba(220, 220, 220, 0.90), rgba(220, 220, 220, 1));
+  //     transition: opacity 0.5s linear;
+  //     z-index: -1;
+  //     opacity: 0;
+  //   }
+
+  //   &:hover::before {
+  //     opacity: 1;
+  //   }
+  // }
 }

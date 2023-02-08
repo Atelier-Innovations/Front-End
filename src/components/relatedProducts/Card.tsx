@@ -85,9 +85,9 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
 
         </div>
         <div className='cardInfo' onClick={(e) => onCardClick(e)}>
-          <p>{cardProductData.category}</p>
-          <p>{cardProductData.name}</p>
-          <p>${Math.round(cardProductData.default_price)}</p>
+          <div>{cardProductData.category && cardProductData.category.toUpperCase()}</div>
+          <div>{cardProductData.name}</div>
+          <div>${Math.round(cardProductData.default_price)}</div>
           <div className="overall-stars"> < Rating readonly={true} initialValue={cardRating} size={ 18 } fillColor="#525252" emptyColor="#00000040" allowFraction={ true }/> </div>
         </div>
       </div>
