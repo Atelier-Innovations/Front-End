@@ -8,8 +8,16 @@ import {render, screen} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import App from '../../App';
+import ImageGallery from '../imageGallery/ImageGallery';
+import axios, { AxiosResponse } from 'axios';
 import { camoOnesie, camoOnesieStyles, outOfStockProductStyles,
          fakeProductStyles, camoOnesieMetadata } from './fixtures.js';
+
+
+//don't totally understand this yet but need it to mock axios for tests
+//that involve APIs
+// module.jest.mock('axios');
+// const mockedAxios = axios;
 
 
 //Product Information Tests
@@ -146,69 +154,130 @@ describe('ButtonPanel should allow the user to select size, quantity, and add to
 
   test('Add to cart button should add items to cart if size is selected', () => {
     //Hold off on implementing this one until we know we're going to have a cart
+    //UPDATE: yeah, this isn't happening
   })
 
 });
 
-xdescribe('Image gallery should display images of product', () => {
+describe('Image gallery should display images of product', () => {
 
   test('Images displayed should correspond to currently selected style', () => {
+    render (
+      <ImageGallery style={camoOnesieStyles.results[0]}
+                        imageExpanded={false}
+                        toggleExpanded={() => {}}/>
+    )
+    const mainImage = document.getElementsByClassName('big-image')[0];
+
+    expect(mainImage).toHaveAttribute('src', camoOnesieStyles.results[0].photos[0].url);
+  })
+  //need to learn how to mock API calls from within react components to make this one work
+  xtest('Choosing a new style will update images to correspond to new style', async () => {
+    render (
+      <Overview currentProductID={camoOnesie.id}
+                currentProductData={camoOnesie}
+                productMetaData={camoOnesieMetadata} />
+    )
+
+    const user = userEvent.setup();
+    const secondStyle = await document.getElementsByClassName('circle')[1];
+    await userEvent.click(secondStyle);
+
+    const mainImage = document.getElementsByClassName('big-image')[0];
+    console.log(typeof mainImage);
+    expect(mainImage).toHaveAttribute('src', camoOnesieStyles.results[1].photos[0].url)
+  })
+
+  test('Carousel controls will allow customers to browse between photos', async () => {
+    render (
+      <ImageGallery style={camoOnesieStyles.results[0]}
+                        imageExpanded={false}
+                        toggleExpanded={() => {}}/>
+    )
+
+    const upArrow = document.getElementsByClassName('up')[0];
+    const downArrow = document.getElementsByClassName('down')[0];
+    const user = userEvent.setup();
+    await userEvent.click(downArrow);
+    await userEvent.click(downArrow);
+    await userEvent.click(upArrow);
+    const thumbnail = document.querySelectorAll('div.box > img')[0];
+
+    expect(thumbnail).toHaveAttribute('src', camoOnesieStyles.results[0].photos[1].thumbnail_url);
+
+  })
+
+  test('Image gallery controls will allow customers to zoom in on photos', async () => {
+    render (
+      <ImageGallery style={camoOnesieStyles.results[0]}
+                        imageExpanded={true}
+                        toggleExpanded={() => {}}/>
+    );
+    const mainImage = document.getElementsByClassName('big-image')[0];
+    const user = userEvent.setup();
+    await userEvent.click(mainImage);
+
+    expect(mainImage).toHaveClass('zoomed');
+
+  })
+
+  xtest('Image gallery will expand view when expand view button is pressed', () => {
     //TODO
   })
 
-  test('Choosing a new style will update images to correspond to new style', () => {
+  xtest('By default the first image will be displayed', () => {
     //TODO
   })
 
-  test('Carousel controls will allow customers to browse between photos', () => {
+  xtest('The image displayed will correspond to the highlighted thumbnail', () => {
     //TODO
   })
 
-  test('Image gallery controls will allow customers to zoom in on photos', () => {
+  xtest('the index of the currently selected image will persist when the gallery changes style', () => {
     //TODO
   })
 
-  test('Image gallery will expand view when expand view button is pressed', () => {
+  xtest('clicking a thumbnail should update the selected image to match', () => {
     //TODO
   })
 
-  test('By default the first image will be displayed', () => {
+  xtest('up to 7 thumbnails will be displayed at a time in thumbnail list', () => {
     //TODO
   })
 
-  test('The image displayed will correspond to the highlighted thumbnail', () => {
+  xtest('Customers should be able to change image by clicking on the arrows to either side of gallery', () => {
+    render (
+      <ImageGallery style={camoOnesieStyles.results[0]}
+                        imageExpanded={true}
+                        toggleExpanded={() => {}}/>
+    );
+
+    const user = userEvent.setup();
+    const left = document.getElementsByClassName('left')[0];
+    const right = document.getElementsByClassName('right')[0];
+
+    userEvent.click(right);
+    userEvent.click(right);
+    userEvent.click(left);
+
+    const mainImage = document.getElementsByClassName('big-image')[0];
+    expect(mainImage).toHaveAttribute('src', camoOnesieStyles.results[0].photos[1].url);
+
+  })
+
+  xtest('Clicking on the image gallery should change it to expanded view', () => {
     //TODO
   })
 
-  test('the index of the currently selected image will persist when the gallery changes style', () => {
+  xtest('clicking on the image in expanded view should zoom the image by 2.5x', () => {
     //TODO
   })
 
-  test('clicking a thumbnail should update the selected image to match', () => {
-    //TODO
-  })
-
-  test('up to 7 thumbnails will be displayed at a time in thumbnail list', () => {
-    //TODO
-  })
-
-  test('Customers should be able to change image by clicking on the arrows to either side of gallery', () => {
-    //TODO
-  })
-
-  test('Clicking on the image gallery should change it to expanded view', () => {
-    //TODO
-  })
-
-  test('clicking on the image in expanded view should zoom the image by 2.5x', () => {
-    //TODO
-  })
-
-  test('moving the mouse around in zoomed view should move the zoomed view', () => {
+  xtest('moving the mouse around in zoomed view should move the zoomed view', () => {
     //TODO -- IDK how to test this.
   })
 
-  test("clicking on the zoomed view should return the view to regular expanded view", () => {
+  xtest("clicking on the zoomed view should return the view to regular expanded view", () => {
     //TODO
   })
 })
