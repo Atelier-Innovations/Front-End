@@ -24,17 +24,14 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
   const [productImage, setProductImage] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [cardMetaData, setCardMetaData] = useState({});
-  const [salePrice, setSalePrice] = useState('')
 
 
-  console.log('sale price: ', salePrice)
 
   // retrieve all data
   useEffect(() => {
     getProductDataFromDB(cardID, setCardProductData);
     getCardProductImgFromDB(cardID, setProductImage);
     getRatingsDataFromDB(cardID, setCardMetaData);
-    getSalePrice(cardID, setSalePrice);
   }, []);
 
   // create product object type and perform type check
@@ -95,6 +92,7 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
           <div>${Math.round(cardProductData.default_price)}</div>
           <div className="overall-stars"> < Rating readonly={true} initialValue={cardRating} size={ 18 } fillColor="#525252" emptyColor="#00000040" allowFraction={ true }/> </div>
         </div>
+        <div className='card_overlay'></div>
       </div>
     </>
   );

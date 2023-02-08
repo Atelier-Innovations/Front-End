@@ -20,6 +20,7 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
 
   const [relatedProductIDs, setRelatedProductIDs] = useState<Array<string>>([]);
   const [outfitProductIDs, setOutfitProductIDs] = useState<Array<string>>([]);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   // get outfits from local storage
   useEffect(() => {
@@ -40,7 +41,10 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
 
   const handleAddOutfit = (currentProductID) => {
     if (outfitProductIDs.includes(currentProductID)){
-      alert(`${currentProductData.name} is already in your outfit collection.`)
+      setShowErrorMessage(true)
+      setTimeout(() => {
+        setShowErrorMessage(false);
+      }, 3000);
     } else {
       setOutfitProductIDs([...outfitProductIDs, currentProductID])
     }
@@ -62,7 +66,9 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
 
   return (
     <section className='related-products widget'>
-      <h2 className='title'>Related Products</h2>
+      <div className='title_div'>
+        <h2 className='title'>Related Products</h2>
+      </div>
       <Carousel
         items={relatedItems}
         currentProductID={currentProductID}
@@ -72,7 +78,12 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
         productMetaData={productMetaData}
       />
 
-      <h2 className='title'>Your Outfit</h2>
+      <div className='title_div'>
+        <h2 className='title'>Your Outfit</h2>
+        {showErrorMessage && <div className='outfit_error'>{currentProductData.name} is already in your outfit!</div>}
+
+      </div>
+
       <Carousel
         items={outfitProductIDs}
         currentProductID={currentProductID}
