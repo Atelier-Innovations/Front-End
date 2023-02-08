@@ -5,7 +5,7 @@
 /////////////////////////
 
 .reviews-ratings {
-  height: 35rem;
+  height: 34rem;
   display: flex;
   flex-direction: column;
 
@@ -91,7 +91,8 @@
       .recommendation {
         text-align: left;
         font-size: 0.8rem;
-        margin-top: 1rem;
+        margin-top: 0.45rem;
+        margin-bottom: -0.5rem;
       }
 
       .filter-by-star {
