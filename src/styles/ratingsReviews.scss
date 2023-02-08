@@ -137,16 +137,19 @@
       width: 73%;
       border: 2px solid $text;
 
-      button {
-        border: 1px black solid;
-        background: none;
-        font-weight: bold;
-        font-size: 0.9rem;
-        height: 3rem;
-        margin-right: 1rem;
-        cursor: pointer;
-
+      .button-panel {
+        .big-button {
+          border: 1px black solid;
+          background: none;
+          font-weight: bold;
+          font-size: 0.9rem;
+          height: 3rem;
+          margin-right: 1rem;
+          cursor: pointer;
+        }
       }
+
+
 
       .sort-by {
         font-weight: bold;
@@ -192,6 +195,17 @@
 
         .helpful {
           font-size: 0.75rem;
+          .text-button {
+            border: none;
+            background-color: inherit;
+            padding: 0.08rem;
+            font-size: 0.70rem;
+            cursor: pointer;
+            display: inline-block;
+            &:hover {
+              color: rgb(55, 108, 253)
+            }
+          }
         }
       }
     }

@@ -167,45 +167,59 @@ app.post('/reviews', (req: Request, res: Response) => {
     })
 })
 
-      // "product_id": req.body.product_id,
-      // "rating": req.body.rating,
-      // "summary": req.body.summary,
-      // "body": req.body.body,
-      // "recommend": req.body.recommend,
-      // "name": req.body.name,
-      // "email": req.body.email,
-      // "photos": req.body.photos,
-      // "characteristics": req.body.characteristics
+app.put('/reviews/helpful', (req: Request, res: Response) => {
+  console.log(req.body.review_id);
+  axios({
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.body.review_id}/helpful`,
+    method: 'put',
+    headers: {
+      Authorization: process.env.API_KEY,
+    },
+  })
+    .then((result) => {
+      res.send(`${req.body.review_id} was Helpful!`)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
 
-      // "product_id": 37311,
-      // "rating": 1,
-      // "summary": 'testing review post route',
-      // "body": 'tesssssssssssssssssstttttttttttttttttttttttt',
-      // "recommend": false,
-      // "name": 'test-user',
-      // "email": 'abryce.anderson@gmail.com',
-      // "photos": [],
-      // "characteristics":  {
-      //   "125033": 3,
-      //   "125031": 3,
-      //   "125032": 3,
-      //   "125034": 3
-      // }
+
+
+
+
+
+
+// "product_id": req.body.product_id,
+// "rating": req.body.rating,
+// "summary": req.body.summary,
+// "body": req.body.body,
+// "recommend": req.body.recommend,
+// "name": req.body.name,
+// "email": req.body.email,
+// "photos": req.body.photos,
+// "characteristics": req.body.characteristics
+
+// "product_id": 37311,
+// "rating": 1,
+// "summary": 'testing review post route',
+// "body": 'tesssssssssssssssssstttttttttttttttttttttttt',
+// "recommend": false,
+// "name": 'test-user',
+// "email": 'abryce.anderson@gmail.com',
+// "photos": [],
+// "characteristics":  {
+//   "125033": 3,
+//   "125031": 3,
+//   "125032": 3,
+//   "125034": 3
+// }
+
+
+
 
 
 
 app.listen(process.env.PORT, () => {
   console.log(`Server listening on port ${process.env.PORT}`);
 });
-
-
-
-// product_id: 37311,
-// rating: 1,
-// summary: 'testing review post route',
-// body: 'I really want this post to work but I am not sure if it is going to, "gggggreat product though" -tony the tiger',
-// recommend: false,
-// name: 'test-user',
-// emai: 'test@gmail.com',
-// photos: {},
-// characteristics: {comfort: 1}
