@@ -41,7 +41,7 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
   }
 
   return (
-    <section className='related-products widget'>
+    <section id="related-products" className='related-products widget'>
       <h2 className='title'>Related Products</h2>
       <Carousel
         items={relatedProductIDs}
