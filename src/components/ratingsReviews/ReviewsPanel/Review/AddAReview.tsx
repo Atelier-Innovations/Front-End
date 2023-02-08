@@ -69,7 +69,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
   // console.log(comfortID)
 
   const onComfortChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     makeNewReview({
       ...newReview,
       characteristics: {
@@ -317,7 +317,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
 
   }
 
-  console.log(newReview);
+  // console.log(newReview);
 
   return (
     <div className="review-form">

@@ -50,7 +50,6 @@ const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, review
   }
 
   const onAddClick = (event) => {
-    console.log('test')
     setModalIsOpen(true);
   }
 
