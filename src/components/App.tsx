@@ -22,6 +22,8 @@ export const App: React.FC = () => {
     setCurrentProductID(cardID)
   }
 
+  console.log(currentProductData)
+
 
   return (
     <div className='app'>

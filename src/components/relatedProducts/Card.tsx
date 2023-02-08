@@ -4,7 +4,7 @@ import axios from 'axios';
 import Modal from '../shared/Modal';
 import ComparisonModal from './ComparisonModal';
 import { getProductDataFromDB } from '../../helperFunctions';
-import { averageRating, getRatingsDataFromDB, getCardProductImgFromDB  } from '../../helperFunctions';
+import { averageRating, getRatingsDataFromDB, getCardProductImgFromDB, getSalePrice  } from '../../helperFunctions';
 import { Rating } from 'react-simple-star-rating';
 
 
@@ -24,12 +24,17 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
   const [productImage, setProductImage] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [cardMetaData, setCardMetaData] = useState({});
+  const [salePrice, setSalePrice] = useState('')
+
+
+  console.log('sale price: ', salePrice)
 
   // retrieve all data
   useEffect(() => {
     getProductDataFromDB(cardID, setCardProductData);
     getCardProductImgFromDB(cardID, setProductImage);
-    getRatingsDataFromDB(cardID, setCardMetaData)
+    getRatingsDataFromDB(cardID, setCardMetaData);
+    getSalePrice(cardID, setSalePrice);
   }, []);
 
   // create product object type and perform type check
