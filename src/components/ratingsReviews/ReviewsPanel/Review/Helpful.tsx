@@ -25,6 +25,7 @@ const Helpful: FC<HelpfulProps> = ({ helpfulness, review_id, getReviewData }) =>
   }
 
   const reportOnClick = (event) => {
+    alert('Review Reported!')
     axios.put('http://localhost:6969/reviews/report', {
       review_id: review_id,
     })
