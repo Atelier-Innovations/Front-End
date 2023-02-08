@@ -16,7 +16,7 @@ interface AddAReviewProps {
     recommended?: object;
   };
   newReview: {
-    product_id: string;
+    product_id: number;
     rating: number;
     summary: string;
     body: string;
@@ -27,9 +27,10 @@ interface AddAReviewProps {
     characteristics: {};
   };
   makeNewReview: Function;
+  setModalIsOpen: Function;
 }
 
-const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewReview }) => {
+const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewReview, setModalIsOpen }) => {
 
 
   let productChars:any = productMetaData.characteristics;
@@ -313,6 +314,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
         // "125034": 3
 
   });
+  setModalIsOpen(false)
 
 
   }
@@ -332,7 +334,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
 
         Body: <input type="text" onChange={ bodyOnChange } value={newReview.body} minLength={50} maxLength={1000} required></input><br/>
 
-        Do you recommended this product?: <input type="checkbox" onChange={ recommendOnChange }value={newReview.recommend.toString()} required></input><br/>
+        Do you recommended this product?: <input type="checkbox" onChange={ recommendOnChange }value={newReview.recommend.toString()} ></input><br/>
 
         {/* Photos: <input type="file" name="myImage" accept="image/*" /><br/> */}
 

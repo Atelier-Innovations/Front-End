@@ -68,7 +68,7 @@ const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, review
         overlayClassName='modalOverlay'
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}>
-          < AddAReview productMetaData={ productMetaData } newReview={ newReview } makeNewReview={makeNewReview}/>
+          < AddAReview productMetaData={ productMetaData } newReview={ newReview } makeNewReview={makeNewReview} setModalIsOpen={ setModalIsOpen }/>
       </Modal>
       </div>
     </div>
