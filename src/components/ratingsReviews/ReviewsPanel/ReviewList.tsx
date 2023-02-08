@@ -36,11 +36,12 @@ interface ReviewListProps {
     email: string;
     photos: Array<object>;
     characteristics: {};
-  }
+  };
+  getReviewData: Function;
 }
 
 
-const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, reviewCount, setReviewCount, productMetaData, newReview, makeNewReview }) => {
+const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, reviewCount, setReviewCount, productMetaData, newReview, makeNewReview, getReviewData }) => {
   // console.log('From ReviewList:', currentReviews.results)
   // console.log(currentReviews.results.review_id)
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -57,17 +58,17 @@ const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, review
     <div className="review-list">
       < SortBy sort={ sort } setSort={ setSort } ratings={ productMetaData.ratings }/>
       { currentReviews.results && currentReviews.results.map((review, id) => {
-        return < Review key={id} review={review}/>
+        return < Review key={id} review={review} getReviewData={ getReviewData }/>
       }) }
       <div className="button-panel">
-        <button onClick={ onClickMoreReviews }>MORE REVIEWS</button>
-        <button onClick={ onAddClick }>ADD A REVIEW +</button>
+        <button className="big-button" onClick={ onClickMoreReviews }>MORE REVIEWS</button>
+        <button className="big-button" onClick={ onAddClick }>ADD A REVIEW +</button>
         <Modal
         modalClassName='comparisonModal'
         overlayClassName='modalOverlay'
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}>
-          < AddAReview productMetaData={ productMetaData } newReview={ newReview } makeNewReview={makeNewReview}/>
+          < AddAReview productMetaData={ productMetaData } newReview={ newReview } makeNewReview={makeNewReview} setModalIsOpen={ setModalIsOpen }/>
       </Modal>
       </div>
     </div>

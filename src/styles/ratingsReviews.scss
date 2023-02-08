@@ -5,7 +5,7 @@
 /////////////////////////
 
 .reviews-ratings {
-  height: 35rem;
+  height: 34rem;
   display: flex;
   flex-direction: column;
 
@@ -91,7 +91,8 @@
       .recommendation {
         text-align: left;
         font-size: 0.8rem;
-        margin-top: 1rem;
+        margin-top: 0.45rem;
+        margin-bottom: -0.5rem;
       }
 
       .filter-by-star {
@@ -137,16 +138,19 @@
       width: 73%;
       border: 2px solid $text;
 
-      button {
-        border: 1px black solid;
-        background: none;
-        font-weight: bold;
-        font-size: 0.9rem;
-        height: 3rem;
-        margin-right: 1rem;
-        cursor: pointer;
-
+      .button-panel {
+        .big-button {
+          border: 1px black solid;
+          background: none;
+          font-weight: bold;
+          font-size: 0.9rem;
+          height: 3rem;
+          margin-right: 1rem;
+          cursor: pointer;
+        }
       }
+
+
 
       .sort-by {
         font-weight: bold;
@@ -192,6 +196,19 @@
 
         .helpful {
           font-size: 0.75rem;
+          .text-button {
+            border: none;
+            background-color: inherit;
+            padding: 0.08rem;
+            font-size: 0.70rem;
+            cursor: pointer;
+            display: inline-block;
+            transition: color 0.3s;
+            &:hover {
+              color: rgb(55, 108, 253);
+              transition: color 0.3s
+            }
+          }
         }
       }
     }

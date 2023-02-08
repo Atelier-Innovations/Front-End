@@ -70,7 +70,7 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
 
       <div className="overall">
         < RatingsList productMetaData={ props.productMetaData }/>
-        < ReviewList reviewCount={ reviewCount } setReviewCount={ setReviewCount } sort={ sort } setSort={ setSort } currentReviews={ currentReviews } productMetaData={ props.productMetaData } newReview={newReview} makeNewReview={ makeNewReview }/>
+        < ReviewList reviewCount={ reviewCount } setReviewCount={ setReviewCount } sort={ sort } setSort={ setSort } currentReviews={ currentReviews } productMetaData={ props.productMetaData } newReview={newReview} makeNewReview={ makeNewReview } getReviewData={ getReviewData }/>
       </div>
     </div>
   )
