@@ -5,14 +5,14 @@
 /////////////////////////
 
 .reviews-ratings {
-  height: 30rem;
+  height: 35rem;
   display: flex;
   flex-direction: column;
 
   .banner {
     text-align: left;
     height: 5%;
-    border: 2px solid $text;
+
     width: 100%;
   }
 
@@ -20,7 +20,6 @@
     display: flex;
     flex-direction: row;
     height: 96%;
-    border: 1px solid red;
 
     .ratings-panel {
       display: flex;
@@ -30,6 +29,46 @@
       height: 100%;
       margin-right: 3rem;
       text-align: start;
+      overflow: hidden;
+      overflow-y: auto;
+
+      .ratings-sliders {
+        margin-top: 1.25rem;
+
+        .slider-title {
+          font-size: 0.95rem;
+        }
+
+        .slider-tags {
+          display:flex;
+          justify-content: space-between;
+          font-size: 0.8rem;
+        }
+
+        .slider {
+          display: flex;
+          flex-direction: row;
+          position: relative;
+          align-items: center;
+          justify-content: space-between;
+          height: 1.3rem;
+
+          .bar {
+            height: 0.5rem;
+            width: 32.5%;
+            background-color: rgba(207, 207, 207, 0.8);
+          }
+
+          .bar4 {
+            height: 0.5rem;
+            width: 24%;
+            background-color: rgba(207, 207, 207, 0.8);
+          }
+        }
+
+      }
+
+
 
       .overall-rating {
         display:flex;
@@ -38,11 +77,15 @@
         font-weight: 600;
         align-content: center;
         justify-content: flex-start;
+
+
         .overall-stars {
           position:relative;
           top: -1rem;
           left: 0.45rem;
         }
+
+
       }
 
       .recommendation {
@@ -52,14 +95,15 @@
       }
 
       .filter-by-star {
+        display: flex;
+        flex-flow: column nowrap;
         padding-top: 0.5rem;
 
         progress[value] {
           -webkit-appearance: none;
           appearance: none;
-          display: inline-block;
           margin-left: 1.2rem;
-          width: 69%;
+          width: 74%;
           height: 0.45rem;
           margin-bottom: .2rem;
 

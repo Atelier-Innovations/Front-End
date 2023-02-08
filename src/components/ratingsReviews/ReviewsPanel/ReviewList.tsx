@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
 import SortBy from './SortBy';
 import Review from './Review/Review';
+import AddAReview from './Review/AddAReview';
+import Modal from '../../shared/Modal';
+import { useState } from 'react'
 
 interface ReviewListProps {
   currentReviews: {
@@ -22,15 +25,33 @@ interface ReviewListProps {
   sort: string;
   reviewCount: number;
   setReviewCount: Function;
+  makeNewReview: Function;
+  newReview: {
+    product_id: number;
+    rating: number;
+    summary: string;
+    body: string;
+    recommend: boolean;
+    name: string;
+    email: string;
+    photos: Array<object>;
+    characteristics: {};
+  }
 }
 
 
-const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, reviewCount, setReviewCount, productMetaData }) => {
+const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, reviewCount, setReviewCount, productMetaData, newReview, makeNewReview }) => {
   // console.log('From ReviewList:', currentReviews.results)
   // console.log(currentReviews.results.review_id)
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const onClickMoreReviews = () => {
     setReviewCount(reviewCount += 2)
+  }
+
+  const onAddClick = (event) => {
+    console.log('test')
+    setModalIsOpen(true);
   }
 
   return (
@@ -41,7 +62,14 @@ const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, review
       }) }
       <div className="button-panel">
         <button onClick={ onClickMoreReviews }>MORE REVIEWS</button>
-        <button>ADD A REVIEW +</button>
+        <button onClick={ onAddClick }>ADD A REVIEW +</button>
+        <Modal
+        modalClassName='comparisonModal'
+        overlayClassName='modalOverlay'
+        modalIsOpen={modalIsOpen}
+        setModalIsOpen={setModalIsOpen}>
+          < AddAReview productMetaData={ productMetaData } newReview={ newReview } makeNewReview={makeNewReview}/>
+      </Modal>
       </div>
     </div>
   )
