@@ -168,7 +168,7 @@ app.post('/reviews', (req: Request, res: Response) => {
 })
 
 app.put('/reviews/helpful', (req: Request, res: Response) => {
-  console.log(req.body.review_id);
+  // console.log(req.body.review_id);
   axios({
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.body.review_id}/helpful`,
     method: 'put',
@@ -184,7 +184,22 @@ app.put('/reviews/helpful', (req: Request, res: Response) => {
     })
 })
 
-
+app.put('/reviews/report', (req: Request, res: Response) => {
+  // console.log(req.body.review_id);
+  axios({
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${req.body.review_id}/report`,
+    method: 'put',
+    headers: {
+      Authorization: process.env.API_KEY,
+    },
+  })
+    .then((result) => {
+      res.send(`${req.body.review_id} was Reported!`)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
 
 
 

@@ -202,8 +202,10 @@
             font-size: 0.70rem;
             cursor: pointer;
             display: inline-block;
+            transition: color 0.3s;
             &:hover {
-              color: rgb(55, 108, 253)
+              color: rgb(55, 108, 253);
+              transition: color 0.3s
             }
           }
         }
