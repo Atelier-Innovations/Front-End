@@ -56,8 +56,8 @@ const StaticInfoDisplay: React.FC<StaticInfoProps> = ({product, currentStyle, re
         <span><a href="#reviews-ratings">Read all {totalReviews} reviews</a></span>
       </div> : null}
 
-      
-      
+
+
       <h3>{product.category}</h3>
       <h2>{product.name}</h2>
       {currentStyle.sale_price ?
