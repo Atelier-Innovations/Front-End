@@ -11,7 +11,7 @@ interface QandAProps {
 
 const QandA: FC<QandAProps> = (props: QandAProps) => {
   return (
-    <section className="widget q-and-a">
+    <section id="q-and-a" className="widget q-and-a">
       <div className="q-and-a-container">
         <div className='q-and-a-header'>QUESTIONS & ANSWERS</div>
         <SearchBar/>

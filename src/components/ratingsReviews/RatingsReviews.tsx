@@ -24,9 +24,24 @@ interface RatingsReviewsProps {
 
 const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
   const [ currentReviews, setCurrentReviews ] = useState({})
-  // const [ productMetaData, setProductMetaData ] = useState({})
   const [ sort, setSort ] = useState('relevant')
   const [ reviewCount, setReviewCount ] = useState(2);
+  const [ newReview, makeNewReview] = useState({
+      "product_id": Number(props.currentProductID),
+      "rating": 3.5,
+      "summary": '',
+      "body": '',
+      "recommend": false,
+      "name": '',
+      "email": '',
+      "photos": [],
+      "characteristics": {}
+        // "125033": 3,
+        // "125031": 3,
+        // "125032": 3,
+        // "125034": 3
+
+  })
 
 
   const getReviewData = () => {
@@ -39,41 +54,23 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
       })
   }
 
-  // const getRatingsData = () => {
-  //   axios.get(`http://localhost:6969/reviews/meta?id=${props.currentProductID}`)
-  //   .then((results) => {
-  //     setProductMetaData(results.data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   })
-  // }
-
   useEffect(() => {
     getReviewData();
   }, [sort, props.currentProductID, reviewCount])
 
-  // useEffect(() => {
-  //   getRatingsData();
-  // }, [currentProductID])
-
-
-
-  // console.log(sort)
-
-  // console.log('MetaData from R/R:', productMetaData)
+  // console.log('MetaData from R/R:', props.productMetaData)
   // console.log('Current Reviews from R/R:', currentReviews)
 
 
   return (
-    <div className="widget reviews-ratings">
+    <div id="reviews-ratings" className="widget reviews-ratings">
       <div className="banner">
         RATINGS & REVIEWS
       </div>
 
       <div className="overall">
         < RatingsList productMetaData={ props.productMetaData }/>
-        < ReviewList reviewCount={ reviewCount } setReviewCount={ setReviewCount } sort={ sort } setSort={ setSort } currentReviews={ currentReviews } productMetaData={ props.productMetaData }/>
+        < ReviewList reviewCount={ reviewCount } setReviewCount={ setReviewCount } sort={ sort } setSort={ setSort } currentReviews={ currentReviews } productMetaData={ props.productMetaData } newReview={newReview} makeNewReview={ makeNewReview } getReviewData={ getReviewData }/>
       </div>
     </div>
   )

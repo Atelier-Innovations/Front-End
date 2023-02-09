@@ -65,10 +65,12 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
   console.log('related: ', relatedProductIDs)
 
   return (
-    <section className='related-products widget'>
+
+    <section id="related-products" className='related-products widget'>
       <div className='title_div'>
         <h2 className='title'>Related Products</h2>
       </div>
+      
       <Carousel
         items={relatedItems}
         currentProductID={currentProductID}

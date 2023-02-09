@@ -5,7 +5,6 @@ import ImageGallery from './imageGallery/ImageGallery';
 import ControlPanel from './controlPanel/ControlPanel';
 import ProductDescriptionPanel from './ProductDescriptionPanel';
 import axios from 'axios';
-import Fixtures from './fixtures.js';
 
 
 interface OverviewProps {
@@ -38,7 +37,7 @@ const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
   }, [props.currentProductID])
 
   return (
-    <section className="widget overview">
+    <section id="overview" className="widget overview">
       <Banner />
       <div className="main-panel">
           <ImageGallery style={currentStyle}

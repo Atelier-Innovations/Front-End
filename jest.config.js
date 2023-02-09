@@ -1,3 +1,9 @@
 module.exports = {
-  "testEnvironment": "jsdom"
+  "testEnvironment": "jsdom",
+
+
+  moduleNameMapper: {
+    "^.+\\.svg$": "jest-svg-transformer"
+  }
+
 }

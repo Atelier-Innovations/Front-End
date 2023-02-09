@@ -19,9 +19,10 @@ interface ReviewProps {
     summary: string;
   }
   key: number;
+  getReviewData: Function;
 };
 
-const Review: FC<ReviewProps> = ({ review }) => {
+const Review: FC<ReviewProps> = ({ review, getReviewData }) => {
 
   // console.log(review.body)
 
@@ -34,7 +35,7 @@ const Review: FC<ReviewProps> = ({ review }) => {
       <div className="review-text">
         < Summary summary={review.summary}/>
         < ReviewBody body={review.body}/>
-        < Helpful helpfulness={review.helpfulness}/>
+        < Helpful review_id={ review.review_id }helpfulness={review.helpfulness} getReviewData={ getReviewData }/>
       </div>
     </div>
   )
