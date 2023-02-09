@@ -105,7 +105,7 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
   return (
     <div id="reviews-ratings" className="widget reviews-ratings">
       <div className="banner">
-        RATINGS & REVIEWS
+        <h2>RATINGS & REVIEWS</h2>
       </div>
 
       <div className="overall">
