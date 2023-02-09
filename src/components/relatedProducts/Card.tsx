@@ -4,7 +4,7 @@ import axios from 'axios';
 import Modal from '../shared/Modal';
 import ComparisonModal from './ComparisonModal';
 import { getProductDataFromDB } from '../../helperFunctions';
-import { averageRating, getRatingsDataFromDB, getCardProductImgFromDB  } from '../../helperFunctions';
+import { averageRating, getRatingsDataFromDB, getCardProductImgFromDB, getSalePrice  } from '../../helperFunctions';
 import { Rating } from 'react-simple-star-rating';
 
 
@@ -16,7 +16,6 @@ interface CardProps {
   handleCardClick?: (active: string) => void;
   handleRemoveOutfit?: (active: string) => void;
   productMetaData: object;
-
 }
 
 const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProductData, handleCardClick, handleRemoveOutfit, productMetaData}) => {
@@ -26,11 +25,13 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [cardMetaData, setCardMetaData] = useState({});
 
+
+
   // retrieve all data
   useEffect(() => {
     getProductDataFromDB(cardID, setCardProductData);
     getCardProductImgFromDB(cardID, setProductImage);
-    getRatingsDataFromDB(cardID, setCardMetaData)
+    getRatingsDataFromDB(cardID, setCardMetaData);
   }, []);
 
   // create product object type and perform type check
@@ -51,8 +52,6 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
   // get product meta data and calculate rating
   const cardRating:string = averageRating(cardMetaData.ratings)
   const currentProductRating:string = averageRating(productMetaData.ratings)
-
-
 
   return (
     <>
@@ -88,11 +87,12 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
 
         </div>
         <div className='cardInfo' onClick={(e) => onCardClick(e)}>
-          <p>{cardProductData.category}</p>
-          <p>{cardProductData.name}</p>
-          <p>${Math.round(cardProductData.default_price)}</p>
+          <div>{cardProductData.category && cardProductData.category.toUpperCase()}</div>
+          <div>{cardProductData.name}</div>
+          <div>${Math.round(cardProductData.default_price)}</div>
           <div className="overall-stars"> < Rating readonly={true} initialValue={cardRating} size={ 18 } fillColor="#525252" emptyColor="#00000040" allowFraction={ true }/> </div>
         </div>
+        <div className='card_overlay'></div>
       </div>
     </>
   );
