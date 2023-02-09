@@ -107,7 +107,7 @@
           // margin-top: 0.75rem;
         }
         .box {
-          transition: position 1s ease;
+          transition: width 0.3s ease, height 0.3s ease;
           width: 4rem;
           height: 4rem;
           border: 1px solid black;
@@ -119,8 +119,14 @@
             object-fit: cover;
           }
         }
+        .box:hover {
+          width: 4.25rem;
+          height: 4.25rem;
+        }
         .selected {
-          border: 5px solid blue;
+          width: 4.25rem;
+          height: 4.25rem;
+          box-shadow: 0px 5px 5px 0px black;
         }
         .icon {
           width: 1.5rem;
@@ -215,13 +221,25 @@
           height: $radius;
           margin-right: 1vw;
           cursor: pointer;
+          background-size: cover;
         }
         .circle:last-child {
           margin-bottom: 1rem;
         }
 
-        .selected {
-          border: 6px solid blue;
+        .selected::before {
+          display: block;
+          content: '';
+          background-image: url('../images/checkmark-circle-2.png');
+          z-index: 1000000;
+          background-size: 20px 20px;
+          position: relative;
+          width: 20px;
+          height: 20px;
+          top: -3px;
+          left: 44px;
+          // zoom: 25%;
+
         }
       }
 
