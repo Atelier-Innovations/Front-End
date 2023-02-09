@@ -5,7 +5,7 @@ const ProductDescriptionPanel: React.FC = ({currentStyle, product}) => {
   return (
     <div className="bottom-panel">
       <div className="description">
-        <h3>{product.slogan}</h3>
+        <h3 className='slogan'>{product.slogan}</h3>
         <p>{product.description}</p>
       </div>
       <div className="checklist">

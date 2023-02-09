@@ -21,18 +21,21 @@ const StyleSelector: React.FC<StyleSelectorProps> = (props: StyleSelectorProps) 
 
   return (
     <>
-      <h3>Style {'>'} {props.currentStyle.name} </h3>
-      <div className="style-selector">
-        {props.styles.results.map( (style, index) => (
-          <StyleIcon style={style}
-                     key={style.style_id}
-                     index={index}
-                     handleClick={handleClick}
-                     selected={
-                      style.style_id === props.currentStyle.style_id ?
-                      true : false
-                     } />
-        ))}
+      <div className='style-selector-div'>
+        {props.currentStyle.name &&
+        <h3 className="style-name"><span>STYLE</span> {'>'} {props.currentStyle.name.toUpperCase()} </h3>}
+        <div className="style-selector">
+          {props.styles.results.map( (style, index) => (
+            <StyleIcon style={style}
+                      key={style.style_id}
+                      index={index}
+                      handleClick={handleClick}
+                      selected={
+                        style.style_id === props.currentStyle.style_id ?
+                        true : false
+                      } />
+          ))}
+        </div>
       </div>
     </>
 
