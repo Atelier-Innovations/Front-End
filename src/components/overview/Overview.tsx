@@ -5,7 +5,6 @@ import ImageGallery from './imageGallery/ImageGallery';
 import ControlPanel from './controlPanel/ControlPanel';
 import ProductDescriptionPanel from './ProductDescriptionPanel';
 import axios from 'axios';
-import Fixtures from './fixtures.js';
 
 
 interface OverviewProps {
