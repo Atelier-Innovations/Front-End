@@ -89,8 +89,6 @@ const StarChart: FC<StarChartProps> = ({ ratings, setDisplayedReviews, filteredR
     }
   }
 
-
-console.log(displayedReviews)
   const threeStarFilter = (event) => {
     if (displayedReviews.toString() === currentReviews.results.toString()) {
       setDisplayedReviews(filteredReviews.threeStar)
@@ -129,10 +127,8 @@ console.log(displayedReviews)
         ...filteredReviews.oneStar
       ])
     }
-    if (displayedReviews.filter((review) => {return review.rating === 1}) && displayedReviews.filter((review) => {return review.rating !== 1}).length === 0) {
+    if (displayedReviews.filter((review) => {return review.rating === 2}) && displayedReviews.filter((review) => {return review.rating !== 2}).length === 0) {
       setDisplayedReviews(currentReviews.results)
-    } else if (displayedReviews.filter((review) => {return review.rating === 1}) && displayedReviews.filter((review) => {return review.rating !== 1}).length !== 0) {
-      console.log('test')
     }
   }
 

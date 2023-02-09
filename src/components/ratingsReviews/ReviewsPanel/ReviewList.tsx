@@ -58,11 +58,13 @@ const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, review
   // console.log(filteredOrNot())
 
 
-  console.log('displayed:', displayedReviews)
+  // console.log('displayed:', displayedReviews)
 
   return (
     <div className="review-list">
-      < SortBy sort={ sort } setSort={ setSort } ratings={ productMetaData.ratings }/>
+      <div className="sort">
+        < SortBy sort={ sort } setSort={ setSort } ratings={ productMetaData.ratings }/>
+      </div>
       { displayedReviews && displayedReviews.map((review, id) => {
         return < Review key={id} review={review} getReviewData={ getReviewData }/>
       }) }
@@ -70,7 +72,7 @@ const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, review
         <button className="big-button" onClick={ onClickMoreReviews }>MORE REVIEWS</button>
         <button className="big-button" onClick={ onAddClick }>ADD A REVIEW +</button>
         <Modal
-          modalClassName='comparisonModal'
+          modalClassName='add-review-modal'
           overlayClassName='modalOverlay'
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}>

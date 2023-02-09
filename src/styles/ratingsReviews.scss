@@ -9,11 +9,12 @@
   display: flex;
   flex-direction: column;
 
+
   .banner {
     text-align: left;
     height: 5%;
-
     width: 100%;
+
   }
 
   .overall {
@@ -24,7 +25,6 @@
     .ratings-panel {
       display: flex;
       flex-direction: column;
-      border: 2px solid $text;
       width: 24%;
       height: 100%;
       margin-right: 3rem;
@@ -77,11 +77,12 @@
         font-weight: 600;
         align-content: center;
         justify-content: flex-start;
+        margin-top: -0.4rem;
 
 
         .overall-stars {
           position:relative;
-          top: -1rem;
+          top: -1.2rem;
           left: 0.45rem;
         }
 
@@ -148,13 +149,30 @@
       flex-direction: column;
       overflow: hidden;
       overflow-y: auto;
-      height: 100%;
       width: 73%;
-      border: 2px solid $text;
+      padding-right: 2rem;
+      // border: 2px solid $text;
+
+
+
+      .review-rating {
+        z-index: 0
+      }
+
+
+
+      .sort {
+        height: 2rem;
+        background-color: $main;
+        position:-webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 0
+      }
 
       .button-panel {
         .big-button {
-          border: 1px black solid;
+          // border: 1px black solid;
           background: none;
           font-weight: bold;
           font-size: 0.9rem;
@@ -183,9 +201,11 @@
 
       .single-review {
         display: flex;
-        border: 1px solid $text;
+        // border: 1px solid $text;
         flex-direction: column;
         margin-bottom: 1.4rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid $text;
 
 
         .info-bar {
@@ -193,20 +213,24 @@
           flex-direction: row;
           justify-content: space-between;
           width: 100%;
-          border: 1px solid $text;
+          // border: 1px solid $text;
         }
 
         .summary {
-          margin-top: 0.8rem;
+          margin-top: 0.4rem;
           font-weight: bold;
-          border: 1px solid $text;
+          font-size: 1rem;
+          // border: 1px solid $text;
           margin-bottom: 0.8rem;
+          text-overflow: ellipsis;
         }
 
         .review-body {
           font-size: 0.9rem;
           margin-bottom: 0.8rem;
         }
+
+
 
         .helpful {
           font-size: 0.75rem;
