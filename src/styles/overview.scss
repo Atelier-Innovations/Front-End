@@ -191,16 +191,12 @@
 
       .style-selector-div {
         padding: 10px;
-        // height: 20%;
-        // border: 1px solid green;
 
         .style-selector {
           height: 95%;
           width: 100%;
-          // border: 1px solid pink;
-          display: flex;
-          flex-wrap: wrap;
-          // padding: 10px;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
         }
 
         .style-name {
@@ -219,6 +215,9 @@
           height: $radius;
           margin-right: 1vw;
           cursor: pointer;
+        }
+        .circle:last-child {
+          margin-bottom: 1rem;
         }
 
         .selected {
