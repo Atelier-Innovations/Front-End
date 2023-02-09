@@ -1,3 +1,5 @@
 git statusnode_modules
 node_modules
 .env
+bundle.js
+bundle.js.LICENSE.txt

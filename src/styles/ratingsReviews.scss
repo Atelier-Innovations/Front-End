@@ -1,0 +1,259 @@
+@import 'main.scss';
+
+/////////////////////////
+// RATINGS AND REVIEWS //
+/////////////////////////
+
+.reviews-ratings {
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  width: 1050px;
+  // overflow: hidden;
+  // overflow-y: auto;
+
+
+  .banner {
+    text-align: left;
+    width: 100%;
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+
+  }
+
+  .overall {
+    display: flex;
+    flex-direction: row;
+    // height: 96%;
+
+    .ratings-panel {
+      display: flex;
+      flex-direction: column;
+      width: 24%;
+      height: 100%;
+      margin-right: 3rem;
+      text-align: start;
+      overflow: hidden;
+      overflow-y: auto;
+
+      .ratings-sliders {
+        margin-top: 1.25rem;
+
+        .slider-title {
+          font-size: 0.95rem;
+        }
+
+        .slider-tags {
+          display:flex;
+          justify-content: space-between;
+          font-size: 0.8rem;
+        }
+
+        .slider {
+          display: flex;
+          flex-direction: row;
+          position: relative;
+          align-items: center;
+          justify-content: space-between;
+          height: 1.3rem;
+
+          .bar {
+            height: 0.5rem;
+            width: 32.5%;
+            background-color: rgba(207, 207, 207, 0.8);
+          }
+
+          .bar4 {
+            height: 0.5rem;
+            width: 24%;
+            background-color: rgba(207, 207, 207, 0.8);
+          }
+        }
+
+      }
+
+
+
+      .overall-rating {
+        display:flex;
+        flex-direction: row;
+        font-size: 2.75rem;
+        font-weight: 600;
+        align-content: center;
+        justify-content: flex-start;
+        margin-top: -0.4rem;
+
+
+        .overall-stars {
+          position:relative;
+          top: -1.2rem;
+          left: 0.45rem;
+        }
+
+
+      }
+
+      .recommendation {
+        text-align: left;
+        font-size: 0.85rem;
+        margin-top: 0.45rem;
+        margin-bottom: -0.6rem;
+      }
+
+      .filter-by-star {
+        display: flex;
+        flex-flow: column nowrap;
+        padding-top: 0.5rem;
+
+        .text-button {
+          border: none;
+          background-color: inherit;
+          padding: 0.08rem;
+          font-size: 0.70rem;
+          cursor: pointer;
+          text-decoration: underline;
+          transition: color 0.3s;
+          &:hover {
+            color: rgb(55, 108, 253);
+            transition: color 0.3s
+          }
+        }
+
+        progress[value] {
+          -webkit-appearance: none;
+          appearance: none;
+          margin-left: 1rem;
+          width: 74%;
+          height: 0.45rem;
+          margin-bottom: .2rem;
+
+        }
+
+
+        progress[value]::-webkit-progress-bar {
+          background-color: rgba(223, 214, 214, 0.6);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.251) inset;
+        }
+
+        progress[value]::-webkit-progress-value {
+          background-color: rgb(82, 82, 82);
+        }
+
+
+        .stars {
+          padding-top: 0.7rem;
+          text-decoration: underline;
+          font-size: small;
+        }
+      }
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      overflow-y: auto;
+      width: 73%;
+      padding-right: 2rem;
+      // border: 2px solid $text;
+
+
+
+      .review-rating {
+        z-index: 0
+      }
+
+
+
+      .sort {
+        height: 2rem;
+        background-color: white;
+        position:-webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 1
+      }
+
+      .button-panel {
+        .big-button {
+          // border: 1px black solid;
+          background: none;
+          font-weight: bold;
+          font-size: 0.9rem;
+          height: 3rem;
+          margin-right: 1rem;
+          cursor: pointer;
+        }
+      }
+
+
+
+      .sort-by {
+        font-weight: bold;
+        margin-bottom: 1.35rem;
+
+        #sorter {
+          border: none;
+          background: none;
+          font-weight: bold;
+          font-size: 0.9rem;
+          margin-left: -.45rem;
+          border-bottom: 3px solid rgb(71, 71, 71);
+          width: 6.5rem
+
+        }
+      }
+
+      .single-review {
+        display: flex;
+        // border: 1px solid $text;
+        flex-direction: column;
+        margin-bottom: 1.4rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid $text;
+
+
+        .info-bar {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          width: 100%;
+          // border: 1px solid $text;
+        }
+
+        .summary {
+          margin-top: 0.4rem;
+          font-weight: 700;
+          font-size: 1.2rem;
+          // border: 1px solid $text;
+          margin-bottom: 0.8rem;
+          text-overflow: ellipsis;
+        }
+
+        .review-body {
+          font-size: 1rem;
+          margin-bottom: 0.8rem;
+        }
+
+
+
+        .helpful {
+          font-size: 0.75rem;
+          .text-button {
+            border: none;
+            background-color: inherit;
+            padding: 0.08rem;
+            font-size: 0.70rem;
+            cursor: pointer;
+            display: inline-block;
+            transition: color 0.3s;
+            &:hover {
+              color: rgb(55, 108, 253);
+              transition: color 0.3s
+            }
+          }
+        }
+      }
+    }
+  }
+}

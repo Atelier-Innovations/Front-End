@@ -1,0 +1,169 @@
+@import 'main.scss';
+
+// immdediate children
+.q-and-a-container {
+  height: 35rem;
+  display: flex;
+  align-content: flex-start;
+  flex-direction: column;
+  border: 2px solid brown;
+  width: 100%;
+
+  .q-and-a-header {
+    // flex-direction: row;
+    // align-content: flex-start;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+
+    .search-bar {
+      height: 2rem;
+      display: flex;
+      align-content: flex-start;
+      margin-bottom: 1rem;
+      border-width: 75%;
+
+      input {
+        color: black;
+        font-size: 75%;
+        width: 75%;
+      }
+
+      .search-button {
+        color: black;
+      }
+    }
+
+    .question-container {
+      display: flex;
+      margin-bottom: 1rem;
+      align-content: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      width: 100%;
+
+      .question-text {
+        font-weight: bold;
+      }
+
+      .helpful-answer-btn {
+        background: none;
+        font-size: 0.8rem;
+
+        .helpful-btn {
+          border: none;
+          background: none;
+          font-size: 0.8rem;
+          span {
+            text-decoration: underline;
+          }
+        }
+        .add-answer-btn {
+          border: none;
+          background: none;
+          font-size: 0.8rem;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .answers-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: evenly;
+      width: 75%;
+      margin-bottom: 1rem;
+
+      .answers-title {
+        font-weight: bold;
+      }
+
+      .answers-list {
+        margin-left: 1rem;
+      }
+      .answer-info-container {
+        margin-bottom: 1rem;
+        font-size: 0.8rem;
+        border: 2px solid red;
+
+        .answer-info {
+          display: flex;
+          flex-direction: flex-start;
+
+          .user {
+            font-size: 0.8rem;
+          }
+
+          .date {
+            font-size: 0.8rem;
+          }
+
+          .helpful-btn {
+            font-size: 0.8rem;
+            border: none;
+            background: none;
+            span {
+              text-decoration: underline;
+            }
+          }
+
+          .report-btn {
+            font-size: 0.8rem;
+            border: none;
+            background: none;
+            text-decoration: underline;
+          }
+        }
+
+        .img-container {
+            display: flex;
+            justify-content: flex-start;
+
+            .q-and-a-answer-img {
+              height: auto;
+              max-width: 15%;
+              margin-right: 1rem;
+            }
+          }
+        }
+
+      .action-btn-load-more-answers {
+        // display: flex;
+        border: none;
+        border-color: transparent;
+        background: none;
+        margin-top: 1rem;
+        width: 50%;
+        text-align: left;
+        font-size: 0.8rem;
+        color: black;
+        font-weight: bold;
+
+      }
+    }
+
+      .action-btn-answers {
+        color: red;
+        width: 25%;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+
+
+    .action-btn {
+      display: flex;
+      margin-right: 2rem;
+      background: none;
+      font-weight: bold;
+      .more-answers {
+        text-align: center;
+        line-height: 35px;
+      }
+      .add-question {
+        text-align: center;
+        line-height: 35px;
+      }
+    }
+  }

@@ -1,0 +1,278 @@
+$main: #eaeaea;
+$nav: #404b56;
+$accent-light: #cc0e1d;
+$accent-dark: #a2141a;
+$text: #2c3034;
+
+///////////
+// RESET///
+///////////
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+
+
+h1 {
+  font-size: 56px;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+h3 {
+  font-size: 26px;
+  font-weight: 300;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+button {
+  // background-color: $accent-light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $nav;
+  height: 6rem;
+  width: 1250px;
+  color: $main;
+  h1 {
+    margin-left: 1rem;
+    font-size: 45px;
+    display: inline;
+  }
+  ul {
+    display: flex;
+    list-style: none;
+    li {
+      display: flex;
+      transition: background 0.5s ease;
+      display: inline;
+      margin-right: 0;
+      padding: 2.4rem 1rem;
+      background: $nav;
+      a {
+        text-decoration: none;
+        color: $main;
+        flex-grow: 1;
+        padding: 2rem 1rem;
+      };
+    }
+    li:hover {
+      background: $accent-light;
+    }
+  }
+}
+
+.app {
+  width: 100%;
+  // border: 1px solid $accent-light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.widget {
+  // border: 2px solid $text;
+  display: flex;
+  // justify-content: center;
+  margin-bottom: 1rem;
+  // background: $main;
+  // width: 75%;
+
+  // align-items: center;
+}
+
+/////////////////////////
+//    MODAL STYLES     //
+/////////////////////////
+
+.ReactModal__Overlay {
+  z-index: 1000;
+}
+
+
+.comparisonModal {
+  background-color: white;
+  width: 550px;
+  border: 1px solid black;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 45%;
+  left: 50%;
+  padding: 10px;
+  text-align: center;
+  z-index: 1000;
+
+
+  .modal-title {
+    padding: 0px;
+
+    h3 {
+      text-align: center;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      padding: 0;
+    }
+
+    h4 {
+      text-align: left;
+      margin: 0;
+      font-weight: 100;
+    }
+  }
+
+  .comparison-modal-table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .comparison-modal-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 90%;
+    margin-bottom: 5px;
+    padding: 0;
+  }
+}
+
+.add-review-modal {
+  background-color: white;
+  width: 40rem;
+  border: 1px solid black;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  text-align: center;
+
+  modal-title {
+    padding: 0px;
+
+    h3 {
+      text-align: center;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      padding: 0;
+    }
+
+    h4 {
+      text-align: left;
+      margin: 0;
+      font-weight: 100;
+    }
+  }
+
+
+  .add-a-review {
+    display: flex;
+    flex-direction: column;
+
+    .review-form {
+      list-style-type: none;
+      border: 1px black solid;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    .email {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content:space-between;
+    }
+
+    .name{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content:space-between;
+    }
+
+    .summary {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content:space-between;
+    }
+
+    .body {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content:space-between;
+    }
+
+    .checkbox1 {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content:space-between
+    }
+
+    .charachteristics {
+      display: flex;
+      flex-flow: row nowrap;
+      width: 29.3rem
+    }
+
+    .custom-select {
+      position: relative;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      // display: none;
+
+
+
+    }
+    .select-selected {
+      background-color: DodgerBlue;
+    }
+
+    input[type=text] {
+      width: 25rem
+    }
+
+    input[type=email] {
+      width: 25rem
+    }
+
+    input[type=textarea] {
+      height: 8rem;
+      width: 25rem
+    }
+  }
+}
