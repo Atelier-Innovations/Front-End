@@ -8,6 +8,7 @@
   height: 34rem;
   display: flex;
   flex-direction: column;
+  max-width: 1050px;
 
 
   .banner {
@@ -163,7 +164,7 @@
 
       .sort {
         height: 2rem;
-        background-color: $main;
+        background-color: white;
         position:-webkit-sticky;
         position: sticky;
         top: 0;

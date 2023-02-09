@@ -63,7 +63,12 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
     return false
   }
 
-  const itemsToDisplay = items.slice(firstItemIndex, lastItemIndex)
+  var itemsToDisplay;
+
+  if (items.length > 0) {
+    itemsToDisplay = items.slice(firstItemIndex, lastItemIndex)
+  }
+
 
   return (
     <div className='carousel carousel_related'>
