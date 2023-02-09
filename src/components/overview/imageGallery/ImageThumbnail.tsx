@@ -1,4 +1,5 @@
 import React from 'react';
+import notFound from '../../../images/not-found.png';
 
 
 interface ImageThumbnailProps {
@@ -17,7 +18,7 @@ const ImageThumbnail: React.FC<ImageThumbnailProps> = (props: ImageThumbnailProp
   return <div className={'box ' + (props.selected ? 'selected ' : '') +
                          (props.icon ? 'icon' : '')}
                          >
-    <img src={props.image}
+    <img src={props.image ? props.image : notFound}
          onClick={props.onClick}
          id={props.id} />
   </div>
