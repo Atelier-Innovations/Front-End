@@ -33,7 +33,7 @@ export const getRatingsDataFromDB = (productID, setterFunction) => {
   })
 };
 
- export const getCardProductImgFromDB = async (cardID, setterFunction) => {
+export const getCardProductImgFromDB = async (cardID, setterFunction) => {
   let response = await axios.get(
     `http://localhost:6969/products/${cardID}/styles`
   );
