@@ -1,5 +1,5 @@
 import axios from 'axios';
-import notFound from '../../dist/images/not-found.png'
+import notFound from '../images/not-found.png';
 
 export const getProductDataFromDB = (productID, setterFunction) => {
   axios
