@@ -11,7 +11,8 @@ const StyleIcon: React.FC = (props) => {
   return (
     <div src={props.style.photos[0].thumbnail_url ?
               props.style.photos[0].thumbnail_url : notFound}
-         style={{ backgroundImage: `url(${props.style.photos[0].thumbnail_url})` }}
+         style={{ backgroundImage: `url(${props.style.photos[0].thumbnail_url ?
+         props.style.photos[0].thumbnail_url : notFound})` }}
          className={props.selected ? 'circle selected' : 'circle'}
          onClick={props.handleClick}
          id={props.index} />
