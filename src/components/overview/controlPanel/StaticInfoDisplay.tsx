@@ -58,7 +58,7 @@ const StaticInfoDisplay: React.FC<StaticInfoProps> = ({product, currentStyle, re
 
 
 
-      <h3>{product.category}</h3>
+      {product.category && <h3 className="category">{product.category.toUpperCase()}</h3>}
       <h2>{product.name}</h2>
       {currentStyle.sale_price ?
       <>
@@ -66,7 +66,7 @@ const StaticInfoDisplay: React.FC<StaticInfoProps> = ({product, currentStyle, re
         <span> ${currentStyle.sale_price} SALE!!!</span>
 
       </> :
-      <span>${currentStyle.original_price}</span>}
+      <span className="original-price">${currentStyle.original_price}</span>}
       <ul className="social-media-icons">
         <li><img className="social-media-icon"
              src={facebook}

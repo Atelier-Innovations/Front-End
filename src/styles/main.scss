@@ -30,6 +30,19 @@ time, mark, audio, video {
 }
 
 
+h1 {
+  font-size: 100px;
+}
+
+h2 {
+  font-size: 56px;
+
+}
+
+h3 {
+  font-size: 26px;
+}
+
 
 * {
   box-sizing: border-box;
@@ -45,7 +58,7 @@ nav {
   justify-content: space-between;
   background: $nav;
   height: 6rem;
-  width: 75%;
+  width: 1250px;
   color: $main;
   h1 {
     margin-left: 1rem;
@@ -60,7 +73,7 @@ nav {
       transition: background 0.5s ease;
       display: inline;
       margin-right: 0;
-      padding: 100% 1rem;
+      padding: 2.5rem 1rem;
       background: $nav;
       a {
         text-decoration: none;

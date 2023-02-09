@@ -71,7 +71,7 @@ const ButtonPanel: React.FC = ({currentStyle, skus}) => {
       </div>
       <div className="row-2">
         {outOfStock ? null : <button className="add-to-bag"
-                                     onClick={handleAdd}>Add To Bag</button>}
+                                     onClick={handleAdd}>Add To Bag <span>+</span></button>}
         <button className="favorite">
           <img src={star} className="star" />
         </button>
