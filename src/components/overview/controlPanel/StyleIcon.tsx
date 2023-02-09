@@ -9,8 +9,9 @@ interface StyleIconProps {
 const StyleIcon: React.FC = (props) => {
 
   return (
-    <img src={props.style.photos[0].thumbnail_url ?
+    <div src={props.style.photos[0].thumbnail_url ?
               props.style.photos[0].thumbnail_url : notFound}
+         style={{ backgroundImage: `url(${props.style.photos[0].thumbnail_url})` }}
          className={props.selected ? 'circle selected' : 'circle'}
          onClick={props.handleClick}
          id={props.index} />
