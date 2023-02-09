@@ -165,15 +165,20 @@
         .on-sale {
           text-decoration: line-through;
         }
-        .sale {
+        .sale-price {
           color: red;
         }
+
         .stars {
           margin: 0.8rem 0;
         }
         .category {
           margin-bottom: -5px;
           margin-left: 1px;
+        }
+
+        .price {
+          margin: 20px 0;
         }
         .original-price {
           margin: 20px 0;
