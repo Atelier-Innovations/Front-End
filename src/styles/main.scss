@@ -169,16 +169,11 @@ nav {
     }
 
     .custom-select {
+      display: flex;
       position: relative;
       flex-flow: row nowrap;
       justify-content: space-between;
-      display: none;
-
-
-
-    }
-    .select-selected {
-      background-color: DodgerBlue;
+      // display: none;
     }
 
     input[type=text] {
