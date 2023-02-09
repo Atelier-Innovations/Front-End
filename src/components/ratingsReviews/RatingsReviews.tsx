@@ -24,6 +24,8 @@ interface RatingsReviewsProps {
 
 const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
   const [ currentReviews, setCurrentReviews ] = useState({})
+  const [ filteredReviews, setFilteredReviews ] = useState({})
+  const [ displayedReviews, setDisplayedReviews ] = useState([])
   const [ sort, setSort ] = useState('relevant')
   const [ reviewCount, setReviewCount ] = useState(2);
   const [ newReview, makeNewReview] = useState({
@@ -47,7 +49,8 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
   const getReviewData = () => {
     axios.get(`http://localhost:6969/reviews?id=${props.currentProductID}&sort=${sort}&count=${reviewCount}`)
       .then((results) => {
-        setCurrentReviews(results.data)
+        setCurrentReviews(results.data);
+        setDisplayedReviews(results.data.results);
       })
       .catch((err) => {
         console.log(err);
@@ -57,6 +60,43 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
   useEffect(() => {
     getReviewData();
   }, [sort, props.currentProductID, reviewCount])
+
+  useEffect(() => {
+    filterReviews(currentReviews)
+  }, [currentReviews, reviewCount])
+
+  const filterReviews = (currentReviews) => {
+    if (currentReviews.results === undefined) {
+      return null;
+    };
+
+    let filteredReviews = {
+      oneStar: [],
+      twoStar: [],
+      threeStar: [],
+      fourStar: [],
+      fiveStar: []
+    }
+
+    for (let i = 0; i < currentReviews.results.length; i++) {
+      var review = currentReviews.results[i];
+      if (review.rating === 1) {
+        filteredReviews.oneStar.push(review);
+      } else if (review.rating === 2) {
+        filteredReviews.twoStar.push(review);
+      } else if (review.rating === 3) {
+        filteredReviews.threeStar.push(review);
+      } else if (review.rating === 4) {
+        filteredReviews.fourStar.push(review);
+      } else if (review.rating === 5) {
+        filteredReviews.fiveStar.push(review);
+      }
+    }
+    setFilteredReviews(filteredReviews)
+  }
+
+  // console.log(filteredReviews)
+  // console.log('displayed',displayedReviews)
 
   // console.log('MetaData from R/R:', props.productMetaData)
   // console.log('Current Reviews from R/R:', currentReviews)
@@ -69,8 +109,8 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
       </div>
 
       <div className="overall">
-        < RatingsList productMetaData={ props.productMetaData }/>
-        < ReviewList reviewCount={ reviewCount } setReviewCount={ setReviewCount } sort={ sort } setSort={ setSort } currentReviews={ currentReviews } productMetaData={ props.productMetaData } newReview={newReview} makeNewReview={ makeNewReview } getReviewData={ getReviewData }/>
+        < RatingsList productMetaData={ props.productMetaData } setDisplayedReviews={ setDisplayedReviews } displayedReviews={ displayedReviews }filteredReviews={ filteredReviews } currentReviews={ currentReviews }/>
+        < ReviewList reviewCount={ reviewCount } setReviewCount={ setReviewCount } sort={ sort } setSort={ setSort } displayedReviews={ displayedReviews } currentReviews={ currentReviews } productMetaData={ props.productMetaData } newReview={newReview} makeNewReview={ makeNewReview } getReviewData={ getReviewData }/>
       </div>
     </div>
   )

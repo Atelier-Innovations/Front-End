@@ -100,10 +100,24 @@
         flex-flow: column nowrap;
         padding-top: 0.5rem;
 
+        .text-button {
+          border: none;
+          background-color: inherit;
+          padding: 0.08rem;
+          font-size: 0.70rem;
+          cursor: pointer;
+          text-decoration: underline;
+          transition: color 0.3s;
+          &:hover {
+            color: rgb(55, 108, 253);
+            transition: color 0.3s
+          }
+        }
+
         progress[value] {
           -webkit-appearance: none;
           appearance: none;
-          margin-left: 1.2rem;
+          margin-left: 1rem;
           width: 74%;
           height: 0.45rem;
           margin-bottom: .2rem;
