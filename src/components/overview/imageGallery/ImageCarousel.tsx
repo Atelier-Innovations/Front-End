@@ -1,5 +1,4 @@
 import React from 'react';
-import { gsap } from 'gsap';
 import { useEffect, useState } from 'react';
 import ImageThumbnail from './ImageThumbnail';
 const up = require('../../../icons/arrow-up-solid.svg');

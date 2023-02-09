@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import ImageCarousel from './ImageCarousel';
+import notFound from '../../../images/not-found.png';
 const expand = require('../../../icons/expand-solid.svg');
 const left = require('../../../icons/arrow-left-solid.svg');
 const right = require('../../../icons/arrow-right-solid.svg');
@@ -40,7 +41,6 @@ const ImageGallery: FC<ImageGalleryProps> = (props: ImageGalleryProps) => {
     );
     document.getElementsByClassName('big-image')[0].style.objectPosition = '0px 0px';
   };
-
 
   const handleMouseMove = (event) => {
     setZoomCoords([event.nativeEvent.offsetX, event.nativeEvent.offsetY]);
@@ -94,7 +94,7 @@ const ImageGallery: FC<ImageGalleryProps> = (props: ImageGalleryProps) => {
 
       <img className={'big-image ' + (props.imageExpanded ? 'expanded ' : 'default ') +
                      (zoomed ? 'zoomed ' : '')}
-           src={imageList[currentImage].url}
+           src={imageList[currentImage].url ? imageList[currentImage].url : notFound}
            onClick={props.imageExpanded ?
            toggleZoom : props.toggleExpanded} />  : null}
 
