@@ -38,10 +38,11 @@ interface ReviewListProps {
     characteristics: {};
   };
   getReviewData: Function;
+  displayedReviews: Array<object>
 }
 
 
-const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, reviewCount, setReviewCount, productMetaData, newReview, makeNewReview, getReviewData }) => {
+const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, reviewCount, setReviewCount, productMetaData, newReview, makeNewReview, getReviewData, displayedReviews }) => {
   // console.log('From ReviewList:', currentReviews.results)
   // console.log(currentReviews.results.review_id)
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -54,22 +55,29 @@ const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, review
     setModalIsOpen(true);
   }
 
+  // console.log(filteredOrNot())
+
+
+  // console.log('displayed:', displayedReviews)
+
   return (
     <div className="review-list">
-      < SortBy sort={ sort } setSort={ setSort } ratings={ productMetaData.ratings }/>
-      { currentReviews.results && currentReviews.results.map((review, id) => {
+      <div className="sort">
+        < SortBy sort={ sort } setSort={ setSort } ratings={ productMetaData.ratings }/>
+      </div>
+      { displayedReviews && displayedReviews.map((review, id) => {
         return < Review key={id} review={review} getReviewData={ getReviewData }/>
       }) }
       <div className="button-panel">
         <button className="big-button" onClick={ onClickMoreReviews }>MORE REVIEWS</button>
         <button className="big-button" onClick={ onAddClick }>ADD A REVIEW +</button>
         <Modal
-        modalClassName='comparisonModal'
-        overlayClassName='modalOverlay'
-        modalIsOpen={modalIsOpen}
-        setModalIsOpen={setModalIsOpen}>
-          < AddAReview productMetaData={ productMetaData } newReview={ newReview } makeNewReview={makeNewReview} setModalIsOpen={ setModalIsOpen }/>
-      </Modal>
+          modalClassName='add-review-modal'
+          overlayClassName='modalOverlay'
+          modalIsOpen={modalIsOpen}
+          setModalIsOpen={setModalIsOpen}>
+            < AddAReview productMetaData={ productMetaData } newReview={ newReview } makeNewReview={makeNewReview} setModalIsOpen={ setModalIsOpen }/>
+        </Modal>
       </div>
     </div>
   )

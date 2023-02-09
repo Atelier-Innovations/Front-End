@@ -24,7 +24,7 @@ interface StaticInfoProps {
 const StaticInfoDisplay: React.FC<StaticInfoProps> = ({product, currentStyle, reviews}) => {
   let overallRating = 0;
   let totalReviews = 0;
-  console.log(reviews);
+  // console.log(reviews);
   if (reviews.ratings) {
     overallRating = Math.round(((Number(reviews.ratings['1']) * 1) +
                                 (Number(reviews.ratings['2']) * 2) +
@@ -56,9 +56,8 @@ const StaticInfoDisplay: React.FC<StaticInfoProps> = ({product, currentStyle, re
         <span><a href="#reviews-ratings">Read all {totalReviews} reviews</a></span>
       </div> : null}
 
-
-
       {product.category && <h3 className="category">{product.category.toUpperCase()}</h3>}
+
       <h2>{product.name}</h2>
       {currentStyle.sale_price ?
       <>

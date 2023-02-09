@@ -156,4 +156,110 @@ nav {
     margin-bottom: 5px;
     padding: 0;
   }
+
+
+}
+
+.add-review-modal {
+  background-color: white;
+  width: 40rem;
+  border: 1px solid black;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  text-align: center;
+
+  modal-title {
+    padding: 0px;
+
+    h3 {
+      text-align: center;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      padding: 0;
+    }
+
+    h4 {
+      text-align: left;
+      margin: 0;
+      font-weight: 100;
+    }
+  }
+
+
+  .add-a-review {
+    display: flex;
+    flex-direction: column;
+
+    .review-form {
+      list-style-type: none;
+      border: 1px black solid;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    .email {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content:space-between;
+    }
+
+    .name{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content:space-between;
+    }
+
+    .summary {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content:space-between;
+    }
+
+    .body {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content:space-between;
+    }
+
+    .checkbox1 {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content:space-between
+    }
+
+    .charachteristics {
+      display: flex;
+      flex-flow: row nowrap;
+      width: 29.3rem
+    }
+
+    .custom-select {
+      position: relative;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      display: none;
+
+
+
+    }
+    .select-selected {
+      background-color: DodgerBlue;
+    }
+
+    input[type=text] {
+      width: 25rem
+    }
+
+    input[type=email] {
+      width: 25rem
+    }
+
+    input[type=textarea] {
+      height: 8rem;
+      width: 25rem
+    }
+  }
 }
