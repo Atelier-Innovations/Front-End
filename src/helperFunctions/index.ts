@@ -1,4 +1,5 @@
 import axios from 'axios';
+import notFound from '../../dist/images/not-found.png'
 
 export const getProductDataFromDB = (productID, setterFunction) => {
   axios
@@ -39,13 +40,30 @@ export const getRatingsDataFromDB = (productID, setterFunction) => {
   let img = response.data.results[0].photos[0].thumbnail_url;
   // check image for null value and display "not available" if true
   if (img === null) {
-    setterFunction(
-      'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg'
-    );
+    setterFunction(notFound);
   } else {
     setterFunction(img);
   }
 };
+
+  export const getSalePrice = async (cardID, setterFunction) => {
+    try {
+      let response = await axios.get(
+      `http://localhost:6969/products/${cardID}/styles`
+      );
+      let data = response.data.results
+      let defaultStyle = response.data.results[0]
+      data.forEach(item => {
+        if (item['default?'] === true)
+        defaultStyle = item
+      })
+      // let salePrice = response.data.results.sale_price
+      setterFunction(defaultStyle.sale_price);
+    }
+    catch (error) {
+      console.log(error)
+    }
+  };
 
 export const averageRating = (ratings: object) => {
   if (!ratings) {

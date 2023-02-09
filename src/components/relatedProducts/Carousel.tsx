@@ -32,6 +32,11 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
     }
   }, [items])
 
+  useEffect(() => {
+    setfirstItemIndex(0)
+    setLastItemIndex(4)
+  }, [currentProductID])
+
   const handleForwardClick = () => {
     // check if more items
     if (items.length > lastItemIndex) {

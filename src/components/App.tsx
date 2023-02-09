@@ -15,17 +15,28 @@ export const App: React.FC = () => {
     // get current product data
     getProductDataFromDB(currentProductID, setCurrentProductData)
     getRatingsDataFromDB(currentProductID, setProductMetaData)
+    window.scrollTo(0, 105)
   }, [currentProductID])
 
   const handleCardClick = (cardID) => {
     setCurrentProductID(cardID)
   }
 
+  console.log(currentProductData)
+
 
 
   return (
     <div className='app'>
-      <nav></nav>
+      <nav>
+        <h1>Store Name</h1>
+        <ul className="nav-list">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#related-products">Related Products</a></li>
+          <li><a href="#q-and-a">Q&A</a></li>
+          <li><a href="#reviews-ratings">Ratings & Reviews</a></li>
+        </ul>
+      </nav>
       <Overview currentProductID={currentProductID}
                 currentProductData={currentProductData}
                 productMetaData={productMetaData} />
