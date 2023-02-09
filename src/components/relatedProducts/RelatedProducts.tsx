@@ -68,9 +68,9 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
 
     <section id="related-products" className='related-products widget'>
       <div className='title_div'>
-        <h2 className='title'>Related Products</h2>
+        <h2 className='title'>{'Related Products'.toUpperCase()}</h2>
       </div>
-      
+
       <Carousel
         items={relatedItems}
         currentProductID={currentProductID}
@@ -81,7 +81,7 @@ const RelatedProducts: FC<RelatedProductsProps> = ({currentProductData,  current
       />
 
       <div className='title_div'>
-        <h2 className='title'>Your Outfit</h2>
+        <h2 className='title'>{'Your Outfit'.toUpperCase()}</h2>
         {showErrorMessage && <div className='outfit_error'>{currentProductData.name} is already in your outfit!</div>}
 
       </div>
