@@ -3,11 +3,12 @@ const express = require('express');
 const dotenv = require('dotenv').config();
 import axios from 'axios';
 var cors = require('cors');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(express.json())
-app.use(express.static('dist'))
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/products', (req: Request, res: Response) => {
   axios('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', {
