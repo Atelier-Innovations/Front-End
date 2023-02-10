@@ -3,7 +3,7 @@ import notFound from '../images/not-found.png';
 
 export const getProductDataFromDB = (productID, setterFunction) => {
   axios
-    .get(`/products/${productID}`, {})
+    .get(`http://localhost:6969/products/${productID}`, {})
     .then((result) => {
       setterFunction(result.data);
     })
@@ -14,7 +14,7 @@ export const getProductDataFromDB = (productID, setterFunction) => {
 
 export const getRelatedProductsFromDB = (productID, setterFunction) => {
   axios
-    .get(`/products/${productID}/related`, {})
+    .get(`http://localhost:6969/products/${productID}/related`, {})
     .then((result) => {
       setterFunction(result.data);
     })
@@ -24,7 +24,7 @@ export const getRelatedProductsFromDB = (productID, setterFunction) => {
 };
 
 export const getRatingsDataFromDB = (productID, setterFunction) => {
-  axios.get(`/reviews/meta?id=${productID}`)
+  axios.get(`http://localhost:6969/reviews/meta?id=${productID}`)
   .then((result) => {
     setterFunction(result.data);
   })
@@ -35,7 +35,7 @@ export const getRatingsDataFromDB = (productID, setterFunction) => {
 
 export const getCardProductImgFromDB = async (cardID, setterFunction) => {
   let response = await axios.get(
-    `/products/${cardID}/styles`
+    `http://localhost:6969/products/${cardID}/styles`
   );
   let img = response.data.results[0].photos[0].thumbnail_url;
   // check image for null value and display "not available" if true
@@ -49,7 +49,7 @@ export const getCardProductImgFromDB = async (cardID, setterFunction) => {
 export const getSalePrice = async (cardID, setterFunction) => {
   try {
     let response = await axios.get(
-    `/products/${cardID}/styles`
+    `http://localhost:6969/products/${cardID}/styles`
     );
     let data = response.data.results
     let defaultStyle = response.data.results[0]

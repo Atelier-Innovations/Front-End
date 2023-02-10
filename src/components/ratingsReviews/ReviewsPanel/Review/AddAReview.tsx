@@ -314,7 +314,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
   const onFormSubmit = (event) => {
     event.preventDefault()
 
-    axios.post('/reviews', newReview)
+    axios.post('http://localhost:6969/reviews', newReview)
       .then((result) => {
         // console.log(result);
       })

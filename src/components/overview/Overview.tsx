@@ -26,7 +26,7 @@ const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
   };
 
   useEffect(() => {
-    axios(`/products/${props.currentProductID}/styles`)
+    axios(`http://localhost:6969/products/${props.currentProductID}/styles`)
     .then( results => {
       setStyleList(results.data);
       setCurrentStyle(results.data.results[0]);
