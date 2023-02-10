@@ -30,12 +30,28 @@ const OverallRating: FC<OverallRatingProps> = ({ ratings }) => {
     }
   }
 
+  let totalRatings;
+  if (ratings) {
+    totalRatings = Number(ratings['5']) + Number(ratings['4']) + Number(ratings['3']) + Number(ratings['2']) + Number(ratings['1'])
+  }
+
+
+  console.log(totalRatings)
+
   // console.log()
 
   return (
-    <div className="overall-rating">
-      <div>{ averageRating(ratings) }</div>
-      <div className="overall-stars"> < Rating readonly={true} initialValue={ Number(averageRating(ratings)) } size={ 18 } fillColor="#525252" emptyColor="#00000040" allowFraction={ true }/> </div>
+    <div>
+
+      <div className="overall-rating">
+        { averageRating(ratings) }
+        <div className="overall-stars">
+           < Rating readonly={true} initialValue={ Number(averageRating(ratings)) } size={ 25 } fillColor="#525252" emptyColor="#00000040" allowFraction={ true }/>
+           <div className='totalRatings'> ({totalRatings}) </div>
+        </div>
+      </div>
+
+
     </div>
   )
 }
