@@ -5,6 +5,7 @@ import RatingsReviews from './ratingsReviews/RatingsReviews';
 import RelatedProducts from './relatedProducts/RelatedProducts';
 import QandA from './qAndA/QandA';
 import { getProductDataFromDB, getRatingsDataFromDB } from '../helperFunctions';
+import hammerLogo from '../images/hammer-logo-2.png'
 
 export const App: React.FC = () => {
   const [currentProductID, setCurrentProductID] = useState<string>('37311');
@@ -29,6 +30,8 @@ export const App: React.FC = () => {
   return (
     <div className='app'>
       <nav>
+      <div className='logo' style={{ backgroundImage: `url(${hammerLogo})` }}></div>
+
         <h1 className='site_name'>The <span className='thor'>Thor</span> Store</h1>
         <ul className="nav-list">
           <li><a href="#overview">Overview</a></li>

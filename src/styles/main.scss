@@ -1,7 +1,8 @@
 $main: #eaeaea;
 $nav: #404b56;
-$accent-light: #cc0e1d;
-$accent-dark: #a2141a;
+// $accent-light: #cc0e1d;
+$accent-light: #e83636;
+// $accent-dark: #a2141a;
 $text: #2c3034;
 
 ///////////
@@ -35,6 +36,7 @@ h1 {
   font-size: 56px;
   font-family: 'Alegreya Sans SC', sans-serif;
   font-weight: 600;
+  line-height: .8;
 }
 
 h2 {
@@ -55,7 +57,24 @@ h4 {
   font-size: 66px;
   .thor {
     color: $accent-light;
+    font-style: italic;
+    font-weight: 700;
+
   }
+}
+
+.logo {
+  background-color: white;
+  height: 50px;
+  width: 50px;
+  margin-left: 50px;
+  margin-right: -150px;
+  border-radius: 100px;
+  border: black solid 1px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 5px;
 }
 
 
