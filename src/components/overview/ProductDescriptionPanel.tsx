@@ -12,7 +12,7 @@ const ProductDescriptionPanel: React.FC = ({currentStyle, product}) => {
         <ul>
           {product.features ?
            product.features.map( (feature, index) => (
-            <li key={index}>{feature.feature}: {feature.value}</li>
+            <li key={index}>&nbsp;<span className='feature'>{feature.feature}:</span> {feature.value}</li>
            )) : null}
         </ul>
       </div>

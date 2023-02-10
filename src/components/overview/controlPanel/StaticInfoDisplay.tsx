@@ -53,7 +53,7 @@ const StaticInfoDisplay: React.FC<StaticInfoProps> = ({product, currentStyle, re
                 fillColor="#525252"
                 emptyColor="#00000040"
                 allowFraction={true} />
-        <span><a href="#reviews-ratings">Read all {totalReviews} reviews</a></span>
+        <span>&nbsp;<a href="#reviews-ratings">Read all {totalReviews} reviews</a></span>
       </div> : null}
 
       {product.category && <h3 className="category">{product.category.toUpperCase()}</h3>}

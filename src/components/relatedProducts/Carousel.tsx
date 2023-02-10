@@ -115,8 +115,8 @@ const Carousel: FC<CarouselProps> = ({items, currentProductID, currentProductDat
       </>
     }
 
-      {renderBackwardsArrow() && <div className='arrow arrow-left' onClick={handleBackwardClick}>{'<'}</div>}
-      {renderForwardArrow() && <div className='arrow arrow-right' onClick={handleForwardClick}>{'>'}</div>}
+      {renderBackwardsArrow() && <div className='arrow arrow-left' onClick={handleBackwardClick}><span className='arrow-element'>{'<'}</span></div>}
+      {renderForwardArrow() && <div className='arrow arrow-right' onClick={handleForwardClick}><span className='arrow-element'>{'>'}</span></div>}
     </div>
   );
 }

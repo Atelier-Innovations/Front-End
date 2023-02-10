@@ -65,9 +65,9 @@ const ComparisonModal: FC<ComparisonModalProps> = ({ currentProductData, cardPro
       <div className='comparison-modal-table'>
         {/* product names */}
         <div className='comparison-modal-row'>
-          <h3>{currentProductData.name}</h3>
+          <h3 className='product_name'>{currentProductData.name}</h3>
           <div></div>
-          <h3>{cardProductData.name}</h3>
+          <h3 className='product_name'>{cardProductData.name}</h3>
         </div>
 
         {/* price */}
