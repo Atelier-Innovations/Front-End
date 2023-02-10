@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useState } from 'react';
 
 interface StarChartProps {
   ratings: {
@@ -33,10 +34,20 @@ const StarChart: FC<StarChartProps> = ({ ratings, setDisplayedReviews, filteredR
 
   const reviewSorter = (displayedReviews) => {
     console.log(displayedReviews);
-    var sortedReviews = displayedReviews.sort((r1, r2) => (r1.rating - r2.rating) ? -1: 1)
-    console.log('sorted', sortedReviews)
-    setDisplayedReviews(sortedReviews);
+    let arr;
+    arr = JSON.parse(JSON.stringify(displayedReviews))
+    for (let i = 0; i < arr.length; i++) {
+      for (let k = 0; k < arr.length - i - 1; k++) {
+        if (arr[k + 1].rating < arr[k].rating) {
+          [arr[k + 1].rating, arr[k].rating] = [arr[k], arr[i + 1]]
+        }
+      }
+    }
+    console.log(arr)
+    setDisplayedReviews(arr);
   }
+
+  // console.log(reviewSorter(displayedReviews))
 
   // const filterOut = (filteredReviews, displayedReviews) => {
   //   for (let i = 0; i < filteredReviews.fiveStar.length; i++) {
@@ -49,18 +60,16 @@ const StarChart: FC<StarChartProps> = ({ ratings, setDisplayedReviews, filteredR
   // }
 
   const fiveStarFilter = (event) => {
-    if (displayedReviews.toString() === currentReviews.results.toString()) {
-      // console.log('displayed from stars before setState', filteredReviews.fiveStar)
-      // console.log('current reviews', currentReviews)
-      // console.log('displayed before state change', displayedReviews)
-      setDisplayedReviews(filteredReviews.fiveStar)
-    } else {
-      setDisplayedReviews([
-        ...displayedReviews,
-        ...filteredReviews.fiveStar
-      ])
+    if (displayedReviews.length === 0) {
+      setDisplayedReviews(currentReviews.results)
+      return;
     }
-    if (displayedReviews.filter((review) => {return review.rating === 5}) && displayedReviews.filter((review) => {return review.rating !== 5}).length === 0) {
+    if (displayedReviews.toString() === currentReviews.results.toString()) {
+      setDisplayedReviews(filteredReviews.fiveStar)
+    } else if (displayedReviews.filter((review) => {return review.rating === 5}).length === 0) {
+      reviewSorter([...displayedReviews, ...filteredReviews.fiveStar])
+    }
+    if (displayedReviews.filter((review) => {return review.rating === 5}).length !== 0 && displayedReviews.filter((review) => {return review.rating !== 5}).length === 0) {
       setDisplayedReviews(currentReviews.results)
     }
   }
@@ -75,66 +84,77 @@ const StarChart: FC<StarChartProps> = ({ ratings, setDisplayedReviews, filteredR
   // console.log("test UPdated", displayedReviews)
 
   const fourStarFilter = (event) => {
-    if (displayedReviews.toString() === currentReviews.results.toString()) {
+    if (displayedReviews.length === 0) {
+      setDisplayedReviews(currentReviews.results)
+      return;
+    } else if (displayedReviews.toString() === currentReviews.results.toString()) {
       setDisplayedReviews(filteredReviews.fourStar)
-    } else {
-      setDisplayedReviews([
-        ...displayedReviews,
-        ...filteredReviews.fourStar
-      ])
-
+    } else if (displayedReviews.filter((review) => {return review.rating === 4}).length === 0) {
+      reviewSorter([...displayedReviews, ...filteredReviews.fourStar])
     }
-    if (displayedReviews.filter((review) => {return review.rating === 4}) && displayedReviews.filter((review) => {return review.rating !== 4}).length === 0) {
+    if (displayedReviews.filter((review) => {return review.rating === 4}).length !== 0 && displayedReviews.filter((review) => {return review.rating !== 4}).length === 0) {
       setDisplayedReviews(currentReviews.results)
     }
   }
 
   const threeStarFilter = (event) => {
-    if (displayedReviews.toString() === currentReviews.results.toString()) {
-      setDisplayedReviews(filteredReviews.threeStar)
-    } else {
-      setDisplayedReviews([
-        ...displayedReviews,
-        ...filteredReviews.threeStar
-      ])
+    if (displayedReviews.length === 0) {
+      setDisplayedReviews(currentReviews.results)
+      return;
+    } else if (displayedReviews.toString() === currentReviews.results.toString()) {
 
+      setDisplayedReviews(filteredReviews.threeStar)
+    } else if (displayedReviews.filter((review) => {return review.rating === 3}).length === 0) {
+      reviewSorter([...displayedReviews, ...filteredReviews.threeStar])
     }
-    if (displayedReviews.filter((review) => {return review.rating === 3}) && displayedReviews.filter((review) => {return review.rating !== 3}).length === 0) {
+    if (displayedReviews.filter((review) => {return review.rating === 3}).length !== 0 && displayedReviews.filter((review) => {return review.rating !== 3}).length === 0) {
       setDisplayedReviews(currentReviews.results)
     }
   }
 
   const twoStarFilter = (event) => {
-    if (displayedReviews.toString() === currentReviews.results.toString()) {
+    if (displayedReviews.length === 0) {
+      setDisplayedReviews(currentReviews.results)
+      return;
+    } else if (displayedReviews.toString() === currentReviews.results.toString()) {
       setDisplayedReviews(filteredReviews.twoStar)
-    } else {
-      setDisplayedReviews([
-        ...displayedReviews,
-        ...filteredReviews.twoStar
-      ])
+    } else if (displayedReviews.filter((review) => {return review.rating === 2}).length === 0) {
+      reviewSorter([...displayedReviews, ...filteredReviews.twoStar])
     }
-    if (displayedReviews.filter((review) => {return review.rating === 2}) && displayedReviews.filter((review) => {return review.rating !== 2}).length === 0) {
+    if (displayedReviews.filter((review) => {return review.rating === 2}).length !== 0 && displayedReviews.filter((review) => {return review.rating !== 2}).length === 0) {
       setDisplayedReviews(currentReviews.results)
     }
   }
 
   const oneStarFilter = (event) => {
+    if (displayedReviews.length === 0) {
+      setDisplayedReviews(currentReviews.results)
+      return;
+    }
     if (displayedReviews.toString() === currentReviews.results.toString()) {
       setDisplayedReviews(filteredReviews.oneStar)
-    } else {
-      setDisplayedReviews([
-        ...displayedReviews,
-        ...filteredReviews.oneStar
-      ])
+    } else if (displayedReviews.filter((review) => {return review.rating === 1}).length === 0) {
+      reviewSorter([...displayedReviews, ...filteredReviews.oneStar])
     }
-    if (displayedReviews.filter((review) => {return review.rating === 2}) && displayedReviews.filter((review) => {return review.rating !== 2}).length === 0) {
+    if (displayedReviews.filter((review) => {return review.rating === 1}).length !== 0 && displayedReviews.filter((review) => {return review.rating !== 2}).length === 0) {
       setDisplayedReviews(currentReviews.results)
     }
   }
 
+  // const removeFilters = () => {
+  //   if (displayedReviews && currentReviews.results) {
+  //     if (displayedReviews.toString() !== currentReviews.results.toString()) {
+  //       return <button onSubmit={ setDisplayedReviews( currentReviews.results )}className='remove-filters-text-button'>Remove All Filters</button>
+  //     }
+  //   }
+  // }
+
+  // console.log(isFiltered)
 
   return (
     <div className="filter-by-star">
+      <div className="ratings-breakdown-title">Ratings Breakdown</div>
+      {/* {removeFilters()} */}
       <div className="five stars">
         <button onClick={ fiveStarFilter } className='text-button'> 5 Stars</button>
         <progress  value={ ratings && ratings['5'] } max={ totalRatings(ratings) }></progress>

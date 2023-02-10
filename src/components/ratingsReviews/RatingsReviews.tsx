@@ -18,7 +18,8 @@ interface RatingsReviewsProps {
       5: string;
     };
     recommended?: object;
-  }
+  };
+  productName: string
 }
 
 
@@ -110,7 +111,7 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
 
       <div className="overall">
         < RatingsList productMetaData={ props.productMetaData } setDisplayedReviews={ setDisplayedReviews } displayedReviews={ displayedReviews }filteredReviews={ filteredReviews } currentReviews={ currentReviews }/>
-        < ReviewList reviewCount={ reviewCount } setReviewCount={ setReviewCount } sort={ sort } setSort={ setSort } displayedReviews={ displayedReviews } currentReviews={ currentReviews } productMetaData={ props.productMetaData } newReview={newReview} makeNewReview={ makeNewReview } getReviewData={ getReviewData }/>
+        < ReviewList reviewCount={ reviewCount } setReviewCount={ setReviewCount } sort={ sort } setSort={ setSort } displayedReviews={ displayedReviews } currentReviews={ currentReviews } productMetaData={ props.productMetaData } newReview={newReview} makeNewReview={ makeNewReview } getReviewData={ getReviewData } productName={props.productName}/>
       </div>
     </div>
   )
