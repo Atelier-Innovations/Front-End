@@ -32,27 +32,34 @@ const StarChart: FC<StarChartProps> = ({ ratings, setDisplayedReviews, filteredR
     return Number(ratings['1']) + Number(ratings['2']) + Number(ratings['3']) + Number(ratings['4']) + Number(ratings['5']);
   }
 
-  const reviewSorter = (displayedReviews) => {
-    console.log(displayedReviews);
-    let arr;
-    arr = JSON.parse(JSON.stringify(displayedReviews))
-    for (let i = 0; i < arr.length; i++) {
-      for (let k = 0; k < arr.length - i - 1; k++) {
-        if (arr[k + 1].rating < arr[k].rating) {
-          [arr[k + 1].rating, arr[k].rating] = [arr[k], arr[i + 1]]
-        }
-      }
+  const sorter = (a, b) => {
+    if (a.rating < b.rating) {
+      return 1;
     }
-    console.log(arr)
-    setDisplayedReviews(arr);
+    if (a.rating > b.rating) {
+      return -1;
+    }
+    return
   }
+
+  const reviewSorter = (displayedReviews) => {
+    let unsortedReviews;
+    if (displayedReviews) {
+      unsortedReviews = JSON.parse(JSON.stringify(displayedReviews));
+    }
+
+    let sorted = unsortedReviews.sort(sorter)
+    setDisplayedReviews(sorted)
+  }
+
+  // console.log(displayedReviews.sort(reviewSorter))
 
   // console.log(reviewSorter(displayedReviews))
 
   // const filterOut = (filteredReviews, displayedReviews) => {
   //   for (let i = 0; i < filteredReviews.fiveStar.length; i++) {
   //     for (let k = 0; k < displayedReviews.length; k++) {
-  //       if (filteredReviews.fiveStar[i] === displayedReviews[k]) {
+  //       if (filteredReviews[i] === displayedReviews[k]) {
   //         console.log('test', displayedReviews[k])
   //       }
   //     }
@@ -66,7 +73,7 @@ const StarChart: FC<StarChartProps> = ({ ratings, setDisplayedReviews, filteredR
     }
     if (displayedReviews.toString() === currentReviews.results.toString()) {
       setDisplayedReviews(filteredReviews.fiveStar)
-    } else if (displayedReviews.filter((review) => {return review.rating === 5}).length === 0) {
+    } else if (displayedReviews.toString() !== currentReviews.results.toString() && displayedReviews.filter((review) => {return review.rating === 5}).length === 0) {
       reviewSorter([...displayedReviews, ...filteredReviews.fiveStar])
     }
     if (displayedReviews.filter((review) => {return review.rating === 5}).length !== 0 && displayedReviews.filter((review) => {return review.rating !== 5}).length === 0) {
@@ -89,7 +96,7 @@ const StarChart: FC<StarChartProps> = ({ ratings, setDisplayedReviews, filteredR
       return;
     } else if (displayedReviews.toString() === currentReviews.results.toString()) {
       setDisplayedReviews(filteredReviews.fourStar)
-    } else if (displayedReviews.filter((review) => {return review.rating === 4}).length === 0) {
+    } else if (displayedReviews.toString() !== currentReviews.results.toString() && displayedReviews.filter((review) => {return review.rating === 4}).length === 0) {
       reviewSorter([...displayedReviews, ...filteredReviews.fourStar])
     }
     if (displayedReviews.filter((review) => {return review.rating === 4}).length !== 0 && displayedReviews.filter((review) => {return review.rating !== 4}).length === 0) {
@@ -102,9 +109,8 @@ const StarChart: FC<StarChartProps> = ({ ratings, setDisplayedReviews, filteredR
       setDisplayedReviews(currentReviews.results)
       return;
     } else if (displayedReviews.toString() === currentReviews.results.toString()) {
-
       setDisplayedReviews(filteredReviews.threeStar)
-    } else if (displayedReviews.filter((review) => {return review.rating === 3}).length === 0) {
+    } else if (displayedReviews.toString() !== currentReviews.results.toString() && displayedReviews.filter((review) => {return review.rating === 3}).length === 0) {
       reviewSorter([...displayedReviews, ...filteredReviews.threeStar])
     }
     if (displayedReviews.filter((review) => {return review.rating === 3}).length !== 0 && displayedReviews.filter((review) => {return review.rating !== 3}).length === 0) {
@@ -118,7 +124,7 @@ const StarChart: FC<StarChartProps> = ({ ratings, setDisplayedReviews, filteredR
       return;
     } else if (displayedReviews.toString() === currentReviews.results.toString()) {
       setDisplayedReviews(filteredReviews.twoStar)
-    } else if (displayedReviews.filter((review) => {return review.rating === 2}).length === 0) {
+    } else if (displayedReviews.toString() !== currentReviews.results.toString() && displayedReviews.filter((review) => {return review.rating === 2}).length === 0) {
       reviewSorter([...displayedReviews, ...filteredReviews.twoStar])
     }
     if (displayedReviews.filter((review) => {return review.rating === 2}).length !== 0 && displayedReviews.filter((review) => {return review.rating !== 2}).length === 0) {
@@ -133,7 +139,7 @@ const StarChart: FC<StarChartProps> = ({ ratings, setDisplayedReviews, filteredR
     }
     if (displayedReviews.toString() === currentReviews.results.toString()) {
       setDisplayedReviews(filteredReviews.oneStar)
-    } else if (displayedReviews.filter((review) => {return review.rating === 1}).length === 0) {
+    } else if (displayedReviews.toString() !== currentReviews.results.toString() && displayedReviews.filter((review) => {return review.rating === 1}).length === 0) {
       reviewSorter([...displayedReviews, ...filteredReviews.oneStar])
     }
     if (displayedReviews.filter((review) => {return review.rating === 1}).length !== 0 && displayedReviews.filter((review) => {return review.rating !== 2}).length === 0) {
@@ -141,37 +147,50 @@ const StarChart: FC<StarChartProps> = ({ ratings, setDisplayedReviews, filteredR
     }
   }
 
-  // const removeFilters = () => {
-  //   if (displayedReviews && currentReviews.results) {
-  //     if (displayedReviews.toString() !== currentReviews.results.toString()) {
-  //       return <button onSubmit={ setDisplayedReviews( currentReviews.results )}className='remove-filters-text-button'>Remove All Filters</button>
-  //     }
-  //   }
-  // }
+  const removeFiltersOnClick = () => {
+    setDisplayedReviews(currentReviews.results)
+  }
+
+  const removeFilters = (displayedReviews, currentReviews) => {
+    if (displayedReviews && currentReviews.results) {
+      if (displayedReviews.toString() !== currentReviews.results.toString()) {
+        return <button onClick={ removeFiltersOnClick() } className='remove-filters-text-button'>Remove All Filters</button>
+      } else {
+        return <div className='filters-note'>Filter By Star Count</div>
+      }
+
+    }
+
+  }
 
   // console.log(isFiltered)
 
   return (
     <div className="filter-by-star">
       <div className="ratings-breakdown-title">Ratings Breakdown</div>
-      {/* {removeFilters()} */}
+      {/* {removeFilters(displayedReviews, currentReviews)} */}
       <div className="five stars">
+        <div className="review-subtotal">{ ratings && ratings['5']  }</div>
         <button onClick={ fiveStarFilter } className='text-button'> 5 Stars</button>
-        <progress  value={ ratings && ratings['5'] } max={ totalRatings(ratings) }></progress>
+        <progress value={ ratings && ratings['5'] } max={ totalRatings(ratings) }></progress>
       </div>
       <div className="four stars">
+        <div className="review-subtotal">{ratings && ratings['4']}</div>
         <button onClick={ fourStarFilter } className='text-button'> 4 Stars</button>
         <progress  value={ ratings && ratings['4'] } max={ totalRatings(ratings) }></progress>
       </div>
       <div className="three stars">
+        <div className="review-subtotal">{ratings && ratings['3']}</div>
         <button onClick={ threeStarFilter } className='text-button'> 3 Stars</button>
         <progress  value={ ratings && ratings['3'] } max={ totalRatings(ratings) }></progress>
       </div>
       <div className="two stars">
+        <div className="review-subtotal">{ratings && ratings['2']}</div>
         <button onClick={ twoStarFilter } className='text-button'> 2 Stars</button>
         <progress  value={ ratings && ratings['2'] } max={ totalRatings(ratings) }></progress>
       </div>
       <div className="one stars">
+        <div className="review-subtotal">{ratings && ratings['1']}</div>
         <button onClick={ oneStarFilter } className='text-button'> 1 Stars</button>
         <progress  value={ ratings && ratings['1'] } max={ totalRatings(ratings) }></progress>
       </div>

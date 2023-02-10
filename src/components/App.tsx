@@ -22,7 +22,7 @@ export const App: React.FC = () => {
     setCurrentProductID(cardID)
   }
 
-  console.log('product data', currentProductData)
+  // console.log('product data', currentProductData)
 
 
 
