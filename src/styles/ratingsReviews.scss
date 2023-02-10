@@ -44,6 +44,8 @@
 
         .slider-title {
           font-size: 1rem;
+          // text-decoration: underline;
+          font-weight: 300;
         }
 
         .slider-tags {
@@ -120,9 +122,9 @@
           display: flex;
           flex-direction: column;
           padding-top: 1rem;
-          font-weight: 350;
+          font-weight: 400;
           font-size: 1.25rem;
-          margin-bottom: 1rem;
+
 
         }
 

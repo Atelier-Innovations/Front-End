@@ -36,7 +36,7 @@ const OverallRating: FC<OverallRatingProps> = ({ ratings }) => {
   }
 
 
-  console.log(totalRatings)
+  // console.log(totalRatings)
 
   // console.log()
 

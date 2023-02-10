@@ -88,7 +88,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
     if (productChars.Comfort) {
       return (
         <div className="charachteristics">
-            <div className="select-title">Comfort: </div>
+            <div className="select-title">*Comfort: </div>
           <div className="custom-select">
 
             <select onChange={ onComfortChange } defaultValue={0}>
@@ -119,7 +119,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
     if (productChars.Fit) {
       return (
         <div className="charachteristics">
-          <div className="select-title">Fit: </div>
+          <div className="select-title">*Fit: </div>
           <div className="custom-select">
             <select onChange={ onFitChange } defaultValue={0}>
               <option value={0} id="null"> Choose An Option </option>
@@ -149,7 +149,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
     if (productChars.Quality) {
       return (
         <div className="charachteristics">
-          <div className="select-title">Quality: </div>
+          <div className="select-title">*Quality: </div>
           <div className="custom-select">
 
             <select onChange={ onQualityChange }defaultValue={0}>
@@ -180,7 +180,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
     if (productChars.Size) {
       return (
         <div className="charachteristics">
-          <div className="select-title">Size:</div>
+          <div className="select-title">*Size:</div>
           <div className="custom-select">
             <select onChange={ onSizeChange } defaultValue={0}>
               <option value={0} id="null"> Choose An Option </option>
@@ -210,7 +210,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
     if (productChars.Length) {
       return (
         <div className="charachteristics">
-          <div className="select-title">Length: </div>
+          <div className="select-title">*Length: </div>
           <div className="custom-select">
 
             <select onChange={ onLengthChange } defaultValue={0}>
@@ -241,7 +241,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
     if (productChars.Width) {
       return (
         <div className="charachteristics">
-          <div className="select-title">Width: </div>
+          <div className="select-title">*Width: </div>
           <div className="custom-select">
 
             <select onChange={ onWidthChange } defaultValue={0}>
@@ -370,7 +370,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
 
 
         <div className="checkbox1">
-          <div className="field-title">Do you recommend this product?:</div> <input type="checkbox" onChange={ recommendOnChange }value={newReview.recommend.toString()} ></input>
+          <div className="field-title">*Do you recommend this product?:</div> <input type="checkbox" onChange={ recommendOnChange }value={newReview.recommend.toString()} ></input>
         </div>
 
 
@@ -385,7 +385,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
 
           <div className="simpleInput">
             <div className="field-title">
-              Username:
+              *Username:
             </div>
             <input placeholder="What's your Username?" type="text" onChange={ userNameOnChange } value={newReview.name} maxLength={60} required></input>
           </div>
@@ -401,7 +401,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
 
           <div className="body">
             <div className="field-title">
-              Body:
+              *Body:
             </div>
             <textarea placeholder="Tell us about your experience!"  onChange={ bodyOnChange } value={newReview.body} minLength={50} maxLength={1000} required></textarea>
           </div>
