@@ -21,7 +21,7 @@ const QuestionsList: FC<QuestionsListProps> = (props) => {
 
   const getAllQuestions = () => {
     axios
-      .get(`http://localhost:6969/questions/${currentProductID}`, {})
+      .get(`/questions/${currentProductID}`, {})
       .then((result) => {
         // console.log('current result at QuestionsList axios: ', result);
       })

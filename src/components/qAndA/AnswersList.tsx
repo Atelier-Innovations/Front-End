@@ -17,7 +17,7 @@ const AnswersList: FC<AnswersListProps> = (props: AnswersListProps) => {
   // initial answers
   const getAnswers = () => {
     axios
-      .get('http://localhost:6969/qa/questions/644533/answers')
+      .get('/qa/questions/644533/answers')
       .then((result) => {
         // console.log('successful api request: ', result);
         setCurrentAnswers(result.data.results);

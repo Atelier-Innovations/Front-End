@@ -48,7 +48,7 @@ const RatingsReviews: FC<RatingsReviewsProps> = (props) => {
 
 
   const getReviewData = () => {
-    axios.get(`http://localhost:6969/reviews?id=${props.currentProductID}&sort=${sort}&count=${reviewCount}`)
+    axios.get(`/reviews?id=${props.currentProductID}&sort=${sort}&count=${reviewCount}`)
       .then((results) => {
         setCurrentReviews(results.data);
         setDisplayedReviews(results.data.results);
