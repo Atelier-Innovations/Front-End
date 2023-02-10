@@ -206,6 +206,7 @@ nav {
     display: flex;
     flex-direction: column;
 
+
     .formTitle {
       font-size: 1.7rem;
       font-weight: 300;
@@ -213,8 +214,11 @@ nav {
     .formSubtitle {
       font-size: 1.1rem;
       font-weight: 300;
+      padding-bottom: 1rem;
 
-
+    }
+    .star-rating {
+      padding-left: 2rem;
     }
 
     .review-form {
@@ -223,15 +227,35 @@ nav {
       display: flex;
       align-items: center;
       flex-direction: column;
+      padding-right: 0.2rem;
+
 
       .field-title {
         padding-right: 1rem;
       }
 
+      .form-note1 {
+        padding-left: 3rem;
+        margin-top: -0.6rem;
+        font-weight: 100;
+        position: relative;
+        font-size: 0.9rem;
+        margin-bottom: 0.55rem;
+      }
+
+      .form-note2 {
+        margin-top: -0.55rem;
+        font-weight: 100;
+        position: relative;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        margin-left: -1.2rem;
+      }
+
 
       .simpleInput {
         display: flex;
-        flex-flow: row nowrap;
+        flex-direction: row;
         justify-content:space-between;
         padding-bottom: .5rem;
       }
@@ -241,41 +265,63 @@ nav {
         flex-flow: row nowrap;
         justify-content:space-between;
         padding-bottom: .5rem;
+        padding-top: 1.1rem
+
+      }
+
+      .charCount {
+        font-weight: 100;
+        position: relative;
+        margin-left: -6.6rem;
+        margin-top: -0.5rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .charCount-reached {
+        position: relative;
+        font-weight: 100;
+        margin-left: -12.9rem;
+        margin-top: -0.5rem;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
       }
 
       .checkbox1 {
         display: flex;
         flex-flow: row nowrap;
-        justify-content:space-around;
+        justify-content: center;
         padding-bottom: .5rem;
+        padding-left: 2rem
+        // border:1px solid black
       }
 
       .charachteristics {
         display: flex;
         flex-flow: row nowrap;
-        width: 29.3rem;
-        padding-bottom: .5rem;
-        border: 1px solid black;
+        width: 30.7rem;
+        padding-bottom: 1.3rem;
+        // border: 1px solid black;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
+        // padding-right: 6rem
       }
 
       .text-fields {
         padding-top: .5rem;
       }
 
-      .custom-select {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        // border: 1px solid black
-        // display: none;
+      select {
+        height: 2rem;
+        padding-left: 8rem;
+        width: 25rem;
+        font-size: 1rem;
+      }
 
+      .select-title {
 
       }
-      .select-selected {
-        background-color: DodgerBlue;
-      }
+
 
       input[type=text] {
         width: 25rem
@@ -285,9 +331,26 @@ nav {
         width: 25rem
       }
 
-      input[type=textarea] {
+      button {
+        background: none;
+        font-weight: bold;
+        height: 3rem;
+        padding-right: 15rem;
+        padding-left: 15rem;
+        cursor: pointer;
+        transition: .4s ;
+        &:hover {
+          background-color: rgba(51, 51, 51, 0.9);
+          color: white;
+        }
+      }
+
+      textarea {
         height: 8rem;
-        width: 25rem
+        width: 25rem;
+        font-family: inherit;
+        font-size: 0.9rem;
+
       }
     }
   }

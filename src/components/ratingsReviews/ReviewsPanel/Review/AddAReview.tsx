@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Rating } from 'react-simple-star-rating'
 import axios from "axios";
+import { useState } from 'react';
 
 interface AddAReviewProps {
   productMetaData: {
@@ -32,6 +33,8 @@ interface AddAReviewProps {
 }
 
 const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewReview, setModalIsOpen, productName }) => {
+
+  const [ charCount, setCharCount ] = useState(0);
 
 
   let productChars:any = productMetaData.characteristics;
@@ -239,7 +242,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
       return (
         <div className="charachteristics">
           <div className="select-title">Width: </div>
-          <div className="custome-select">
+          <div className="custom-select">
 
             <select onChange={ onWidthChange } defaultValue={0}>
               <option value={0} id="null"> Choose An Option </option>
@@ -282,6 +285,15 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
       ...newReview,
       body: event.target.value
     })
+    setCharCount(event.target.value.length)
+  }
+
+  const displayCounter = (chars) => {
+    if (Number(chars) <= 50) {
+      return <div className="charCount">Minimum required characters left: {50 - chars}</div>
+    } else {
+      return <div className="charCount-reached">Minimum reached</div>
+    }
   }
 
   const recommendOnChange = (event) => {
@@ -297,7 +309,6 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
       rating: rating
     })
   }
-
 
 
   const onFormSubmit = (event) => {
@@ -317,7 +328,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
 
     makeNewReview({
       "product_id": productMetaData.product_id,
-      "rating": 3.5,
+      "rating": 0,
       "summary": '',
       "body": '',
       "recommend": false,
@@ -332,29 +343,69 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
 
   });
   setModalIsOpen(false)
-
-
   }
 
-  // console.log(newReview);
+  console.log(newReview);
+
+  const toolTipRatingsArray = ["Terrible", "Okay", "Good", "Great", "Perfect"]
 
   return (
     <div className="add-a-review">
       <div className="formTitle">Write Your Review</div>
 
-      <div className="formSubtitle">About the {productName}</div>
+
+      <div className="formSubtitle">about the {productName}</div>
+      <div className="star-rating">
+          < Rating
+            initialValue={0}
+            tooltipDefaultText="Your Rating"
+            tooltipArray={toolTipRatingsArray}
+            fillColor="#525252"
+            emptyColor="#00000040"
+            transition={true}
+            onClick={ratingsOnClick}
+            showTooltip={true}/>
+          </div>
       <form className="review-form" onSubmit={onFormSubmit}>
-        < Rating fillColor="#525252" emptyColor="#00000040" transition={true} onClick={ratingsOnClick} />
+
+
+        <div className="checkbox1">
+          <div className="field-title">Do you recommend this product?:</div> <input type="checkbox" onChange={ recommendOnChange }value={newReview.recommend.toString()} ></input>
+        </div>
+
+
         <div className="text-fields">
-          <div className="simpleInput"> <div className="field-title">Email:</div> <input type="email" onChange={ emailOnChange } value={newReview.email} maxLength={60} required></input></div>
+          <div className="simpleInput">
+            <div className="field-title">
+              Email:
+            </div>
+              <input placeholder="What's your Email?" type="email" onChange={ emailOnChange } value={newReview.email} maxLength={60} required></input>
+          </div>
+          <div className="form-note1">For privacy reasons, do not use your full name or email address</div>
 
-          <div className="simpleInput"> <div className="field-title">Username:</div> <input type="text" onChange={ userNameOnChange } value={newReview.name} maxLength={60} required></input></div>
+          <div className="simpleInput">
+            <div className="field-title">
+              Username:
+            </div>
+            <input placeholder="What's your Username?" type="text" onChange={ userNameOnChange } value={newReview.name} maxLength={60} required></input>
+          </div>
+          <div className="form-note2">For authentication reasons, you will not be emailed</div>
 
-          <div className="simpleInput"> <div className="field-title">Summary:</div> <input type="text" onChange={ summaryOnChange }value={newReview.summary} maxLength={60} required></input></div>
 
-          <div className="body"> <div className="field-title">Body:</div> <input type="textarea" onChange={ bodyOnChange } value={newReview.body} minLength={50} maxLength={1000} required></input></div>
+          <div className="simpleInput">
+            <div className="field-title">
+              Summary:
+            </div>
+            <input placeholder="Summarize it!" type="text" onChange={ summaryOnChange }value={newReview.summary} maxLength={60} required></input>
+          </div>
 
-          <div className="checkbox1"> <div className="field-title">Do you recommended this product?:</div> <input type="checkbox" onChange={ recommendOnChange }value={newReview.recommend.toString()} ></input></div>
+          <div className="body">
+            <div className="field-title">
+              Body:
+            </div>
+            <textarea placeholder="Tell us about your experience!"  onChange={ bodyOnChange } value={newReview.body} minLength={50} maxLength={1000} required></textarea>
+          </div>
+          {displayCounter(charCount)}
         </div>
 
         {/* Photos: <input type="file" name="myImage" accept="image/*" /><br/> */}
@@ -365,7 +416,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
         {ifQuality(productChars)}
         {ifLength(productChars)}
         {ifWidth(productChars)}
-        <button type="submit">Submit</button>
+        <button type="submit">SUBMIT REVIEW +</button>
       </form>
     </div>
   )

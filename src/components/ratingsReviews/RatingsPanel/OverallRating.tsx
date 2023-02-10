@@ -35,7 +35,7 @@ const OverallRating: FC<OverallRatingProps> = ({ ratings }) => {
   return (
     <div className="overall-rating">
       <div>{ averageRating(ratings) }</div>
-      <div className="overall-stars"> < Rating readonly={true} initialValue={ Number(averageRating(ratings)) } size={ 18 } fillColor="#525252" emptyColor="#00000040" allowFraction={ true }/> </div>
+      <div className="overall-stars"> < Rating readonly={true} initialValue={ Number(averageRating(ratings)) } size={ 25 } fillColor="#525252" emptyColor="#00000040" allowFraction={ true }/> </div>
     </div>
   )
 }
