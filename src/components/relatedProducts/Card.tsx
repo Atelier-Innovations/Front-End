@@ -44,7 +44,7 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
 
   const onCardClick = (e) => {
     // Check to see if click came from compare or remove buttons, if it did don't execute handleCardClick
-    if (e.target.innerHTML !== 'Compare' && e.target.innerHTML !== 'X') {
+    if (e.target.innerHTML !== 'COMPARE' && e.target.innerHTML !== 'X') {
       handleCardClick(cardID.toString())
     }
   }
@@ -52,6 +52,8 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
   // get product meta data and calculate rating
   const cardRating:string = averageRating(cardMetaData.ratings)
   const currentProductRating:string = averageRating(productMetaData.ratings)
+
+  const xImage = 'https://www.i2symbol.com/images/text-symbols/x-symbol.png'
 
   return (
     <>
@@ -76,20 +78,23 @@ const Card: FC<CardProps> = ({cardType, currentProductID, cardID, currentProduct
           onClick={(e) => onCardClick(e)}
         >
         {cardType === 'product' ?
-        <div className='button_div'>
-            <button className="compare_button" onClick={() => setModalIsOpen(true)}>Compare</button>
+        <div className='button_div compare_button_div'>
+            <div className="compare_button " onClick={() => setModalIsOpen(true)}>COMPARE</div>
         </div> :
-        <div className='button_div'>
-          <button className="remove_button" onClick={() => handleRemoveOutfit(cardID)}>X</button>
+        <div className='button_div remove_button_div'>
+          <div
+            className="remove_button"
+            onClick={() => handleRemoveOutfit(cardID)}><span className="x">X</span>
+           </div>
         </div>
         }
 
 
         </div>
         <div className='cardInfo' onClick={(e) => onCardClick(e)}>
-          <div>{cardProductData.category && cardProductData.category.toUpperCase()}</div>
-          <div>{cardProductData.name}</div>
-          <div>${Math.round(cardProductData.default_price)}</div>
+          <div className='card_category'>{cardProductData.category && cardProductData.category.toUpperCase()}</div>
+          <div className='card_product_name'>{cardProductData.name}</div>
+          <div className='card_price'>${Math.round(cardProductData.default_price)}</div>
           <div className="overall-stars"> < Rating readonly={true} initialValue={cardRating} size={ 18 } fillColor="#525252" emptyColor="#00000040" allowFraction={ true }/> </div>
         </div>
         <div className='card_overlay'></div>

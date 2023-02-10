@@ -16,7 +16,6 @@
     align-items: center;
     justify-content: center;
     height: 5%;
-    border: 1px solid black;
   }
 
   .main-panel {
@@ -43,11 +42,11 @@
         cursor: pointer;
         z-index: 15;
       }
+
       .big-image {
         position: relative;
         width: 100%;
         height: 100%;
-
         object-fit: cover;
         z-index: 1;
       }
@@ -167,6 +166,7 @@
         }
         .sale-price {
           color: red;
+          font-size: 16px;
         }
 
         .stars {
@@ -179,9 +179,12 @@
 
         .price {
           margin: 20px 0;
+
         }
         .original-price {
           margin: 20px 0;
+          font-size: 20px;
+          font-weight: 300;
         }
 
         .social-media-icons {
@@ -211,10 +214,17 @@
         }
 
         .style-name {
+
+            font-weight: 600;
+
+        }
+
+        .style_name {
+          font-weight: 300;
+        }
+
+        h4 {
           margin-bottom: 30px;
-          span {
-            font-weight: bold;
-          }
         }
 
         .circle {
@@ -332,6 +342,8 @@
 
     .slogan {
       margin-bottom: 10px;
+      font-size: 22px;
+      font-weight: 700;
     }
 
     .checklist {
@@ -339,7 +351,7 @@
       text-align: left;
       // padding-top: 10px;
       padding-left: 16px;
-      font-size: 1.25rem;
+      font-size: 18px;
       ul {
         list-style: none;
       }
@@ -350,6 +362,10 @@
 
       ul li {
         margin-top: 10px;
+      }
+
+      .feature {
+        font-weight: 700;
       }
     }
   }
