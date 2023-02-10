@@ -8,7 +8,13 @@ const path = require('path');
 const app = express();
 app.use(cors());
 app.use(express.json())
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static('dist'));
+
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 
 app.get('/products', (req: Request, res: Response) => {
   axios('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', {
