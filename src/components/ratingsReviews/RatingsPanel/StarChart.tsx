@@ -168,24 +168,29 @@ const StarChart: FC<StarChartProps> = ({ ratings, setDisplayedReviews, filteredR
   return (
     <div className="filter-by-star">
       <div className="ratings-breakdown-title">Ratings Breakdown</div>
-      {removeFilters(displayedReviews, currentReviews)}
+      {/* {removeFilters(displayedReviews, currentReviews)} */}
       <div className="five stars">
+        <div className="review-subtotal">{ ratings && ratings['5']  }</div>
         <button onClick={ fiveStarFilter } className='text-button'> 5 Stars</button>
-        <progress  value={ ratings && ratings['5'] } max={ totalRatings(ratings) }></progress>
+        <progress value={ ratings && ratings['5'] } max={ totalRatings(ratings) }></progress>
       </div>
       <div className="four stars">
+        <div className="review-subtotal">{ratings && ratings['4']}</div>
         <button onClick={ fourStarFilter } className='text-button'> 4 Stars</button>
         <progress  value={ ratings && ratings['4'] } max={ totalRatings(ratings) }></progress>
       </div>
       <div className="three stars">
+        <div className="review-subtotal">{ratings && ratings['3']}</div>
         <button onClick={ threeStarFilter } className='text-button'> 3 Stars</button>
         <progress  value={ ratings && ratings['3'] } max={ totalRatings(ratings) }></progress>
       </div>
       <div className="two stars">
+        <div className="review-subtotal">{ratings && ratings['2']}</div>
         <button onClick={ twoStarFilter } className='text-button'> 2 Stars</button>
         <progress  value={ ratings && ratings['2'] } max={ totalRatings(ratings) }></progress>
       </div>
       <div className="one stars">
+        <div className="review-subtotal">{ratings && ratings['1']}</div>
         <button onClick={ oneStarFilter } className='text-button'> 1 Stars</button>
         <progress  value={ ratings && ratings['1'] } max={ totalRatings(ratings) }></progress>
       </div>

@@ -137,7 +137,7 @@
           text-decoration: underline;
           transition: color 0.3s;
           &:hover {
-            color: rgb(43, 100, 255);
+            color: $accent-light;
             transition: color 0.3s
           }
         }
@@ -156,7 +156,7 @@
           transition: color 0.3s;
 
           &:hover {
-            color: rgb(43, 100, 255);
+            color: $accent-light;
             transition: color 0.3s
           }
         }
@@ -171,7 +171,7 @@
           margin-bottom: .2rem;
           transition: color 0.3s;
           &:hover {
-            color: rgb(55, 108, 253);
+            color: $accent-light;
             transition: color 0.3s
           }
 
@@ -190,8 +190,16 @@
 
         .stars {
           padding-top: 0.7rem;
-          text-decoration: underline;
-          font-size: small;
+          .review-subtotal {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 0.8rem;
+            margin-bottom: -0.4rem;
+            text-decoration: none;
+            font-weight: 300;
+            margin-right: 0.2rem;
+          }
+
         }
       }
     }
@@ -233,7 +241,7 @@
           cursor: pointer;
           transition: .4s ;
           &:hover {
-            background-color: rgb(49, 49, 49);
+            background-color: $accent-light;
             color: white;
           }
         }
@@ -303,7 +311,7 @@
             display: inline-block;
             transition: color 0.3s;
             &:hover {
-              color: rgb(43, 100, 255);
+              color: $accent-light;
               transition: color 0.3s
             }
           }
