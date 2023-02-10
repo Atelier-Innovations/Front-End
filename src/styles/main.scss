@@ -206,73 +206,89 @@ nav {
     display: flex;
     flex-direction: column;
 
+    .formTitle {
+      font-size: 1.7rem;
+      font-weight: 300;
+    }
+    .formSubtitle {
+      font-size: 1.1rem;
+      font-weight: 300;
+
+
+    }
+
     .review-form {
       list-style-type: none;
-      border: 1px black solid;
+      // border: 1px black solid;
       display: flex;
       align-items: center;
       flex-direction: column;
-    }
-    .email {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content:space-between;
-    }
 
-    .name{
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content:space-between;
-    }
-
-    .summary {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content:space-between;
-    }
-
-    .body {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content:space-between;
-    }
-
-    .checkbox1 {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content:space-between
-    }
-
-    .charachteristics {
-      display: flex;
-      flex-flow: row nowrap;
-      width: 29.3rem
-    }
-
-    .custom-select {
-      position: relative;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-      // display: none;
+      .field-title {
+        padding-right: 1rem;
+      }
 
 
+      .simpleInput {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content:space-between;
+        padding-bottom: .5rem;
+      }
 
-    }
-    .select-selected {
-      background-color: DodgerBlue;
-    }
+      .body {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content:space-between;
+        padding-bottom: .5rem;
+      }
 
-    input[type=text] {
-      width: 25rem
-    }
+      .checkbox1 {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content:space-around;
+        padding-bottom: .5rem;
+      }
 
-    input[type=email] {
-      width: 25rem
-    }
+      .charachteristics {
+        display: flex;
+        flex-flow: row nowrap;
+        width: 29.3rem;
+        padding-bottom: .5rem;
+        border: 1px solid black;
+        align-items: center;
+        justify-content: space-around;
+      }
 
-    input[type=textarea] {
-      height: 8rem;
-      width: 25rem
+      .text-fields {
+        padding-top: .5rem;
+      }
+
+      .custom-select {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        // border: 1px solid black
+        // display: none;
+
+
+      }
+      .select-selected {
+        background-color: DodgerBlue;
+      }
+
+      input[type=text] {
+        width: 25rem
+      }
+
+      input[type=email] {
+        width: 25rem
+      }
+
+      input[type=textarea] {
+        height: 8rem;
+        width: 25rem
+      }
     }
   }
 }

@@ -28,9 +28,10 @@ interface AddAReviewProps {
   };
   makeNewReview: Function;
   setModalIsOpen: Function;
+  productName: string;
 }
 
-const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewReview, setModalIsOpen }) => {
+const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewReview, setModalIsOpen, productName }) => {
 
 
   let productChars:any = productMetaData.characteristics;
@@ -84,7 +85,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
     if (productChars.Comfort) {
       return (
         <div className="charachteristics">
-            <div>Comfort: </div>
+            <div className="select-title">Comfort: </div>
           <div className="custom-select">
 
             <select onChange={ onComfortChange } defaultValue={0}>
@@ -115,7 +116,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
     if (productChars.Fit) {
       return (
         <div className="charachteristics">
-          <div>Fit: </div>
+          <div className="select-title">Fit: </div>
           <div className="custom-select">
             <select onChange={ onFitChange } defaultValue={0}>
               <option value={0} id="null"> Choose An Option </option>
@@ -145,7 +146,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
     if (productChars.Quality) {
       return (
         <div className="charachteristics">
-          <div>Quality: </div>
+          <div className="select-title">Quality: </div>
           <div className="custom-select">
 
             <select onChange={ onQualityChange }defaultValue={0}>
@@ -176,7 +177,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
     if (productChars.Size) {
       return (
         <div className="charachteristics">
-          <div>Size:</div>
+          <div className="select-title">Size:</div>
           <div className="custom-select">
             <select onChange={ onSizeChange } defaultValue={0}>
               <option value={0} id="null"> Choose An Option </option>
@@ -206,7 +207,7 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
     if (productChars.Length) {
       return (
         <div className="charachteristics">
-          <div>Length: </div>
+          <div className="select-title">Length: </div>
           <div className="custom-select">
 
             <select onChange={ onLengthChange } defaultValue={0}>
@@ -236,16 +237,19 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
   const ifWidth = (productChars) => {
     if (productChars.Width) {
       return (
-        <div>
-          Width: &nbsp;
-          <select onChange={ onWidthChange } defaultValue={0}>
-            <option value={0} id="null"> Choose An Option </option>
-            <option value={1} id="one">Too Skinny</option>
-            <option value={2} id="two">A Little Skinny</option>
-            <option value={3} id="three">Perfect</option>
-            <option value={4} id="four">A Little Wide</option>
-            <option value={5} id="five">Too Wide</option>
-          </select>
+        <div className="charachteristics">
+          <div className="select-title">Width: </div>
+          <div className="custome-select">
+
+            <select onChange={ onWidthChange } defaultValue={0}>
+              <option value={0} id="null"> Choose An Option </option>
+              <option value={1} id="one">Too Skinny</option>
+              <option value={2} id="two">A Little Skinny</option>
+              <option value={3} id="three">Perfect</option>
+              <option value={4} id="four">A Little Wide</option>
+              <option value={5} id="five">Too Wide</option>
+            </select>
+          </div>
         </div>
       )
     }
@@ -336,18 +340,21 @@ const AddAReview: FC<AddAReviewProps> = ({ productMetaData, newReview, makeNewRe
 
   return (
     <div className="add-a-review">
+      <div className="formTitle">Write Your Review</div>
+
+      <div className="formSubtitle">About the {productName}</div>
       <form className="review-form" onSubmit={onFormSubmit}>
-        < Rating fillColor="#525252" emptyColor="#00000040" transition={true} onClick={ratingsOnClick} /> <br/>
+        < Rating fillColor="#525252" emptyColor="#00000040" transition={true} onClick={ratingsOnClick} />
         <div className="text-fields">
-          <div className="email"> <div>Email:</div> <input type="email" onChange={ emailOnChange } value={newReview.email} maxLength={60} required></input></div>
+          <div className="simpleInput"> <div className="field-title">Email:</div> <input type="email" onChange={ emailOnChange } value={newReview.email} maxLength={60} required></input></div>
 
-          <div className="name"> <div>Username:</div> <input type="text" onChange={ userNameOnChange } value={newReview.name} maxLength={60} required></input></div>
+          <div className="simpleInput"> <div className="field-title">Username:</div> <input type="text" onChange={ userNameOnChange } value={newReview.name} maxLength={60} required></input></div>
 
-          <div className="summary"> <div>Summary:</div> <input type="text" onChange={ summaryOnChange }value={newReview.summary} maxLength={60} required></input></div>
+          <div className="simpleInput"> <div className="field-title">Summary:</div> <input type="text" onChange={ summaryOnChange }value={newReview.summary} maxLength={60} required></input></div>
 
-          <div className="body"> <div>Body:</div> <input type="textarea" onChange={ bodyOnChange } value={newReview.body} minLength={50} maxLength={1000} required></input></div>
+          <div className="body"> <div className="field-title">Body:</div> <input type="textarea" onChange={ bodyOnChange } value={newReview.body} minLength={50} maxLength={1000} required></input></div>
 
-          <div className="checkbox1"> <div>Do you recommended this product?:</div> <input type="checkbox" onChange={ recommendOnChange }value={newReview.recommend.toString()} ></input></div>
+          <div className="checkbox1"> <div className="field-title">Do you recommended this product?:</div> <input type="checkbox" onChange={ recommendOnChange }value={newReview.recommend.toString()} ></input></div>
         </div>
 
         {/* Photos: <input type="file" name="myImage" accept="image/*" /><br/> */}

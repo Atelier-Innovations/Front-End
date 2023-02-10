@@ -38,11 +38,12 @@ interface ReviewListProps {
     characteristics: {};
   };
   getReviewData: Function;
-  displayedReviews: Array<object>
+  displayedReviews: Array<object>;
+  productName: string;
 }
 
 
-const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, reviewCount, setReviewCount, productMetaData, newReview, makeNewReview, getReviewData, displayedReviews }) => {
+const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, reviewCount, setReviewCount, productMetaData, newReview, makeNewReview, getReviewData, displayedReviews, productName }) => {
   // console.log('From ReviewList:', currentReviews.results)
   // console.log(currentReviews.results.review_id)
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -76,7 +77,7 @@ const ReviewList: FC<ReviewListProps> = ({ sort, currentReviews, setSort, review
           overlayClassName='modalOverlay'
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}>
-            < AddAReview productMetaData={ productMetaData } newReview={ newReview } makeNewReview={makeNewReview} setModalIsOpen={ setModalIsOpen }/>
+            < AddAReview productMetaData={ productMetaData } newReview={ newReview } makeNewReview={makeNewReview} setModalIsOpen={ setModalIsOpen } productName={ productName }/>
         </Modal>
       </div>
     </div>

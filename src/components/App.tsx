@@ -22,7 +22,7 @@ export const App: React.FC = () => {
     setCurrentProductID(cardID)
   }
 
-  console.log(currentProductData)
+  console.log('product data', currentProductData)
 
 
 
@@ -42,7 +42,7 @@ export const App: React.FC = () => {
                 productMetaData={productMetaData} />
       <RelatedProducts currentProductID={currentProductID} currentProductData={currentProductData} handleCardClick={handleCardClick} productMetaData={productMetaData}/>
       {/* <QandA currentProductID={currentProductID} /> */}
-      <RatingsReviews currentProductID={currentProductID} productMetaData={ productMetaData }/>
+      <RatingsReviews currentProductID={currentProductID} productMetaData={ productMetaData } productName={currentProductData.name}/>
     </div>
   );
 };
