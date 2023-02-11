@@ -46,12 +46,12 @@ The quantity and size dropdowns populate based on available stock, capped at 15 
 
 This section consists of 2 carousels of cards. The first carousel is of products related to currently selected product. There can only be 4 cards in the carousel, so if there are more than 4 related products we see conditionally rendered arrows that let the user scroll back and forth between them.
 
-<img src="https://recordit.co/pvDlwAdiYQ" />
+<img src="http://g.recordit.co/pvDlwAdiYQ.gif" />
 
 Clicking on a product card brings you to that product page and resets the carousel with the new related products. You can also press the compare button to launch a comparison modal, which compares all features from both products.
 
 
-<img src="https://recordit.co/oqVJTm2Oy2" />
+<img src="http://g.recordit.co/oqVJTm2Oy2.gif" />
 
 The second carousel is the outfit carousel, which is unique to each user. The card on the left lets the user bookmark the current product and add it to their outfit, and that bookmark is then saved in local storage. You also can’t add a bookmark more than once, and an error will flash if you do.
 
