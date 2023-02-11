@@ -51,15 +51,27 @@ The Ratings Panel includes: an average rating for the product, the percentage of
 
 The Ratings Panel includes: 2 reviews on page load sorted by default by relevance, a sort method selector, and two buttons allowing the user to add more reviews, 2 at a time, to the reviews section or write their own reviews. 
 
+Clicking on the "More Reviews" button will add 2 reviews to the reviews section at a time. 
+
 Clicking on the star ratings, will cause the reviews panel to display only the stars with that rating. These filters are additive and the user can click multiple to view any combination of the reviews available. 
 
 Clicking the filter a second time on the star rating will remove the rating clicked. 
 
 Clicking on a star rating when only that rating is being displayed will reset the review panel to all ratings. 
 
-Clicking on the "More Reviews" button will add 2 reviews to the reviews section at a time. 
+<img src="https://recordit.co/gZuwog4H4K"/>
 
-Clicking on the "Add a Review +" button will open a modal that allows the user to fill out a review for the current product. This modal renders a form and conditionally renders product characteristics that are avaialble to be reviewed, these include: Comfort, Size, Quality, Fit, Witdth, and Length.
+Clicking on the sort method at the top of the review panel allows the user to select from 3 sort options for the reviews: relevance, most recent, and helpfulness.
+
+Clicking on "Yes" at the bottom of a review next to the "Helpful?" question will mark it as helpful.
+
+Clicking on "Report" at the bottom of a review will cause that review to be removed from the page and it will not be re-rendered in any subsequent page-reloads or filters. 
+
+<img src="https://recordit.co/WUvjyNL4DW"/>
+
+Clicking on the "Add a Review +" button will open a modal that allows the user to fill out a review for the current product. This modal renders a form and conditionally renders product characteristics that are avaialble to be reviewed, these include: Comfort, Size, Quality, Fit, Witdth, and Length. 
+
+<img src="https://recordit.co/TOvblg3W4d"/>
 
 
 
