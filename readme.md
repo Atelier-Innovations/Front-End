@@ -22,6 +22,13 @@ FEC -- TEAM THOR
   - Related Products
   - Ratings & Reviews
 
+## Design Specifications
+<img src="./docs/images/fec_overview.png" />
+<img src="./docs/images/fec_related.png" />
+<img src="./docs/images/fec_reviews.png />
+<img src="./docs/images/fec_compare_modal.png />
+
+
 ## Overview and Demos
 
 ### Product Overview
