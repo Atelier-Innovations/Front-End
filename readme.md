@@ -1,15 +1,4 @@
-/ FEC-2212 Team Thor        \\\
-\ official documentation   /
-  ----------------------------------------
-         \   ^__^
-          \  (oo)\_______
-             (__)\       )\/\
-                 ||----w |
-                 ||     ||
-
-
-
-FEC -- TEAM THOR
+Atelier Innovations - Front End
 ================
 - Bryce Anderson
 - Thomas Faddegon
