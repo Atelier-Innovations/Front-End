@@ -1,4 +1,4 @@
-Atelier Innovations - Front End
+Atelier Innovations - The Thor Store
 ================
 - Bryce Anderson
 - Thomas Faddegon
